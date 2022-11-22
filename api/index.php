@@ -1,36 +1,10 @@
 <?php
 include_once "inc.php";
 if (isset($_GET['getProductList'])) {
-    // Insert SQL code here (this is just example code that will be updated later)
+    $pdo = PDO_config("22ac3u04", "abc322");
 
-    $products = [
-        [
-            "name"=>"Door Replacing",
-            "price"=>10.99,
-            "time"=>120
-        ],
-        [
-            "name"=>"Door Replacing",
-            "price"=>10.99,
-            "time"=>120
-        ],
-        [
-            "name"=>"Door Replacing",
-            "price"=>10.99,
-            "time"=>120
-        ],
-        [
-            "name"=>"Door Replacing",
-            "price"=>10.99,
-            "time"=>120
-        ],
-        [
-            "name"=>"Door Replacing",
-            "price"=>10.99,
-            "time"=>120
-        ]
-    ];
-
+    $stmnt = $pdo->prepare("SELECT JobType, JobName, Description, Image FROM jobtype");
+    $stmnt->execute([]);
     header("content-type: application/json");
-    echo json_encode($products, JSON_PRETTY_PRINT);
+    echo json_encode($stmnt->fetchAll(), JSON_PRETTY_PRINT);
 }
