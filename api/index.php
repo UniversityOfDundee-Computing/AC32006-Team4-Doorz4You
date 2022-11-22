@@ -7,3 +7,10 @@ if (isset($_GET['getProductList'])) {
     header("content-type: application/json");
     echo getProductListHandler($pdo);
 }
+
+if (isset($_GET['createOrder'])) {
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/createOrder.php";
+    header("content-type: text/txt");
+    echo createOrderHandler($pdo);
+}
