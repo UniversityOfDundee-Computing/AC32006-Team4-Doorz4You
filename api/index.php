@@ -1,4 +1,5 @@
 <?php
+include_once "inc.php";
 if (isset($_GET['getProductList'])) {
     // Insert SQL code here (this is just example code that will be updated later)
 
