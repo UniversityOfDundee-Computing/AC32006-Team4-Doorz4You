@@ -21,6 +21,7 @@
 
 <body class="mainBackground bg-light bg-gradient">
   
+  <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -38,8 +39,11 @@
     </div>
   </nav>
 
+  <!-- Main Section -->
   <main>
     <div class="row row-cols-1 row-cols-lg-2 g-5">
+      
+      <!-- Customer Details Box -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
@@ -71,28 +75,52 @@
           </div>
         </div>
       </div>
+
+      <!-- Service Select Box -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Select Service</h5>
             <p class="card-text">Monorail Kitteh out of servis</p>
             <form class="row row-cols-2 gy-3">
-              <div class="col-6">
-                <button class="btn btn-outline-dark">Painting/Varnishing</button>
+              <!-- <div class="col-6">
+                <button class="btn btn-outline-secondary">Painting/Varnishing</button>
+                <p class="card-text">£59</p>
               </div>
               <div class="col-6">
-                <button class="btn btn-outline-dark">Handle Replacement</button>
+                <button class="btn btn-outline-secondary">Handle Replacement</button>
+                <p class="card-text">£29</p>
               </div>
               <div class="col-6">
-                <button class="btn btn-outline-dark">Hinge Replacement</button>
+                <button class="btn btn-outline-secondary">Hinge Replacement</button>
+                <p class="card-text">£99</p>
               </div>
               <div class="col-6">
-                <button class="btn btn-outline-dark">Edge Resealing</button>
+                <button class="btn btn-outline-secondary">Edge Resealing</button>
+                <p class="card-text">£79</p>
+              </div> -->
+              <div class="d-grid col-6">
+                <button class="btn btn-outline-dark" data-bs-toggle="button">Painting/Varnishing</button>
+                <p class="card-text">£59</p>
+              </div>
+              <div class="d-grid col-6">
+                <button class="btn btn-outline-dark" data-bs-toggle="button">Handle Replacement</button>
+                <p class="card-text">£29</p>
+              </div>
+              <div class="d-grid col-6">
+                <button class="btn btn-outline-dark" data-bs-toggle="button">Hinge Replacement</button>
+                <p class="card-text">£99</p>
+              </div>
+              <div class="d-grid col-6">
+                <button class="btn btn-outline-dark" data-bs-toggle="button">Edge Resealing</button>
+                <p class="card-text">£79</p>
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      <!-- Payment Details Box -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
@@ -117,13 +145,15 @@
               <div class="col-3">
                 <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year">
               </div>
-              <div class="col-6">
+              <div class="col-5">
                 <!--Empty column for formatting-->
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      <!-- Order Summary Box -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
@@ -135,7 +165,7 @@
                 <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?">
               </div>
             </form>
-            <div class="row row-cols-2 gy-3">
+            <div class="row row-cols-2 gy-5">
               <div class="col-6">
                 <p class="card-text">Total: £</p>
               </div>
@@ -149,9 +179,10 @@
     </div>  
   </main>
 
+  <!-- footer -->
   <nav class="navbar sticky-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">+44 7700 105253 / Door2Door@askjeeves.com</a>
+      <a class="navbar-brand" href="#">+44 7700 105 253 / Door2Door@askjeeves.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavPopup" aria-controls="navbarNavPopup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
