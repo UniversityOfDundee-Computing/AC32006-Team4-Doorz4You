@@ -21,7 +21,7 @@
 
 <body class="mainBackground">
   
-  <nav class="navbar navbar-dark navbar-expand-sm" style="background-color:firebrick">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
@@ -38,36 +38,107 @@
     </div>
   </nav>
 
-  <div class="row row-cols-2">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
-      <div class="card">
+      <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Your Details</h5>
           <p class="card-text">I will find you</p>
+          <form class="row row-cols-2 gy-3">
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control" id="inputSurname" placeholder="Surname">
+            </div>
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control" id="inputCity" placeholder="City">
+            </div>
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code">
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number">
+            </div>
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address">
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <div class="col">
-      <div class="card">
+      <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Select Service</h5>
           <p class="card-text">Monorail Kitteh out of servis</p>
+          <form class="row row-cols-2 gy-3">
+            <div class="col-6">
+              <button class="btn btn-outline-dark">Painting/Varnishing</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-outline-dark">Handle Replacement</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-outline-dark">Hinge Replacement</button>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-outline-dark">Edge Resealing</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <div class="col">
-      <div class="card">
+      <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Payment Details</h5>
           <p class="card-text">Gimme your moneh!</p>
+          <form class="row row-cols-2 gy-3">
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputCardName" placeholder="Name on Card">
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number">
+            </div>
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV">
+            </div>
+            <div class="col-5">
+              <!--Empty column for formatting-->
+            </div>
+            <div class="col-7">
+              <input type="text" class="form-control" id="inputCardMonth" placeholder="Expiry Month">
+            </div>
+            <div class="col-5">
+              <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year">
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <div class="col">
-      <div class="card">
+      <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Order Summary</h5>
           <p class="card-text">Thank you, come again!</p>
+          <p class="card-text">Selected Items:</p>
+          <form class="row row-cols-2 gy-3">
+            <div class="col-12">
+              <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?">
+            </div>
+          </form>
+          <div class="row row-cols-2 gy-3">
+            <div class="col-6">
+              <p class="card-text">Total: £</p>
+            </div>
+            <div class="col-6">
+              <button class="btn btn-danger">Place Order</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
