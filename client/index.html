@@ -20,7 +20,7 @@
 </head>
 
 <body class="mainBackground bg-light bg-gradient">
-  
+<div id="app">
   <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
@@ -51,25 +51,25 @@
             <p class="card-text">I will find you</p>
             <form class="row row-cols-2 gy-3">
               <div class="col-7">
-                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" v-model="form.firstname">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputSurname" placeholder="Surname">
+                <input type="text" class="form-control" id="inputSurname" placeholder="Surname" v-model="form.surname">
               </div>
               <div class="col-7">
-                <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                <input type="text" class="form-control" id="inputAddress" placeholder="Address" v-model="form.address">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputCity" placeholder="City">
+                <input type="text" class="form-control" id="inputCity" placeholder="City" v-model="form.city">
               </div>
               <div class="col-7">
-                <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code">
+                <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code" v-model="form.postcode">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number">
+                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number" v-model="form.telephone">
               </div>
               <div class="col-7">
-                <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address">
+                <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address" v-model="form.email">
               </div>
             </form>
           </div>
@@ -100,19 +100,19 @@
                 <p class="card-text">£79</p>
               </div> -->
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" data-bs-toggle="button">Painting/Varnishing</button>
+                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Painting/Varnishing</button>
                 <p class="card-text">£59</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" data-bs-toggle="button">Handle Replacement</button>
+                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 1 }" v-on:click="changeOrderedService(1)">Handle Replacement</button>
                 <p class="card-text">£29</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" data-bs-toggle="button">Hinge Replacement</button>
+                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 2 }" v-on:click="changeOrderedService(2)">Hinge Replacement</button>
                 <p class="card-text">£99</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" data-bs-toggle="button">Edge Resealing</button>
+                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 3 }" v-on:click="changeOrderedService(3)">Edge Resealing</button>
                 <p class="card-text">£79</p>
               </div>
             </form>
@@ -128,22 +128,22 @@
             <p class="card-text">Gimme your moneh!</p>
             <form class="row row-cols-2 gy-3">
               <div class="col-7">
-                <input type="text" class="form-control" id="inputCardName" placeholder="Name on Card">
+                <input type="text" class="form-control" id="inputCardName" placeholder="Name on Card" v-model="form.nameOnCard">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number">
+                <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
               </div>
               <div class="col-4">
-                <input type="text" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV">
+                <input type="text" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
               </div>
               <div class="col-8">
                 <!--Empty column for formatting-->
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardMonth" placeholder="Expiry Month">
+                <input type="text" class="form-control" id="inputCardMonth" placeholder="Expiry Month" v-model="form.expiryMonth">
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year">
+                <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year" v-model="form.expiryYear">
               </div>
               <div class="col-5">
                 <!--Empty column for formatting-->
@@ -159,10 +159,10 @@
           <div class="card-body">
             <h5 class="card-title">Order Summary</h5>
             <p class="card-text">Thank you, come again!</p>
-            <p class="card-text">Selected Items:</p>
+            <p class="card-text">Selected Items: <span class="fw-bold">{{ selectedServiceDisplay }}</span> </p>
             <form class="row row-cols-2 gy-3">
               <div class="col-12">
-                <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?">
+                <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?" v-model="form.comments">
               </div>
             </form>
             <div class="row row-cols-2 gy-5">
@@ -170,7 +170,7 @@
                 <p class="card-text">Total: £</p>
               </div>
               <div class="col-6">
-                <button class="btn btn-danger">Place Order</button>
+                <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>
               </div>
             </div>
           </div>
@@ -201,7 +201,7 @@
   </nav>
 
 
-
+</div>
   <script src="index.js" charset="utf-8"></script>
 </body>
 
