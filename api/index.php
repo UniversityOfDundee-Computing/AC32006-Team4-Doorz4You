@@ -14,3 +14,10 @@ if (isset($_GET['createOrder'])) {
     header("content-type: text/txt");
     echo createOrderHandler($pdo);
 }
+
+if (isset($_GET['getJobAllocationTable'])) {
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getJobAllocationTable.php";
+    header("content-type: application/json");
+    echo getJobAllocationTableHandler($pdo);
+}
