@@ -59,7 +59,7 @@ new Vue({
         });
       },
 
-      changeOrderedService: function(event, service) {
+      changeOrderedService: function(service) {
         this.form.selectedService = service;
         this.selectedServiceDisplay = this.services[service];
       }
