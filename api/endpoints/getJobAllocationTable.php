@@ -1,6 +1,7 @@
 <?php
 function getJobAllocationTableHandler(PDO $pdo) {
-    $stmnt = $pdo->prepare("SELECT JobType, JobName, Description, Price FROM jobtype");
-    $stmnt->execute([]);
+    $location = "";
+    $stmnt = $pdo->prepare("SELECT * FROM joballocation where Location = ?");
+    $stmnt->execute([$location]);
     return json_encode($stmnt->fetchAll(), JSON_PRETTY_PRINT);
 }
