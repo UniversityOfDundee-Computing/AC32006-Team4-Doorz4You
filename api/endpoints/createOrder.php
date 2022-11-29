@@ -1,4 +1,17 @@
 <?php
+// Expected POST inputs:
+// - customerNo (Optional)
+// - firstName (if no customerNo specified)
+// - ContactNo (if no customerNo specified)
+// - Email (if no customerNo specified)
+// - Street (if no customerNo specified)
+// - City (if no customerNo specified)
+// - Post_Code (if no customerNo specified)
+// - Country (if no customerNo specified)
+// - Surname (if no customerNo specified)
+// - customerNotes
+// - jobType
+
 function createOrderHandler(PDO $pdo) {
     $custNo = "";
     $custData = [];
