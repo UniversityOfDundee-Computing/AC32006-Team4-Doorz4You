@@ -34,8 +34,22 @@ new Vue({
       submitOrder: function() {
         console.log(this.form);
 
-        axios.post('https://httpbin.org/status/200', {
+        axios.post(`${apiUrl}?createOrder`, {
           form: this.form,
+          firstName: this.form.firstname,
+          ContactNo: this.form.telephone,
+          Email: this.form.email,
+          Street: this.form.address,
+          City: this.form.city,
+          Post_Code: this.form.postcode,
+          Country: this.form.country,
+          Surname: this.form.surname,
+          customerNotes: this.form.comments,
+          jobType: this.services[this.form.selectedService]
+
+          //  $_POST['Email'], $_POST['Street'], $_POST['City'], $_POST['Post_Code'], $_POST['Country'], $_POST['Surname']]
+          //  $_POST['customerNotes']
+          // $_POST['jobType']
         })
         .then(function (response) {
           console.log(response);
@@ -45,7 +59,7 @@ new Vue({
         });
       },
 
-      changeOrderedService: function(service) {
+      changeOrderedService: function(event, service) {
         this.form.selectedService = service;
         this.selectedServiceDisplay = this.services[service];
       }
