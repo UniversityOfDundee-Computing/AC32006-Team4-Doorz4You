@@ -40,7 +40,7 @@ new Vue({
         bodyFormData.set("Street", this.form.address);
         bodyFormData.set("City", this.form.city);
         bodyFormData.set("Post_Code", this.form.postcode);
-        bodyFormData.set("Country", this.form.country);
+        bodyFormData.set("Country", "UK");
         bodyFormData.set("Surname", this.form.surname);
         bodyFormData.set("customerNotes", this.form.comments);
         bodyFormData.set("jobType", this.form.selectedService);

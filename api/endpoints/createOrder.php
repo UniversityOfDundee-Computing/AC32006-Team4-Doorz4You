@@ -53,7 +53,7 @@ function createOrderHandler(PDO $pdo) {
     // END - Source zipcodebase API Docs
     $branch = "";
     foreach ($branches as $br) {
-        if ($br['PostCode'] === array_keys($json->results)[0]) {
+        if ($br['PostCode'] === array_keys((array)($json->results))[0]) {
             $branch = $br['LocationID'];
         }
     }
