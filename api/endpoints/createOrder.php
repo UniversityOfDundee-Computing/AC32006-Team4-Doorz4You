@@ -59,6 +59,6 @@ function createOrderHandler(PDO $pdo) {
     }
 
     $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`job` (`JobNo`, `Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, ?, null, ?);");
-    $stmnt->execute([uniqid("JOB_", true), $custNo, $_POST['customerNotes'], 0, date("u", time()), "OPEN", $_POST['jobType'], $branch]);
+    $stmnt->execute([uniqid("JOB_", true), $custNo, $_POST['customerNotes'], null, date("u", time()), "OPEN", $_POST['jobType'], $branch]);
     return "OK";
 }

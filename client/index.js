@@ -33,23 +33,22 @@ new Vue({
     methods: {
       submitOrder: function() {
         console.log(this.form);
+        let bodyFormData = new FormData();
+        bodyFormData.set("firstName", this.form.firstname);
+        bodyFormData.set("ContactNo", this.form.telephone);
+        bodyFormData.set("Email", this.form.email);
+        bodyFormData.set("Street", this.form.address);
+        bodyFormData.set("City", this.form.city);
+        bodyFormData.set("Post_Code", this.form.postcode);
+        bodyFormData.set("Country", this.form.country);
+        bodyFormData.set("Surname", this.form.surname);
+        bodyFormData.set("customerNotes", this.form.comments);
+        bodyFormData.set("jobType", this.form.selectedService);
 
-        axios.post(`${apiUrl}?createOrder`, {
-          form: this.form,
-          firstName: this.form.firstname,
-          ContactNo: this.form.telephone,
-          Email: this.form.email,
-          Street: this.form.address,
-          City: this.form.city,
-          Post_Code: this.form.postcode,
-          Country: this.form.country,
-          Surname: this.form.surname,
-          customerNotes: this.form.comments,
-          jobType: this.form.selectedService
-
-          //  $_POST['Email'], $_POST['Street'], $_POST['City'], $_POST['Post_Code'], $_POST['Country'], $_POST['Surname']]
-          //  $_POST['customerNotes']
-          // $_POST['jobType']
+        axios.post(`${apiUrl}?createOrder`, bodyFormData,{
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         })
         .then(function (response) {
           console.log(response);
