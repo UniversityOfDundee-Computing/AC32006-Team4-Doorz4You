@@ -45,7 +45,7 @@ new Vue({
           Country: this.form.country,
           Surname: this.form.surname,
           customerNotes: this.form.comments,
-          jobType: this.services[this.form.selectedService]
+          jobType: this.form.selectedService
 
           //  $_POST['Email'], $_POST['Street'], $_POST['City'], $_POST['Post_Code'], $_POST['Country'], $_POST['Surname']]
           //  $_POST['customerNotes']
