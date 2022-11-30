@@ -8,7 +8,6 @@ if (isset($_GET['getProductList'])) {
     header("content-type: application/json");
     echo getProductListHandler($pdo);
 }
-
 if (isset($_GET['createOrder'])) {
     http_response_code(200);
     $pdo = PDO_config("22ac3u04", "abc322");
@@ -16,7 +15,6 @@ if (isset($_GET['createOrder'])) {
     header("content-type: text/txt");
     echo createOrderHandler($pdo);
 }
-
 if (isset($_GET['getJobAllocationTable'])) {
     http_response_code(200);
     $pdo = PDO_config("22ac3u04", "abc322");
