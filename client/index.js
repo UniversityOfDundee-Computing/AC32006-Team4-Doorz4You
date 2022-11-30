@@ -33,9 +33,22 @@ new Vue({
     methods: {
       submitOrder: function() {
         console.log(this.form);
+        let bodyFormData = new FormData();
+        bodyFormData.set("firstName", this.form.firstname);
+        bodyFormData.set("ContactNo", this.form.telephone);
+        bodyFormData.set("Email", this.form.email);
+        bodyFormData.set("Street", this.form.address);
+        bodyFormData.set("City", this.form.city);
+        bodyFormData.set("Post_Code", this.form.postcode);
+        bodyFormData.set("Country", "UK");
+        bodyFormData.set("Surname", this.form.surname);
+        bodyFormData.set("customerNotes", this.form.comments);
+        bodyFormData.set("jobType", this.form.selectedService);
 
-        axios.post('https://httpbin.org/status/200', {
-          form: this.form,
+        axios.post(`${apiUrl}?createOrder`, bodyFormData,{
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         })
         .then(function (response) {
           console.log(response);
