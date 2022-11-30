@@ -36,3 +36,10 @@ if (isset($_GET['getBranchStaff'])) {
     header("content-type: application/json");
     echo getBranchStaffHandler($pdo);
 }
+if (isset($_GET['getBranchTeams'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getBranchTeams.php";
+    header("content-type: application/json");
+    echo getBranchTeamsHandler($pdo);
+}
