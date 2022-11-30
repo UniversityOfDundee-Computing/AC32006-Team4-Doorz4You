@@ -2,7 +2,7 @@
 include_once "inc.php";
 http_response_code(404);
 if (isset($_GET['getProductList'])) {
-    http_response_code(200);
+    http_response_code(418);
     $pdo = PDO_config("22ac3u04", "abc322");
     include_once "endpoints/getProductList.php";
     header("content-type: application/json");
@@ -30,4 +30,11 @@ if (isset($_GET['userConnect'])) {
     include_once "endpoints/userConnect.php";
     header("content-type: application/json");
     echo userConnectHandler($pdo);
+}
+if (isset($_GET['getBranchStaff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getBranchStaff.php";
+    header("content-type: application/json");
+    echo getBranchStaffHandler($pdo);
 }
