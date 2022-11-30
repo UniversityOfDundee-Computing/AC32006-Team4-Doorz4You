@@ -1,4 +1,17 @@
 <?php
+// Expected POST inputs:
+// - customerNo (Optional)
+// - firstName (if no customerNo specified)
+// - ContactNo (if no customerNo specified)
+// - Email (if no customerNo specified)
+// - Street (if no customerNo specified)
+// - City (if no customerNo specified)
+// - Post_Code (if no customerNo specified)
+// - Country (if no customerNo specified)
+// - Surname (if no customerNo specified)
+// - customerNotes
+// - jobType
+
 function createOrderHandler(PDO $pdo) {
     $custNo = "";
     $custData = [];
@@ -53,12 +66,12 @@ function createOrderHandler(PDO $pdo) {
     // END - Source zipcodebase API Docs
     $branch = "";
     foreach ($branches as $br) {
-        if ($br['PostCode'] === array_keys($json->results)[0]) {
+        if ($br['PostCode'] === array_keys((array)($json->results))[0]) {
             $branch = $br['LocationID'];
         }
     }
 
     $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`job` (`JobNo`, `Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, ?, null, ?);");
-    $stmnt->execute([uniqid("JOB_", true), $custNo, $_POST['customerNotes'], 0, date("u", time()), "OPEN", $_POST['jobType'], $branch]);
+    $stmnt->execute([uniqid("JOB_", true), $custNo, $_POST['customerNotes'], null, date("u", time()), "OPEN", $_POST['jobType'], $branch]);
     return "OK";
 }
