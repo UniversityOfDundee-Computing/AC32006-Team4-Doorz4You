@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"></html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -20,7 +20,8 @@
   </head>
 
 </body class="mainBackground bg-light bg-gradient">
-
+  
+ <div id="app">
   <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
@@ -43,11 +44,10 @@
   </main>
   <h6>Current Team: Team 4</h6>
   <h6>Teammates: Jim Smith</h6>
-  <h6>Current assigned vehicle:Vehicle</h6>
-
+  <h6>Current assigned vehicle:Vehicle 4</h6>
   <h2>Your Teams Job Queue</h2>
  <!-- Job Allocation Table -->
- <div class="table-responsive-md">
+   <div class="table-responsive-md">
     <table class="table table-hover table-bordered">
       <!-- Table Header Row -->
       <thead class="table-danger">
@@ -61,115 +61,23 @@
 
       <!-- Table Content -->
       <tbody>
+      <tr v-for="job in jobsList">
+        <th scope="row">{{ job.jobText }}</th>
+        <th scope="row">{{ job.customerComment }}</th>
+        <th scope="row">{{ job.address }}</th>
         
-        <tr>
-          <th scope="row">Handle Replacement</th>
-          <th scope="row"></th>
-          <th scope="row">DD72 7JF</th>
-            <th scope="row" class="table-success">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    completed
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">completed</a></li>
-                    <li><a class="dropdown-item" href="#">Allocated</a></li>
-                    <li><a class="dropdown-item" href="#">Invalid</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                  </ul>
-                </div></th>
-        </tr>
-        <tr>
-          <th scope="row">Hinge Replacement</th>
-          <th scope="row"></th>
-          <th scope="row">DD72 8JF</th>
-          <th scope="row" class="table-success">
-            <div class="btn-group">
-              <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                completed
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">completed</a></li>
-                <li><a class="dropdown-item" href="#">Allocated</a></li>
-                <li><a class="dropdown-item" href="#">Invalid</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </div></th>
-        </tr>
-        <tr>
-          <th scope="row">Varnishing</th>
-          <th scope="row">Make it slick</th>
-          <th scope="row">DD72 9JF</th>
-          <th scope="row" class="table-success">
-            <div class="btn-group">
-              <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                completed
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">completed</a></li>
-                <li><a class="dropdown-item" href="#">Allocated</a></li>
-                <li><a class="dropdown-item" href="#">Invalid</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-              </ul>
-            </div></th>
-        </tr>
-        <tr>
-            <th scope="row">Door Repainting</th>
-            <th scope="row">Paint colour red</th>
-            <th scope="row">DD72 9JF</th>
-            <th scope="row" class="table-warning">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Allocated
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">completed</a></li>
-                    <li><a class="dropdown-item" href="#">Allocated</a></li>
-                    <li><a class="dropdown-item" href="#">Invalid</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                  </ul>
-                </div></th>
-          </tr>
-          <tr>
-            <th scope="row">Door Re-Sealing</th>
-            <th scope="row"></th>
-            <th scope="row">DD72 9JF</th>
-            <th scope="row" class="table-warning">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Allocated
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">completed</a></li>
-                    <li><a class="dropdown-item" href="#">Allocated</a></li>
-                    <li><a class="dropdown-item" href="#">Invalid</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                  </ul>
-                </div></th>
-          </tr>
-          <tr>
-            <th scope="row">Door Repainting</th>
-            <th scope="row">Paint colour green</th>
-            <th scope="row">DD72 9JF</th>
-            <th scope="row" class="table-danger">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Invalid
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">completed</a></li>
-                    <li><a class="dropdown-item" href="#">Allocated</a></li>
-                    <li><a class="dropdown-item" href="#">Invalid</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                  </ul>
-                </div></th>
-          </tr>
+        <th scope="row" class="table-success">
+          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.jobStatus">
+            <option value=0>Pending Allocation</option>
+            <option value=1>Allocated</option>
+            <option value=2>Invalid</option>
+          </select>
+        </th>
+      </tr>
+     
+      </tbody>
+    </table>
+  </div>   
 
 
       <!-- footer -->
@@ -180,8 +88,8 @@
     </div>
   </nav>
 
-
-
+ </div>
+  <script src="JobQueue.js" charset="utf-8"></script>
   
 
 
