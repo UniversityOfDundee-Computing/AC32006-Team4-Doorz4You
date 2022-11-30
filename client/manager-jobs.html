@@ -20,7 +20,7 @@
 </head>
 
 <body class="mainBackground bg-light bg-gradient">
-  
+  <div id="app">
   <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
@@ -60,26 +60,24 @@
         </thead>
         <!-- Table Content -->
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <th scope="row">Handle Replacement</th>
-            <th scope="row">DD72 7JF</th>
+          <tr v-for="job in jobsList">
+            <th scope="row">{{ job.orderNo }}</th>
+            <th scope="row">{{ job.jobText }}</th>
+            <th scope="row">{{ job.postcode }}</th>
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option>-- None Selected --</option>
-                <option selected>1 (Kent)</option>
-                <option>3 (Viking)</option>
+              <select class="form-select" v-on:change="changeTeamAllocation(job)">
+                <option v-for="team in teamsList">{{ team.teamNo }} ({{ team.teamName }})</option>
               </select>
             </th>
             <th scope="row" class="table-success">
-              <select class="form-select" aria-label="None Selected">
-                <option>Pending Allocation</option>
-                <option selected>Allocated</option>
-                <option>Invalid</option>
+              <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.jobStatus">
+                <option value=0>Pending Allocation</option>
+                <option value=1>Allocated</option>
+                <option value=2>Invalid</option>
               </select>
             </th>
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row">2</th>
             <th scope="row">Hinge Replacement</th>
             <th scope="row">DD72 8JF</th>
@@ -97,43 +95,7 @@
                 <option>Invalid</option>
               </select>
             </th>
-          </tr>
-          <tr>
-            <th scope="row">69</th>
-            <th scope="row">Varnishing</th>
-            <th scope="row">DD72 9JF</th>
-            <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>-- None Selected --</option>
-                <option>3 (Viking)</option>
-              </select>
-            </th>
-            <th scope="row" class="table-warning">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>Pending Allocation</option>
-                <option>Allocated</option>
-                <option>Invalid</option>
-              </select>
-            </th>
-          </tr>
-          <tr>
-            <th scope="row">420</th>
-            <th scope="row">Edge Resealing</th>
-            <th scope="row">DD72 0JG</th>
-            <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>-- None Selected --</option>
-                <option>3 (Viking)</option>
-              </select>
-            </th>
-            <th scope="row" class="table-warning">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>Pending Allocation</option>
-                <option>Allocated</option>
-                <option>Invalid</option>
-              </select>
-            </th>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -149,7 +111,8 @@
 
 
 
-  <script src="index.js" charset="utf-8"></script>
+</div>
+<script src="manager-jobs.js" charset="utf-8"></script>
 </body>
 
 </html>
