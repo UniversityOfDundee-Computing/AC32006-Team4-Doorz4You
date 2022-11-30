@@ -64,14 +64,14 @@ function createOrderHandler(PDO $pdo) {
     $json = json_decode($response);
 
     // END - Source zipcodebase API Docs
-    $branch = "";
+    $branch = "01";
     foreach ($branches as $br) {
         if ($br['PostCode'] === array_keys((array)($json->results))[0]) {
             $branch = $br['LocationID'];
         }
     }
 
-    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`job` (`JobNo`, `Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, ?, null, ?);");
-    $stmnt->execute([uniqid("JOB_", true), $custNo, $_POST['customerNotes'], null, date("u", time()), "OPEN", $_POST['jobType'], $branch]);
+    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`job` (`Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, null, ?);");
+    $stmnt->execute([$custNo, $_POST['customerNotes'], null, date("Y-m-d H:i:s", time()), "OPEN", $_POST['jobType'], $branch]);
     return "OK";
 }
