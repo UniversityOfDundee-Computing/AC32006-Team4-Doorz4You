@@ -20,7 +20,7 @@
 </head>
 
 <body class="mainBackground bg-light bg-gradient">
-  
+  <div id="app">
   <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
@@ -62,43 +62,24 @@
         <!-- Table Content -->
         <tbody>
           <!-- Row 1 -->
-          <tr>
-            <th scope="row">1</th>
+          <tr v-for="team in teamsList">
+            <th scope="row">{{ team.teamNo }}</th>
             <!-- Staff Member 1 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option>-- None Selected --</option>
-                <option selected>Clark Kent</option>
-                <option>Donald Swann</option>
-                <option>Michael Flanders</option>
-                <option>Sigurd Viking</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.allocatedfitterOneId">
+                <option v-for="fitter in fittersList" v-bind:value="fitter.id">{{ fitter.name }}</option>
               </select>
             </th>
             <!-- Staff Member 2 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>-- None Selected --</option>
-                <option>Clark Kent</option>
-                <option>Donald Swann</option>
-                <option>Michael Flanders</option>
-                <option>Sigurd Viking</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.allocatedfitterTwoId">
+                <option v-for="fitter in fittersList" v-bind:value="fitter.id">{{ fitter.name }}</option>
               </select>
             </th>
             <!-- Vehicle Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option>-- None Selected --</option>
-                <option>SP57 CNA</option>
-                <option>SP57 CNB</option>
-                <option>SP57 CNC</option>
-                <option>SP57 CNE</option>
-                <option selected>SP57 CNF</option>
-                <option>SP57 CNG</option>
-                <option>LK03 NGW</option>
-                <option>LK03 NGZ</option>
-                <option>LK03 NHA</option>
-                <option>LK03 NHB</option>
-                <option>Y626 RSA</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.allocatedvehicleId">
+                <option v-for="vehicle in vehiclesList" v-bind:value="vehicle.id">{{ vehicle.name }}</option>
               </select>
             </th>
             <th scope="row">
@@ -109,9 +90,8 @@
           </tr>
 
           <!-- Row 2 -->
-          <tr>
+          <!-- <tr>
             <th scope="row">2</th>
-            <!-- Staff Member 1 Select -->
             <th scope="row" class="table-secondary">
               <select class="form-select" aria-label="None Selected">
                 <option>-- None Selected --</option>
@@ -121,7 +101,6 @@
                 <option>Sigurd Viking</option>
               </select>
             </th>
-            <!-- Staff Member 2 Select -->
             <th scope="row" class="table-secondary">
               <select class="form-select" aria-label="None Selected">
                 <option>-- None Selected --</option>
@@ -131,7 +110,6 @@
                 <option>Sigurd Viking</option>
               </select>
             </th>
-            <!-- Vehicle Select -->
             <th scope="row" class="table-secondary">
               <select class="form-select" aria-label="None Selected">
                 <option>-- None Selected --</option>
@@ -153,48 +131,7 @@
                 <button class="btn btn-danger mx-auto">X</button>
               </div>
             </th>
-          </tr>
-
-          <!-- Row 3 -->
-          <tr>
-            <th scope="row">3</th>
-            <!-- Staff Member 1 Select -->
-            <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option>-- None Selected --</option>
-                <option>Clark Kent</option>
-                <option>Donald Swann</option>
-                <option>Michael Flanders</option>
-                <option selected>Sigurd Viking</option>
-              </select>
-            </th>
-            <!-- Staff Member 2 Select -->
-            <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option selected>-- None Selected --</option>
-                <option>Clark Kent</option>
-                <option>Donald Swann</option>
-                <option>Michael Flanders</option>
-                <option>Sigurd Viking</option>
-              </select>
-            </th>
-            <!-- Vehicle Select -->
-            <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected">
-                <option>-- None Selected --</option>
-                <option>N281 PVD</option>
-                <option selected>N283 PVD</option>
-                <option>N285 PVD</option>
-                <option>SO04 NND</option>
-                <option>SO04 NNG</option>
-              </select>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-danger mx-auto">X</button>
-              </div>
-            </th>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -315,8 +252,8 @@
   </nav>
 
 
-
-  <script src="index.js" charset="utf-8"></script>
+</div>
+  <script src="manager-teams.js" charset="utf-8"></script>
 </body>
 
 </html>
