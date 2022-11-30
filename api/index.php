@@ -21,3 +21,9 @@ if (isset($_GET['getJobAllocationTable'])) {
     header("content-type: application/json");
     echo getJobAllocationTableHandler($pdo);
 }
+if (isset($_GET['userConnect'])) {
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/userConnect.php";
+    header("content-type: application/json");
+    echo userConnectHandler($pdo);
+}
