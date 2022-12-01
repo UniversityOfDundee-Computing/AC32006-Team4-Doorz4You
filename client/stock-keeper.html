@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Vendor files -->
+  <script src="vendor/vue.js"></script>
+  <script src="vendor/axios.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheet.css">
+
+  <title>stockKeeper.html</title>
+</head>
+
+<body class="mainBackground bg-light bg-gradient">
+  <div id="app">
+  <!-- Navigation Bar -->
+  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">JOB ALLOCATION</a>
+          <a class="nav-link" href="./managerTeamManagement.html">TEAM MANAGEMENT</a>
+          <a class="nav-link" href="#">LOG OUT</a>
+        </div>
+        <span class="navbar-text">Logged in as Manager</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main>
+    <h2>Stock List</h2>
+
+    <div class= "search-box"> 
+        <input class ="search-txt" type="text" name="" placeholder="Type to search">
+        <a class="search-btn" href="#">
+
+            <i class="fa fa-magnifying-glass"></i>
+        </a>
+       
+
+    </div>
+
+
+    <!-- Stock List Table -->
+    <div class="table-responsive-md">
+      <table class="table table-hover table-bordered">
+        <!-- Table Header Row -->
+        <thead class="table-danger">
+          <tr>
+            <th scope="col">Part</th>
+            <th scope="col">Part ID Number</th>
+            <th scope="col">Stock amount</th>
+            <th scope="col">Stock Location</th>
+            <th scope="col">Stock Reserved</th>
+            <th scope="col">Actions</th>
+
+          </tr>
+        </thead>
+        <!-- Table Content -->
+        <tbody>
+          <tr v-for="stock in stockList">
+            <th scope="row">{{ stock.part }}</th>
+            <th scope="row">{{ stock.PartIdNumber }}</th>
+            <th scope="row">{{ stock.amount }}</th>
+            <th scope="row">{{ stock.location }}</th>
+            <th scope="row">{{ stock.reserved }}</th>
+            <th scope="row">{{ stock.actions }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Stock Preparation</h2>
+     <!-- Stock Preparation Table -->
+     <div class="table-responsive-md">
+        <table class="table table-hover table-bordered">
+          <!-- Table Header Row -->
+          <thead class="table-danger">
+            <tr>
+              <th scope="col">Stock Required</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Stock collection Status</th>
+              
+            </tr>
+            <tr  height="10px" class="table-warning">
+                <td scope="row">Team1</td>
+                <td scope="row"></td>
+                <td scope="row"></td>
+                
+
+            </tr>
+          </thead>
+          
+          <!-- Table Content -->
+          <tbody>
+          
+
+            <tr v-for="stock in stockPreparationTeam1">
+              <th scope="row">{{ stock.required }}</th>
+              <th scope="row">{{ stock.quantity }}</th>
+              <th scope="row" class="table-success">
+                <select class="form-select" v-on:change="changeJobStatus(stock)" v-model="stock.collectionStatus">
+                  <option value=0>Pending collection</option>
+                  <option value=1>Collected</option>
+                  <option value=2>Cancelled</option>
+                </select>
+              </th>
+           
+            </tr>
+            <tr  height="10px" class="table-warning">
+                <td scope="row">Team2</td>
+                <td scope="row"></td>
+                <td scope="row"></td>
+            
+            </tr>
+
+            <tr v-for="stock in stockPreparationTeam2">
+                 <th scope="row">{{ stock.required }}</th>
+                 <th scope="row">{{ stock.quantity }}</th>
+                 <th scope="row" class="table-success">
+                  <select class="form-select" v-on:change="changeJobStatus(stock)" v-model="stock.collectionStatus">
+                    <option value=0>Pending collection</option>
+                    <option value=1>Collected</option>
+                    <option value=2>Cancelled</option>
+                  </select>
+                </th>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+  </main>
+
+  <!-- footer -->
+  <nav class="navbar fixed-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
+    <div class="container-fluid justify-content-center">
+      <a class="navbar-brand" href="#">©2022, Doorz4U</a>
+      <!-- <a class="nav-link" href="#">©2022, Doorz4U</p> -->
+    </div>
+  </nav>
+
+
+
+</div>
+<script src="stock_keeper.js" charset="utf-8"></script>
+</body>
+
+</html>
