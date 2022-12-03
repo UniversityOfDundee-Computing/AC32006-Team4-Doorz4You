@@ -21,38 +21,53 @@
 
 <body class="mainBackground bg-light bg-gradient">
 <div id="app">
-  <!-- Navigation Bar -->
-  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
+  <!-- Header -->
+  <nav class="navbar sticky-top navbar-dark" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <div class="navbar-nav">
-          <a class="nav-link" href="#">NEW ORDER</a>
-          <a class="nav-link" href="#">CONTACT US</a>
-        </div>
-      </div>
+      <a class="navbar-brand justify-content-end" href="#">Staff Login</a>
     </div>
   </nav>
 
+
   <!-- Main Section -->
   <main>
-    <form>
-        <div>
-            <input type="text" class="form-control" id="username" placeholder="Username" v-model="form.username">
+    <div class="d-grid col-sm-9 col-md-8 col-lg-7 col-11 mx-auto">
+      <div class="col">
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <form class="row g-4">
+              <div>
+                <input type="text" class="form-control" id="username" placeholder="Username" v-model="form.username">
+              </div>
+              <div>
+                <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
+              </div>
+              <div class="d-grid col-4 mx-auto">
+                <button class="btn btn-danger" v-on:click="login">Login</button>
+              </div>
+              <div v-if="loginFail">Incorrect username or password. Please try again.</div>
+              <div v-if="loginSuccess">Success! Redirecting you...</div>
+            </form>
           </div>
-          <div>
-            <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
+          <div class="card-footer text-center text-muted">
+            <a href="#">Having trouble logging in?</a>
           </div>
-          <button type="button" v-on:click="login">Login</button>
-          <div v-if="loginFail">Incorrect username or password. Please try again.</div>
-          <div v-if="loginSuccess">Success! Redirecting you...</div>
-    </form>
+        </div>
+      </div>
+    </div>
   </main>
+
+
+<!-- Footer -->
+  <nav class="navbar fixed-bottom navbar-dark" style="background-color:firebrick">
+    <div class="container-fluid justify-content-center">
+      <a class="navbar-brand" href="#">©2022, Doorz4U</a>
+    </div>
+  </nav>
 
 
 </div>
