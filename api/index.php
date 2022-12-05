@@ -57,3 +57,11 @@ if (isset($_GET['updateTeamVehicleAllocationTable'])) {
     header("content-type: application/json");
     echo updateTeamVehicleAllocationTableHandler($pdo);
 }
+if (isset($_GET['deleteTeam'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/deleteTeam.php";
+    header("content-type: application/json");
+    echo deleteTeamHandler($pdo);
+}
+
