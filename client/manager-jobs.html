@@ -67,7 +67,7 @@
             <th scope="row" class="table-secondary">
               <select class="form-select" v-on:change="changeTeamAllocation(job)" v-model="job.AllocatedTeam">
                 <option value="null">No team allocated</option>
-                <option v-for="team in teamsList" v-bind:value="team.teamNo">{{ team.teamNo }} ({{ team.teamName }})</option>
+                <option v-for="team in teamsList" v-bind:value="team.TeamID">{{ team.TeamID }} ({{ team.DisplayName }})</option>
               </select>
             </th>
             <th scope="row" class="table-success">
