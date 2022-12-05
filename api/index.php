@@ -64,4 +64,10 @@ if (isset($_GET['deleteTeam'])) {
     header("content-type: application/json");
     echo deleteTeamHandler($pdo);
 }
-
+if (isset($_GET['createTeam'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/createTeam.php";
+    header("content-type: application/json");
+    echo createTeamHandler($pdo);
+}
