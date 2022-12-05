@@ -16,13 +16,9 @@ new Vue({
       ],
 
         teamsList: [{
-            teamNo: '01',
-            teamName: 'teamName'
-        },{
-            teamNo: '02',
-            teamName: 'teamName 2'
+            TeamID: '-1',
+            DisplayName: 'Placeholder, fetching teams...'
         }
-
         ]
     },
   
@@ -30,6 +26,17 @@ new Vue({
 
       let localToken = localStorage.getItem('token');
       var vm = this;
+
+        axios({
+            method: "get",
+            url: `${apiUrl}?getBranchTeams`,
+            headers: {
+                token: localToken,
+            },
+        }).then((response) => {
+            console.log(response.data);
+            vm.teamsList = response.data;
+        });
 
       axios({
         method: "get",
