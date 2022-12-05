@@ -71,3 +71,10 @@ if (isset($_GET['createTeam'])) {
     header("content-type: application/json");
     echo createTeamHandler($pdo);
 }
+if (isset($_GET['getBranchVehicles'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getBranchVehicles.php";
+    header("content-type: application/json");
+    echo getBranchVehiclesHandler($pdo);
+}
