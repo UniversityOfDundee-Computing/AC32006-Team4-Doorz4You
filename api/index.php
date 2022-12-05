@@ -50,3 +50,10 @@ if (isset($_GET['updateJobAllocationTable'])) {
     header("content-type: application/json");
     echo updateJobAllocationTableHandler($pdo);
 }
+if (isset($_GET['updateTeamVehicleAllocationTable'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/updateTeamVehicleAllocationTable.php";
+    header("content-type: application/json");
+    echo updateTeamVehicleAllocationTableHandler($pdo);
+}
