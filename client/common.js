@@ -1,4 +1,4 @@
-let localApi = 'http://localhost:8000/api';
+let localApi = 'http://localhost:81/api';
 let productionApi = 'placeholder';
 
 // Change this line when deploying
