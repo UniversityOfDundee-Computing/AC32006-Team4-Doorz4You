@@ -22,12 +22,20 @@
 <body class="mainBackground bg-light bg-gradient">
 <div id="app">
   <!-- Header -->
-  <nav class="navbar sticky-top navbar-dark" style="background-color:firebrick">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
       </a>
-      <a class="navbar-brand justify-content-end" href="#">Staff Login</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link" href="./index.html">NEW ORDER</a>
+          <a class="nav-link active" href="./login.html">STAFF LOG IN</a>
+        </div>
+      </div>
     </div>
   </nav>
 

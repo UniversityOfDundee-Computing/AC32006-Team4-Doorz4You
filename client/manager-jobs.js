@@ -19,10 +19,14 @@ new Vue({
             TeamID: '-1',
             DisplayName: 'Placeholder, fetching teams...'
         }
-        ]
+        ],
+
+        loggedInUser: null
     },
   
     created: function() {
+
+      this.loggedInUsername = localStorage.getItem('firstname');
 
       let localToken = localStorage.getItem('token');
       var vm = this;
