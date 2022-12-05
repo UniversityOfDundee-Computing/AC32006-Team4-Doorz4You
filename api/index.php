@@ -43,3 +43,10 @@ if (isset($_GET['getBranchTeams'])) {
     header("content-type: application/json");
     echo getBranchTeamsHandler($pdo);
 }
+if (isset($_GET['updateJobAllocationTable'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/updateJobAllocationTable.php";
+    header("content-type: application/json");
+    echo updateJobAllocationTableHandler($pdo);
+}
