@@ -32,11 +32,11 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
-          <a class="nav-link" href="#">JOB ALLOCATION</a>
-          <a class="nav-link" href="./managerTeamManagement.html">TEAM MANAGEMENT</a>
+          <a class="nav-link active" href="./manager-jobs.html">JOB ALLOCATION</a>
+          <a class="nav-link" href="./manager-teams.html">TEAM MANAGEMENT</a>
           <a class="nav-link" href="#">LOG OUT</a>
         </div>
-        <span class="navbar-text">Logged in as Manager</span>
+        <span class="navbar-text">Logged in as {{loggedInUsername}} (manager)</span>
       </div>
     </div>
   </nav>
@@ -61,19 +61,20 @@
         <!-- Table Content -->
         <tbody>
           <tr v-for="job in jobsList">
-            <th scope="row">{{ job.orderNo }}</th>
-            <th scope="row">{{ job.jobText }}</th>
-            <th scope="row">{{ job.postcode }}</th>
+            <th scope="row">{{ job.JobNo }}</th>
+            <th scope="row">{{ job.JobName }}</th>
+            <th scope="row">{{ job.PostCode }}</th>
             <th scope="row" class="table-secondary">
-              <select class="form-select" v-on:change="changeTeamAllocation(job)">
-                <option v-for="team in teamsList">{{ team.teamNo }} ({{ team.teamName }})</option>
+              <select class="form-select" v-on:change="changeTeamAllocation(job)" v-model="job.AllocatedTeam">
+                <option value="null">No team allocated</option>
+                <option v-for="team in teamsList" v-bind:value="team.TeamID">{{ team.TeamID }} ({{ team.DisplayName }})</option>
               </select>
             </th>
             <th scope="row" class="table-success">
-              <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.jobStatus">
-                <option value=0>Pending Allocation</option>
-                <option value=1>Allocated</option>
-                <option value=2>Invalid</option>
+              <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
+                <option value='OPEN'>Pending Allocation</option>
+                <option value='ALLOCATED'>Allocated</option>
+                <option value='INVALID'>Invalid</option>
               </select>
             </th>
           </tr>
@@ -112,6 +113,7 @@
 
 
 </div>
+<script src="common.js" charset="utf-8"></script>
 <script src="manager-jobs.js" charset="utf-8"></script>
 </body>
 

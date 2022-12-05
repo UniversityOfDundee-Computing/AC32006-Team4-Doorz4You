@@ -44,6 +44,7 @@ new Vue({
     },
   
     created: function() {
+        this.loggedInUsername = localStorage.getItem('firstname');
     },
   
     methods: {

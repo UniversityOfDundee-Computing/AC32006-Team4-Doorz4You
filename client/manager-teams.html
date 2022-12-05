@@ -32,11 +32,11 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
-          <a class="nav-link" href="./managerJobAllocation.html">JOB ALLOCATION</a>
-          <a class="nav-link" href="#">TEAM MANAGEMENT</a>
+          <a class="nav-link" href="./manager-jobs.html">JOB ALLOCATION</a>
+          <a class="nav-link active" href="./manager-teams.html">TEAM MANAGEMENT</a>
           <a class="nav-link" href="#">LOG OUT</a>
         </div>
-        <span class="navbar-text">Logged in as Manager</span>
+        <span class="navbar-text">Logged in as {{loggedInUsername}} (manager)</span>
       </div>
     </div>
   </nav>
@@ -163,65 +163,11 @@
         <tbody>
 
           <!-- Row 1 -->
-          <tr>
-            <th scope="row">1</th>
-            <th scope="row">Clark Kent</th>
-            <th scope="row">£20,000</th>
-            <th scope="row">Tuesday</th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-warning mx-auto">E</button>
-              </div>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-danger mx-auto">X</button>
-              </div>
-            </th>
-          </tr>
-
-          <!-- Row 2 -->
-          <tr>
-            <th scope="row">2</th>
-            <th scope="row">Donald Swann</th>
-            <th scope="row">£20,000</th>
-            <th scope="row">Wednesday</th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-warning mx-auto">E</button>
-              </div>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-danger mx-auto">X</button>
-              </div>
-            </th>
-          </tr>
-
-          <!-- Row 3 -->
-          <tr>
-            <th scope="row">3</th>
-            <th scope="row">Michael Flanders</th>
-            <th scope="row">£20,000</th>
-            <th scope="row">Wednesday</th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-warning mx-auto">E</button>
-              </div>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-danger mx-auto">X</button>
-              </div>
-            </th>
-          </tr>
-
-          <!-- Row 4 -->
-          <tr>
-            <th scope="row">6</th>
-            <th scope="row">Sigurd Viking</th>
-            <th scope="row">£20,000</th>
-            <th scope="row">Friday</th>
+          <tr v-for="staff in staffList">
+            <th scope="row">{{ staff.StaffNo }}</th>
+            <th scope="row">{{ staff.FirstName }} {{ staff.Surname }}</th>
+            <th scope="row">{{ staff.Salary }}</th>
+            <th scope="row">{{ staff.DateOff ? staff.DateOff : "No days off"}}</th>
             <th scope="row">
               <div class="d-grid">
                 <button class="btn btn-warning mx-auto">E</button>
@@ -253,6 +199,7 @@
 
 
 </div>
+  <script src="common.js" charset="utf-8"></script>
   <script src="manager-teams.js" charset="utf-8"></script>
 </body>
 

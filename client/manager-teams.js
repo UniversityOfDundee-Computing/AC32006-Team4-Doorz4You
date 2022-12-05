@@ -2,7 +2,7 @@ new Vue({
     el: '#app',
     data: {
         teamsList: [{
-            teamNo: 1,
+            TeamID: 1,
             allocatedfitterOneId: 0,
             allocatedfitterTwoId: 1,
             allocatedvehicleId: 0,
@@ -30,24 +30,44 @@ new Vue({
             id: 1,
             name: 'vehicle 2'
         }
-        ] 
+        ],
+
+        staffList: [
+            {
+                "StaffNo": "-1",
+                "FirstName": "Placeholder",
+                "Surname": "",
+                "Position": "",
+                "Salary": 0,
+                "EmployeeLocation": "01",
+                "DateOff": null,
+                "TeamID": "01"
+            }
+        ]
     },
   
     created: function() {
+        this.loggedInUsername = localStorage.getItem('firstname');
+
+        let localToken = localStorage.getItem('token');
+        var vm = this;
+
+        axios({
+            method: "get",
+            url: `${apiUrl}?getBranchStaff`,
+            headers: {
+                token: localToken,
+            },
+        }).then((response) => {
+            console.log(response.data);
+            vm.staffList = response.data;
+        });
     },
   
     methods: {
       testMethod: function() {
         console.log('yes');
-      },
-
-    //   changeTeamAllocation: function(job) {
-    //     console.log(job);
-    //   },
-
-    //   changeJobStatus: function(job) {
-    //     console.log(job);
-    //   }
+      }
     }
   });
   
