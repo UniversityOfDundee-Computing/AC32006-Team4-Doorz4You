@@ -64,3 +64,4 @@ if (isset($_GET['deleteTeam'])) {
     header("content-type: application/json");
     echo deleteTeamHandler($pdo);
 }
+
