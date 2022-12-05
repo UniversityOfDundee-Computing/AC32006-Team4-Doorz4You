@@ -11,7 +11,7 @@ function updateJobAllocationTableHandler(PDO $pdo) {
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
         $stmnt = $pdo->prepare("UPDATE job set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
-        $stmnt->execute([$_POST['team'], strtoupper($_POST['status']), $staffDetails[0]['location']]);
+        $stmnt->execute([$_POST['team'], strtoupper($_POST['status']), $_POST['JobNo'], $staffDetails[0]['location']]);
     } else {
         http_response_code(502);
         return json_encode([
