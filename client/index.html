@@ -118,7 +118,7 @@
                 <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
               </div>
               <div class="col-4">
-                <input type="text" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
+                <input type="password" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
               </div>
               <div class="col-8">
                 <!--Empty column for formatting-->
@@ -149,12 +149,14 @@
                 <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?" v-model="form.comments">
               </div>
             </form>
-            <div class="row row-cols-2 gy-5">
-              <div class="col-6">
-                <p class="card-text">Total: £</p>
-              </div>
-              <div class="d-grid col-6">
-                <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>
+            <div class="summary-last-line">
+              <div class="row row-cols-2 gy-5">
+                <div class="col-6">
+                  <p class="card-text">Total: £</p>
+                </div>
+                <div class="d-grid col-6">
+                  <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>
+                </div>
               </div>
             </div>
           </div>
