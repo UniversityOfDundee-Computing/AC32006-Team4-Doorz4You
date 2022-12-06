@@ -30,7 +30,7 @@ function getTeamJobsHandler(PDO $pdo) {
             "jobs"=>[]
         ];
     }
-    $stmnt = $pdo->prepare("SELECT * from joballocation where AllocatedTeam in (SELECT TeamID from teamemployeelist where StaffNo = ?)");
+    $stmnt = $pdo->prepare("SELECT * from joballocation where AllocatedTeam in (SELECT TeamID from teamemployeelist where StaffNo = ?) and not (Status like 'COMPLETED' and EndDate < CURDATE())");
     $stmnt->execute([$staffDetails[0]['staffno']]);
     foreach ($stmnt->fetchAll() as $job) {
         $teamJobs[$job['AllocatedTeam']]['jobs'][] = $job;
