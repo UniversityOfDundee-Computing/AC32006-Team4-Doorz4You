@@ -19,3 +19,21 @@ div.summary-last-line{
     padding-top:22px;
 }
 
+
+/*Following lines from: https://stackoverflow.com/a/52667883*/
+.table-lg{
+    width:992px;
+}
+
+@media (min-width:992px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+    .table-lg{
+        width:100%;
+    }
+}
+
