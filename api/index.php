@@ -78,3 +78,10 @@ if (isset($_GET['getBranchVehicles'])) {
     header("content-type: application/json");
     echo getBranchVehiclesHandler($pdo);
 }
+if (isset($_GET['updateBranchStaff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/updateBranchStaff.php";
+    header("content-type: application/json");
+    echo updateBranchStaffHandler($pdo);
+}
