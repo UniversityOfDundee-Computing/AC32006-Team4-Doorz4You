@@ -51,7 +51,7 @@
         <!-- Table Header Row -->
         <thead class="table-danger">
           <tr>
-            <th scope="col">Team No.</th>
+            <th scope="col">Team Name</th>
             <th scope="col">Fitter 1</th>
             <th scope="col">Fitter 2</th>
             <th scope="col">Allocated Vehicle</th>
@@ -63,23 +63,26 @@
         <tbody>
           <!-- Row 1 -->
           <tr v-for="team in teamsList">
-            <th scope="row">{{ team.teamNo }}</th>
+            <th scope="row">{{ team.name }}</th>
             <!-- Staff Member 1 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" v-model="team.allocatedfitterOneId">
-                <option v-for="fitter in fittersList" v-bind:value="fitter.id">{{ fitter.name }}</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.staff[0].StaffNo">
+                <option v-for="fitter in staffList" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
+                <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Staff Member 2 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" v-model="team.allocatedfitterTwoId">
-                <option v-for="fitter in fittersList" v-bind:value="fitter.id">{{ fitter.name }}</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.staff[1].StaffNo">
+                <option v-for="fitter in staffList" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
+                <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Vehicle Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" v-model="team.allocatedvehicleId">
-                <option v-for="vehicle in vehiclesList" v-bind:value="vehicle.id">{{ vehicle.name }}</option>
+              <select class="form-select" aria-label="None Selected" v-model="team.vehicle.id">
+                <option v-for="vehicle in vehiclesList" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
+                <option value="null">No vehicle allocated</option>
               </select>
             </th>
             <th scope="row">
@@ -137,7 +140,7 @@
     </div>
 
     <div class="d-grid col-3">
-      <button class="btn btn-warning">Create Team</button>
+      <button class="btn btn-warning" v-on:click="createNewTeam()">Create Team</button>
     </div>
 
 

@@ -62,15 +62,15 @@
       <!-- Table Content -->
       <tbody>
       <tr v-for="job in jobsList">
-        <th scope="row">{{ job.jobText }}</th>
-        <th scope="row">{{ job.customerComment }}</th>
-        <th scope="row">{{ job.address }}</th>
+        <th scope="row">{{ job.JobName }}</th>
+        <th scope="row">{{ job.CustomerNo }}</th>
+        <th scope="row">{{ job.PostCode }}</th>
         
         <th scope="row" class="table-success">
-          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.jobStatus">
-            <option value=0>Pending Allocation</option>
-            <option value=1>Allocated</option>
-            <option value=2>Invalid</option>
+          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
+            <option value="OPEN">Pending Allocation</option>
+            <option value="ALLOCATED">Allocated</option>
+            <option value="INVALID">Invalid</option>
           </select>
         </th>
       </tr>
@@ -89,6 +89,7 @@
   </nav>
 
  </div>
+<script src="common.js" charset="utf-8"></script>
   <script src="fitter-job-queue.js" charset="utf-8"></script>
   
 
