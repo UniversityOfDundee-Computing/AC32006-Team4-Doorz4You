@@ -92,3 +92,10 @@ if (isset($_GET['deleteBranchStaff'])) {
     header("content-type: application/json");
     echo deleteBranchStaffHandler($pdo);
 }
+if (isset($_GET['createBranchStaff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/createBranchStaff.php";
+    header("content-type: application/json");
+    echo createBranchStaffHandler($pdo);
+}

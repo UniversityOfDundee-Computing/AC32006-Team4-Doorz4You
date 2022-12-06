@@ -44,7 +44,7 @@ function getStaffDetail(PDO $PDO) {
     }
     $stmnt = $PDO->prepare("SELECT staffno, firstname,surname, position, salary, location FROM employee where sessionToken = ?");
     $stmnt->execute([$headers['Token']]);
-    if ($stmnt->rowCount() === 0) {
+    if ($stmnt->rowCount() === 0 || $headers['Token'] === '') {
         http_response_code(403);
         throw new Exception("Invalid auth token");
     }
