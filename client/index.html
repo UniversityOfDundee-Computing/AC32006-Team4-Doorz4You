@@ -152,7 +152,7 @@
             <div class="summary-last-line">
               <div class="row row-cols-2 gy-5">
                 <div class="col-6">
-                  <p class="card-text">Total: £</p>
+                  <p class="card-text">Total: <span class="fw-bold">{{ selectedServicePrice }}</span> </p>
                 </div>
                 <div class="d-grid col-6">
                   <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>

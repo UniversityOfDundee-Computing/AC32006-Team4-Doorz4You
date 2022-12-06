@@ -22,12 +22,19 @@ new Vue({
         0: 'Painting/Varnishing',
         1: 'Handle Replacement',
         2: 'Hinge Replacement',
-        3: 'Edge Resealing'
+        3: 'Edge Resealing',
+      },
+      prices: {
+        0: '£59',
+        1: '£29',
+        2: '£99',
+        3: '£79',
       }
     },
   
     created: function() {
       this.selectedServiceDisplay = this.services[0];
+      this.selectedServicePrice = this.prices[0];
     },
   
     methods: {
@@ -61,6 +68,7 @@ new Vue({
       changeOrderedService: function(service) {
         this.form.selectedService = service;
         this.selectedServiceDisplay = this.services[service];
+        this.selectedServicePrice = this.prices[service];
       }
     }
   });
