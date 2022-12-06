@@ -46,11 +46,10 @@
     <h2>Stock List</h2>
 
     <div class= "search-box"> 
-        <input class ="search-txt" type="text" name="" placeholder="Type to search">
-        <a class="search-btn" href="#">
-
-            <i class="fa fa-magnifying-glass"></i>
-        </a>
+        <input class ="search-txt" type="text" name="" v-model="searchQuery" v-on:input="filterStockList()" placeholder="Type to search">
+<!--        <a class="search-btn" href="#">-->
+<!--            <i class="fa fa-magnifying-glass"></i>-->
+<!--        </a>-->
        
 
     </div>
@@ -73,13 +72,13 @@
         </thead>
         <!-- Table Content -->
         <tbody>
-          <tr v-for="stock in stockList">
-            <th scope="row">{{ stock.part }}</th>
-            <th scope="row">{{ stock.PartIdNumber }}</th>
-            <th scope="row">{{ stock.amount }}</th>
-            <th scope="row">{{ stock.location }}</th>
-            <th scope="row">{{ stock.reserved }}</th>
-            <th scope="row">{{ stock.actions }}</th>
+          <tr v-for="stock in filteredStockList">
+            <th scope="row">{{ stock.PartType }}</th>
+            <th scope="row">{{ stock.PartNo }}</th>
+            <th scope="row">{{ stock.NoInStock }}</th>
+            <th scope="row">{{ stock.WarehouseLocation }}</th>
+            <th scope="row">{{ stock.StockReserved ? stock.StockReserved : 0 }}</th>
+            <th scope="row"></th>
           </tr>
         </tbody>
       </table>
@@ -115,9 +114,9 @@
               <th scope="row">{{ stock.quantity }}</th>
               <th scope="row" class="table-success">
                 <select class="form-select" v-on:change="changeJobStatus(stock)" v-model="stock.collectionStatus">
-                  <option value=0>Pending collection</option>
-                  <option value=1>Collected</option>
-                  <option value=2>Cancelled</option>
+                  <option value="PENDING COLLECTION">Pending collection</option>
+                  <option value="COLLECTED">Collected</option>
+                  <option value="CANCELLED">Cancelled</option>
                 </select>
               </th>
            
@@ -134,9 +133,9 @@
                  <th scope="row">{{ stock.quantity }}</th>
                  <th scope="row" class="table-success">
                   <select class="form-select" v-on:change="changeJobStatus(stock)" v-model="stock.collectionStatus">
-                    <option value=0>Pending collection</option>
-                    <option value=1>Collected</option>
-                    <option value=2>Cancelled</option>
+                    <option value="PENDING COLLECTION">Pending collection</option>
+                    <option value="COLLECTED">Collected</option>
+                    <option value="CANCELLED">Cancelled</option>
                   </select>
                 </th>
               </tr>
@@ -156,6 +155,7 @@
 
 
 </div>
+<script src="common.js" charset="utf-8"></script>
 <script src="stock_keeper.js" charset="utf-8"></script>
 </body>
 
