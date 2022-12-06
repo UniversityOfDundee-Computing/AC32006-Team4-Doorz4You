@@ -99,3 +99,10 @@ if (isset($_GET['createBranchStaff'])) {
     header("content-type: application/json");
     echo createBranchStaffHandler($pdo);
 }
+if (isset($_GET['getTeamJobs'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getTeamJobs.php";
+    header("content-type: application/json");
+    echo getTeamJobsHandler($pdo);
+}
