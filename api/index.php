@@ -113,3 +113,10 @@ if (isset($_GET['setJobState'])) {
     header("content-type: application/json");
     echo setJobStateHandler($pdo);
 }
+if (isset($_GET['getBranchStock'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getBranchStock.php";
+    header("content-type: application/json");
+    echo getBranchStockHandler($pdo);
+}
