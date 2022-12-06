@@ -42,9 +42,9 @@
   </nav>
 
   </main>
-  <h6>Current Team: Team 4</h6>
-  <h6>Teammates: Jim Smith</h6>
-  <h6>Current assigned vehicle:Vehicle 4</h6>
+  <h6>Current Team: {{teamName}}</h6>
+  <h6>Team members: {{teamMembers}}</h6>
+  <h6>Current assigned vehicle: {{teamVehicle}}</h6>
   <h2>Your Teams Job Queue</h2>
  <!-- Job Allocation Table -->
    <div class="table-responsive-md">
@@ -63,8 +63,8 @@
       <tbody>
       <tr v-for="job in jobsList">
         <th scope="row">{{ job.JobName }}</th>
-        <th scope="row">{{ job.CustomerNo }}</th>
-        <th scope="row">{{ job.PostCode }}</th>
+        <th scope="row">{{ job.Description }}</th>
+        <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
         
         <th scope="row" class="table-success">
           <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
