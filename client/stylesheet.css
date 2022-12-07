@@ -28,8 +28,18 @@ h2{
     padding-bottom:19px;
 }
 
+/*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
+.block-button:hover, .block-button:focus{
+    background:#6c757d
+}
+.block-button:active, .block-button.active{
+    background:#dc3545;
+    /* border-color:#dc3545; */
+}
+/*Section End*/
 
-/*Following lines from: https://stackoverflow.com/a/52667883*/
+
+/*Following lines from: https://stackoverflow.com/a/52667883 */
 .table-md{
     width:768px;
 }
