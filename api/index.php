@@ -127,3 +127,10 @@ if (isset($_GET['getTeamStockItems'])) {
     header("content-type: application/json");
     echo getTeamStockItemsHandler($pdo);
 }
+if (isset($_GET['markCollected'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/markCollected.php";
+    header("content-type: application/json");
+    echo markCollectedHandler($pdo);
+}

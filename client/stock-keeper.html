@@ -102,36 +102,23 @@
                 <tr>
                     <th scope="col">Stock Required</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Stock collection Status</th>
                 </tr>
                 </thead>
 
                 <!-- Table Content -->
                 <tbody>
-                <tr class="table-warning" height="10px">
-                    <td colspan="3">Team1</td>
-                </tr>
-                <tr v-for="stock in stockPreparationTeam1">
-                    <th scope="row">{{ stock.required }}</th>
-                    <th scope="row">{{ stock.quantity }}</th>
-                    <th class="table-success" scope="row">
-                        <button @click="changeJobStatus(stock)" class="btn btn-primary">Mark Complete</button>
-                    </th>
-
-                </tr>
-                <tr class="table-warning" height="10px">
-                    <td scope="row">Team2</td>
-                    <td scope="row"></td>
-                    <td scope="row"></td>
-
-                </tr>
-                <tr v-for="stock in stockPreparationTeam2">
-                    <th scope="row">{{ stock.required }}</th>
-                    <th scope="row">{{ stock.quantity }}</th>
-                    <th class="table-success" scope="row">
-                        <button @click="changeJobStatus(stock)" class="btn btn-primary">Mark Complete</button>
-                    </th>
-                </tr>
+                <template v-for="team in stockPreparationList">
+                    <tr class="table-warning" :data-team-id="team.teamID" :data-team-jobs="team.jobs">
+                        <th scope="col">{{team.teamName}}</th>
+                        <th scope="col">
+                            <button @click="markCollected(team.teamID, team.jobs)" class="btn btn-primary">Mark Complete</button>
+                        </th>
+                    </tr>
+                    <tr v-for="part in team.parts">
+                        <td>{{ part.type }}</td>
+                        <td>{{ part.quantity }}</td>
+                    </tr>
+                </template>
                 </tbody>
             </table>
         </div>
@@ -143,7 +130,26 @@
             <a class="navbar-brand" href="#">©2022, Doorz4U</a>
         </div>
     </nav>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmModalLabel">Are You Sure?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to mark this stock as collected?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" @click="ackCollected()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<script charset="utf-8" src="common.js"></script>
 <script charset="utf-8" src="stock_keeper.js"></script>
 </body>
 </html>

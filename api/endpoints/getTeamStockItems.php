@@ -18,9 +18,12 @@ function getTeamStockItemsHandler(PDO $pdo) {
         $teamStock[$team['TeamID']] = [
             "teamName"=>$team['DisplayName'],
             "teamID"=>$team['TeamID'],
-            "parts"=>[]
+            "parts"=>[],
+            "jobs"=>[]
         ];
         foreach ($stmnt->fetchAll() as $stockItem) {
+            $teamStock[$team['TeamID']]['jobs'][] = $stockItem['JobNo'];
+            $teamStock[$team['TeamID']]['jobs'] = array_unique($teamStock[$team['TeamID']]['jobs']);
             if (!isset($teamStock[$team['TeamID']]['parts'][$stockItem['PartNo']])) {
                 $teamStock[$team['TeamID']]['parts'][$stockItem['PartNo']] = [
                     "id" => $stockItem['PartNo'],
@@ -35,7 +38,8 @@ function getTeamStockItemsHandler(PDO $pdo) {
     foreach ($teamStock as $item) {
         $item['parts'] = array_values($item['parts']);
         usort($item['parts'], "cmp");
-        $rtn[] = $item;
+        if (sizeof($item['parts']) > 0)
+            $rtn[] = $item;
     }
 
     return json_encode($rtn, JSON_PRETTY_PRINT);
