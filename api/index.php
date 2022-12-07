@@ -134,3 +134,10 @@ if (isset($_GET['markCollected'])) {
     header("content-type: application/json");
     echo markCollectedHandler($pdo);
 }
+if (isset($_GET['updateFitterViewStatus'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/updateFitterViewStatus.php";
+    header("content-type: application/json");
+    echo updateFitterViewStatusHandler($pdo);
+}
