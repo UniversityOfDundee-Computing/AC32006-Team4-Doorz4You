@@ -72,8 +72,10 @@
             </th>
             <th scope="row" class="table-success">
               <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
-                <option value='OPEN'>Pending Allocation</option>
-                <option value='ALLOCATED'>Allocated</option>
+                <option value='OPEN' disabled>Pending Allocation</option>
+                <option value='ALLOCATED' disabled>Allocated</option>
+                <option value='IN PROGRESS'>In progress</option>
+                <option value='COMPLETED'>Completed</option>
                 <option value='INVALID'>Invalid</option>
               </select>
             </th>
