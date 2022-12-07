@@ -1,10 +1,13 @@
 let vue = new Vue({
     el: '#app', data: {
-        teamsList: [], fittersList: [], vehiclesList: [], staffList: [], editStaffModal: {}, activeStaff: {
+        teamsList: [], fittersList: [], vehiclesList: [], staffList: [], editStaffModal: {},
+        editPasswordModal: {}, activeStaff: {
             FirstName:"",
             surname:"",
             Salary:0,
-            Position:""
+            Position:"",
+            PW:"",
+            ConPW:""
         }
     },
 
@@ -75,6 +78,18 @@ let vue = new Vue({
             this.activeStaff = structuredClone(this.staffList[staffNo]);
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
+        },createStaff: function () {
+            this.activeStaff = {
+                FirstName:"",
+                surname:"",
+                Salary:0,
+                Position:"",
+                StaffNo: "_NEW_",
+                PW:"",
+                ConPW:""
+            };
+            this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
+            this.editStaffModal.show();
         },
 
         createNewTeam: function () {
@@ -108,14 +123,41 @@ let vue = new Vue({
         ackChanges: function () {
             let localToken = localStorage.getItem('token');
             let vm = this;
+            if (this.activeStaff.StaffNo === "_NEW_") {
+                this.editPasswordModal = new bootstrap.Modal('#editPasswordModal', {});
+                this.editPasswordModal.show();
+            } else {
+                let bodyFormData = new FormData();
+                bodyFormData.set("fName", this.activeStaff.FirstName);
+                bodyFormData.set("lName", this.activeStaff.Surname);
+                bodyFormData.set("position", this.activeStaff.Position);
+                bodyFormData.set("salary", this.activeStaff.Salary);
+                bodyFormData.set("staffID", this.activeStaff.StaffNo);
+                axios.post(`${apiUrl}?updateBranchStaff`, bodyFormData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data", "token": localToken
+                    }
+                })
+                .then(function (response) {
+                    console.log(response);
+                    vm.initMethod();
+                    vm.editStaffModal.hide();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+        },
+        ackPassword: function () {
+            let localToken = localStorage.getItem('token');
+            let vm = this;
             let bodyFormData = new FormData();
             bodyFormData.set("fName", this.activeStaff.FirstName);
             bodyFormData.set("lName", this.activeStaff.Surname);
             bodyFormData.set("position", this.activeStaff.Position);
             bodyFormData.set("salary", this.activeStaff.Salary);
-            bodyFormData.set("staffID", this.activeStaff.StaffNo);
-
-            axios.post(`${apiUrl}?updateBranchStaff`, bodyFormData, {
+            bodyFormData.set("password", this.activeStaff.Password);
+            axios.post(`${apiUrl}?createBranchStaff`, bodyFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data", "token": localToken
                 }
@@ -123,6 +165,7 @@ let vue = new Vue({
                 .then(function (response) {
                     console.log(response);
                     vm.initMethod();
+                    vm.editPasswordModal.hide();
                     vm.editStaffModal.hide();
                 })
                 .catch(function (error) {

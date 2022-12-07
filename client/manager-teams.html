@@ -143,7 +143,7 @@
     </div>
 
     <div class="d-grid col-3">
-      <button class="btn btn-warning">Add Staff Member</button>
+      <button class="btn btn-warning" @click="createStaff">Add Staff Member</button>
     </div>
 
   </main>
@@ -206,6 +206,33 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary" @click="ackChanges()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="editPasswordModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editPasswordModalLabel">Edit Staff Member</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input v-model="activeStaff.PW" type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input v-model="activeStaff.ConPW" type="password" class="form-control" id="confirmPassword">
+            </div>
+            <div class="alert alert-danger" v-if="activeStaff.PW !== activeStaff.ConPW" role="alert">
+              Your passwords do not match!
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="ackPassword()" :disabled="activeStaff.PW !== activeStaff.ConPW">Confirm</button>
           </div>
         </div>
       </div>
