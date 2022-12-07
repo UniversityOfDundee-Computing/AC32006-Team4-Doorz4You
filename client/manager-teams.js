@@ -2,72 +2,77 @@ let vue = new Vue({
     el: '#app', data: {
         teamsList: [], fittersList: [], vehiclesList: [], staffList: [], editStaffModal: {}, activeStaff: {
             FirstName:"",
-            LastName:"",
+            surname:"",
             Salary:0,
             Position:""
         }
     },
 
     created: function () {
-        this.loggedInUsername = localStorage.getItem('firstname');
-
-        let localToken = localStorage.getItem('token');
-        var vm = this;
-
-        axios({
-            method: "get", url: `${apiUrl}?getBranchStaff`, headers: {
-                token: localToken,
-            },
-        }).then((response) => {
-            console.log(response.data);
-            vm.staffList = response.data;
-        });
-
-        let teamsList = [];
-
-        axios({
-            method: "get", url: `${apiUrl}?getBranchTeams`, headers: {
-                token: localToken,
-            },
-        }).then((response) => {
-            console.log(response.data);
-            teamsList = response.data;
-
-            teamsList.forEach(x => {
-                console.log(x.staff);
-                if (x.staff.length == 1) {
-                    x.staff.push({
-                        "StaffNo": null
-                    });
-                } else if (x.staff.length == 0) {
-                    x.staff.push({
-                        "StaffNo": null
-                    });
-                    x.staff.push({
-                        "StaffNo": null
-                    });
-                }
-            });
-
-            vm.teamsList = teamsList;
-        });
-
-        axios({
-            method: "get", url: `${apiUrl}?getBranchVehicles`, headers: {
-                token: localToken,
-            },
-        }).then((response) => {
-            console.log(response.data);
-
-            vm.vehiclesList = response.data;
-        });
+        this.initMethod();
     },
 
     methods: {
+        initMethod: function () {
+            this.loggedInUsername = localStorage.getItem('firstname');
+
+            let localToken = localStorage.getItem('token');
+            var vm = this;
+            vm.staffList = [];
+            vm.teamsList = [];
+
+            axios({
+                method: "get", url: `${apiUrl}?getBranchStaff`, headers: {
+                    token: localToken,
+                },
+            }).then((response) => {
+                console.log(response.data);
+                vm.staffList = response.data;
+            });
+
+            let teamsList = [];
+
+            axios({
+                method: "get", url: `${apiUrl}?getBranchTeams`, headers: {
+                    token: localToken,
+                },
+            }).then((response) => {
+                console.log(response.data);
+                teamsList = response.data;
+
+                teamsList.forEach(x => {
+                    console.log(x.staff);
+                    if (x.staff.length == 1) {
+                        x.staff.push({
+                            "StaffNo": null
+                        });
+                    } else if (x.staff.length == 0) {
+                        x.staff.push({
+                            "StaffNo": null
+                        });
+                        x.staff.push({
+                            "StaffNo": null
+                        });
+                    }
+                });
+
+                vm.teamsList = teamsList;
+            });
+
+            axios({
+                method: "get", url: `${apiUrl}?getBranchVehicles`, headers: {
+                    token: localToken,
+                },
+            }).then((response) => {
+                console.log(response.data);
+
+                vm.vehiclesList = response.data;
+            });
+        },
         testMethod: function () {
             console.log('yes');
         }, editStaff: function (staffNo) {
-            this.activeStaff = this.staffList[staffNo];
+            this.activeStaff = structuredClone(this.staffList[staffNo]);
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
@@ -95,6 +100,30 @@ let vue = new Vue({
             })
                 .then(function (response) {
                     console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        ackChanges: function () {
+            let localToken = localStorage.getItem('token');
+            let vm = this;
+            let bodyFormData = new FormData();
+            bodyFormData.set("fName", this.activeStaff.FirstName);
+            bodyFormData.set("lName", this.activeStaff.Surname);
+            bodyFormData.set("position", this.activeStaff.Position);
+            bodyFormData.set("salary", this.activeStaff.Salary);
+            bodyFormData.set("staffID", this.activeStaff.StaffNo);
+
+            axios.post(`${apiUrl}?updateBranchStaff`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    vm.initMethod();
+                    vm.editStaffModal.hide();
                 })
                 .catch(function (error) {
                     console.log(error);
