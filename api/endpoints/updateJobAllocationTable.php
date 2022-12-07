@@ -12,7 +12,11 @@ function updateJobAllocationTableHandler(PDO $pdo) {
     if ($stmnt->rowCount() === 1) {
         $stmnt = $pdo->prepare("UPDATE job set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
         $stmnt->execute([$_POST['team'], strtoupper($_POST['status']), $_POST['JobNo'], $staffDetails[0]['location']]);
-    } else {
+    } else if ($_POST['team'] == "null") {
+        $stmnt = $pdo->prepare("UPDATE job set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
+        $stmnt->execute([null, strtoupper($_POST['status']), $_POST['JobNo'], $staffDetails[0]['location']]);
+    }
+    else {
         http_response_code(502);
         return json_encode([
             "error"=>"Unknown Team"

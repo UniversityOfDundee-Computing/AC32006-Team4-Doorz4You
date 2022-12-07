@@ -1,25 +1,9 @@
 let vue = new Vue({
     el: '#app',
     data: {
-        jobsList: [
-          {
-              "CustomerNo": "cust_48392847586958473829222",
-              "PostCode": "Placeholder",
-              "TeamName": "Team 01",
-              "JobNo": -1,
-              "Status": "OPEN",
-              "JobType": "2",
-              "JobName": "Placeholder, fetching data...",
-              "AllocatedTeam": null,
-              "Location": "01"
-          }
-      ],
+        jobsList: [],
 
-        teamsList: [{
-            TeamID: '-1',
-            DisplayName: 'Placeholder, fetching teams...'
-        }
-        ],
+        teamsList: [],
 
         loggedInUser: null
     },
@@ -60,7 +44,12 @@ let vue = new Vue({
       },
 
       changeTeamAllocation: function(job) {
-        console.log(job);
+          if (job.AllocatedTeam != "null")
+            job.Status = "ALLOCATED";
+          else if (job.Status != "INVALID")
+              job.Status = "OPEN";
+
+          console.log(job);
         this.sendEditsToApi(job);
       },
 
