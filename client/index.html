@@ -95,21 +95,21 @@
           <div class="card-body">
             <h5 class="card-title">Select Service</h5>
             <p></p>
-            <form class="row row-cols-2 gy-3">
+            <form class="row row-cols-2 gy-4">
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Varnishing</button>
+                <button class="btn btn-outline-dark block-button" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Varnishing</button>
                 <p class="card-text">£59</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 1 }" v-on:click="changeOrderedService(1)">Handle Replacement</button>
+                <button class="btn btn-outline-dark block-button" type="button" v-bind:class="{ active: form.selectedService == 1 }" v-on:click="changeOrderedService(1)">Handle Replacement</button>
                 <p class="card-text">£29</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 2 }" v-on:click="changeOrderedService(2)">Hinge Replacement</button>
+                <button class="btn btn-outline-dark block-button" type="button" v-bind:class="{ active: form.selectedService == 2 }" v-on:click="changeOrderedService(2)">Hinge Replacement</button>
                 <p class="card-text">£99</p>
               </div>
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 3 }" v-on:click="changeOrderedService(3)">Edge Resealing</button>
+                <button class="btn btn-outline-dark block-button" type="button" v-bind:class="{ active: form.selectedService == 3 }" v-on:click="changeOrderedService(3)">Edge Resealing</button>
                 <p class="card-text">£79</p>
               </div>
             </form>

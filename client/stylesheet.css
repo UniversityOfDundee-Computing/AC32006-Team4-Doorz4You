@@ -23,6 +23,11 @@ h2{
     padding-top:45px;
 }
 
+.block-button{
+    padding-top:19px;
+    padding-bottom:19px;
+}
+
 
 /*Following lines from: https://stackoverflow.com/a/52667883*/
 .table-md{
