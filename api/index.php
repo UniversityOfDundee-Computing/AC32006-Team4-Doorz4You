@@ -29,6 +29,13 @@ if (isset($_GET['userConnect'])) {
     header("content-type: application/json");
     echo userConnectHandler($pdo);
 }
+if (isset($_GET['customerConnect'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/customerConnect.php";
+    header("content-type: application/json");
+    echo customerConnectHandler($pdo);
+}
 if (isset($_GET['getBranchStaff'])) {
     http_response_code(200);
     $pdo = PDO_config("22ac3u04", "abc322");
