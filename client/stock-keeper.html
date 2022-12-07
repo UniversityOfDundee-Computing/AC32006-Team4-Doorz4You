@@ -108,7 +108,7 @@
                     <tr class="table-warning" :data-team-id="team.teamID" :data-team-jobs="team.jobs">
                         <th scope="col">{{team.teamName}}</th>
                         <th scope="col">
-                            <button @click="markCollected(team.teamID, team.jobs)" class="btn btn-primary">Mark Complete</button>
+                            <button @click="markCollected(team.teamID, team.jobs)" class="btn btn-primary">Mark Stock Collected</button>
                         </th>
                     </tr>
                     <tr v-for="part in team.parts">
