@@ -141,3 +141,10 @@ if (isset($_GET['updateFitterViewStatus'])) {
     header("content-type: application/json");
     echo updateFitterViewStatusHandler($pdo);
 }
+if (isset($_GET['setStockState'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/setStockState.php";
+    header("content-type: application/json");
+    echo setStockStateHandler($pdo);
+}
