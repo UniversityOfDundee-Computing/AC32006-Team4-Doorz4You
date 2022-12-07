@@ -69,7 +69,14 @@
                 <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code" v-model="form.postcode">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputCountry" placeholder="Country" v-model="form.country">
+                <!-- <input type="text" class="form-control" id="inputCountry" placeholder="Country" v-model="form.country"> -->
+                <select class="form-select" aria-label="None Selected">
+                  <option selected disabled class="text-muted">Country</option>
+                  <option>CH</option>
+                  <option>GB</option>
+                  <option>HR</option>
+                  <option>SE</option>
+                </select>
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address" v-model="form.email">
