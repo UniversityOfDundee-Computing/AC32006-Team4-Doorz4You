@@ -52,7 +52,8 @@
       <!-- Table Header Row -->
       <thead class="table-danger">
         <tr>
-          <th scope="col">Job</th>
+            <th scope="col">Job ID</th>
+            <th scope="col">Job</th>
           <th scope="col">Customer comment</th>
           <th scope="col">Address</th>
           <th scope="col">Job Status</th>
@@ -62,14 +63,16 @@
       <!-- Table Content -->
       <tbody>
       <tr v-for="job in jobsList">
+        <th scope="row">{{ job.JobNo }}</th>
         <th scope="row">{{ job.JobName }}</th>
         <th scope="row">{{ job.Description }}</th>
         <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
         
         <th scope="row" class="table-success">
           <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
-            <option value="OPEN">Pending Allocation</option>
             <option value="ALLOCATED">Allocated</option>
+            <option value="IN PROGRESS">In progress</option>
+            <option value="COMPLETED">Completed</option>
             <option value="INVALID">Invalid</option>
           </select>
         </th>
