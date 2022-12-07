@@ -6,9 +6,9 @@ main{
 
 }
 
-div.table-responsive-md{
+/* div.table-responsive-md{
     padding-bottom:45px;
-}
+} */
 
 .search-btn{
 
@@ -19,12 +19,27 @@ div.summary-last-line{
     padding-top:22px;
 }
 
+h2{
+    padding-top:45px;
+}
+
 
 /*Following lines from: https://stackoverflow.com/a/52667883*/
+.table-md{
+    width:768px;
+}
 .table-lg{
     width:992px;
 }
 
+@media (min-width:768px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+}
 @media (min-width:992px){
     .table-sm{
         width:100%;
@@ -35,9 +50,5 @@ div.summary-last-line{
     .table-lg{
         width:100%;
     }
-}
-
-h2{
-    padding-top:45px;
 }
 
