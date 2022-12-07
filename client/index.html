@@ -66,10 +66,13 @@
                 <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code" v-model="form.postcode">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number" v-model="form.telephone">
+                <input type="text" class="form-control" id="inputCountry" placeholder="Country" v-model="form.country">
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address" v-model="form.email">
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number" v-model="form.telephone">
               </div>
             </form>
           </div>
@@ -166,7 +169,7 @@
   </main>
 
   <!-- footer -->
-  <nav class="navbar sticky-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
+  <nav class="navbar fixed-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">+44 7700 105 253 / Door2Door@askjeeves.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavPopup" aria-controls="navbarNavPopup" aria-expanded="false" aria-label="Toggle navigation">
