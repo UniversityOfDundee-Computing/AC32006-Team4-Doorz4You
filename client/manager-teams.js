@@ -1,6 +1,6 @@
 let vue = new Vue({
     el: '#app', data: {
-        teamsList: [], fittersList: [], vehiclesList: [], staffList: [], editStaffModal: {},
+        teamsList: [], fittersList: [], vehiclesList: [], availableVehicles:[], staffList: [], editStaffModal: {},
         editPasswordModal: {}, activeStaff: {
             FirstName:"",
             surname:"",
@@ -27,6 +27,7 @@ let vue = new Vue({
             var vm = this;
             vm.staffList = [];
             vm.teamsList = [];
+            vm.availableVehicles = [];
 
             axios({
                 method: "get", url: `${apiUrl}?getBranchStaff`, headers: {
@@ -40,33 +41,6 @@ let vue = new Vue({
             let teamsList = [];
 
             axios({
-                method: "get", url: `${apiUrl}?getBranchTeams`, headers: {
-                    token: localToken,
-                },
-            }).then((response) => {
-                console.log(response.data);
-                teamsList = response.data;
-
-                teamsList.forEach(x => {
-                    console.log(x.staff);
-                    if (x.staff.length === 1) {
-                        x.staff.push({
-                            "StaffNo": null
-                        });
-                    } else if (x.staff.length === 0) {
-                        x.staff.push({
-                            "StaffNo": null
-                        });
-                        x.staff.push({
-                            "StaffNo": null
-                        });
-                    }
-                });
-
-                vm.teamsList = teamsList;
-            });
-
-            axios({
                 method: "get", url: `${apiUrl}?getBranchVehicles`, headers: {
                     token: localToken,
                 },
@@ -74,15 +48,47 @@ let vue = new Vue({
                 console.log(response.data);
 
                 vm.vehiclesList = response.data;
+                vm.availableVehicles = structuredClone(vm.vehiclesList);
+                axios({
+                    method: "get", url: `${apiUrl}?getBranchTeams`, headers: {
+                        token: localToken,
+                    },
+                }).then((response) => {
+                    console.log(response.data);
+                    teamsList = response.data;
+
+                    teamsList.forEach(x => {
+                        console.log(x.staff);
+                        if (x.staff.length === 1) {
+                            x.staff.push({
+                                "StaffNo": null
+                            });
+                        } else if (x.staff.length === 0) {
+                            x.staff.push({
+                                "StaffNo": null
+                            });
+                            x.staff.push({
+                                "StaffNo": null
+                            });
+                        }
+                        vm.availableVehicles.forEach((v,index)=>{
+                            if (v!==undefined && v.VehicleNo === x.vehicle.id){
+                                vm.availableVehicles[index] = undefined;
+                            }
+
+                        })
+                    });
+
+                    vm.teamsList = teamsList;
+                });
             });
         },
-        testMethod: function () {
-            console.log('yes');
-        }, editStaff: function (staffNo) {
+        editStaff: function (staffNo) {
             this.activeStaff = structuredClone(this.staffList[staffNo]);
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
-        },createStaff: function () {
+        },
+        createStaff: function () {
             this.activeStaff = {
                 FirstName:"",
                 surname:"",
@@ -95,7 +101,6 @@ let vue = new Vue({
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
-
         createNewTeam: function () {
             let localToken = localStorage.getItem('token');
 
@@ -219,6 +224,37 @@ let vue = new Vue({
             this.deleteRecordDta.active = record;
             this.confirmModal = new bootstrap.Modal('#confirmModal', {});
             this.confirmModal.show();
+        },
+        updateTeam: function (team) {
+            let localToken = localStorage.getItem('token');
+            let vm = this;
+            let teamDta = {};
+            let teamMembers = [];
+            this.teamsList.forEach((t)=>{
+                if (t.id === team) {
+                    teamDta = t;
+                    t.staff.forEach((s)=>{
+                        if (s.StaffNo !== null)
+                            teamMembers.push(s.StaffNo);
+                    })
+                }
+            });
+            let bodyFormData = new FormData();
+            bodyFormData.set("team", team);
+            bodyFormData.set("vehicle", teamDta.vehicle.id);
+            bodyFormData.set("teamMembers", JSON.stringify(teamMembers));
+            axios.post(`${apiUrl}?updateTeamVehicleAllocationTable`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    vm.initMethod();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
     }
 });
