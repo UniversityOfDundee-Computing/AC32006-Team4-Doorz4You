@@ -34,7 +34,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="./manager-jobs.html">JOB ALLOCATION</a>
           <a class="nav-link" href="./manager-teams.html">TEAM MANAGEMENT</a>
-          <a class="nav-link" href="./login.html">LOG OUT</a>
+          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
         </div>
         <span class="navbar-text">Logged in as {{loggedInUsername}} (manager)</span>
       </div>
@@ -67,7 +67,7 @@
             <th scope="row" class="table-secondary">
               <select class="form-select" v-on:change="changeTeamAllocation(job)" v-model="job.AllocatedTeam">
                 <option value="null">No team allocated</option>
-                <option v-for="team in teamsList" v-bind:value="team.TeamID">{{ team.TeamID }} ({{ team.DisplayName }})</option>
+                <option v-for="team in teamsList" v-bind:value="team.id">{{ team.id }} ({{ team.name }})</option>
               </select>
             </th>
             <th scope="row" class="table-success">

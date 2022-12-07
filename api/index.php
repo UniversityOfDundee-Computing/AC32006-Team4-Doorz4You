@@ -85,3 +85,52 @@ if (isset($_GET['updateBranchStaff'])) {
     header("content-type: application/json");
     echo updateBranchStaffHandler($pdo);
 }
+if (isset($_GET['deleteBranchStaff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/deleteBranchStaff.php";
+    header("content-type: application/json");
+    echo deleteBranchStaffHandler($pdo);
+}
+if (isset($_GET['createBranchStaff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/createBranchStaff.php";
+    header("content-type: application/json");
+    echo createBranchStaffHandler($pdo);
+}
+if (isset($_GET['getTeamJobs'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getTeamJobs.php";
+    header("content-type: application/json");
+    echo getTeamJobsHandler($pdo);
+}
+if (isset($_GET['setJobState'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/setJobState.php";
+    header("content-type: application/json");
+    echo setJobStateHandler($pdo);
+}
+if (isset($_GET['getBranchStock'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getBranchStock.php";
+    header("content-type: application/json");
+    echo getBranchStockHandler($pdo);
+}
+if (isset($_GET['getTeamStockItems'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getTeamStockItems.php";
+    header("content-type: application/json");
+    echo getTeamStockItemsHandler($pdo);
+}
+if (isset($_GET['markCollected'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/markCollected.php";
+    header("content-type: application/json");
+    echo markCollectedHandler($pdo);
+}

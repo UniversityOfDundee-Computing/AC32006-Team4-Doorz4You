@@ -55,7 +55,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
               </div>
               <div class="d-grid col-4 mx-auto">
-                <button class="btn btn-danger" v-on:click="login">Log In</button>
+                <button class="btn btn-danger" type="button" v-on:click="login">Log In</button>
               </div>
                <div v-if="loginFail">Incorrect username or password. Please try again.</div>
                <div v-if="loginSuccess">Success! Redirecting you...</div>

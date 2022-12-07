@@ -1,4 +1,4 @@
-new Vue({
+let vue = new Vue({
     el: '#app',
     data: {
         jobsList: [

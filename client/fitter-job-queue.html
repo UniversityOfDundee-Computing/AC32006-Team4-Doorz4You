@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" href="#">JOB QUEUE</a>
-          <a class="nav-link" href="#">LOG OUT</a>
+          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
             <span class="navbar-text">Logged in as {{loggedInUsername}} (fitter)</span>
         </div>
       </div>
@@ -42,9 +42,9 @@
   </nav>
 
   </main>
-  <h6>Current Team: Team 4</h6>
-  <h6>Teammates: Jim Smith</h6>
-  <h6>Current assigned vehicle:Vehicle 4</h6>
+  <h6>Current Team: {{teamName}}</h6>
+  <h6>Team members: {{teamMembers}}</h6>
+  <h6>Current assigned vehicle: {{teamVehicle}}</h6>
   <h2>Your Teams Job Queue</h2>
  <!-- Job Allocation Table -->
    <div class="table-responsive-md">
@@ -62,15 +62,15 @@
       <!-- Table Content -->
       <tbody>
       <tr v-for="job in jobsList">
-        <th scope="row">{{ job.jobText }}</th>
-        <th scope="row">{{ job.customerComment }}</th>
-        <th scope="row">{{ job.address }}</th>
+        <th scope="row">{{ job.JobName }}</th>
+        <th scope="row">{{ job.Description }}</th>
+        <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
         
         <th scope="row" class="table-success">
-          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.jobStatus">
-            <option value=0>Pending Allocation</option>
-            <option value=1>Allocated</option>
-            <option value=2>Invalid</option>
+          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
+            <option value="OPEN">Pending Allocation</option>
+            <option value="ALLOCATED">Allocated</option>
+            <option value="INVALID">Invalid</option>
           </select>
         </th>
       </tr>
@@ -89,6 +89,7 @@
   </nav>
 
  </div>
+<script src="common.js" charset="utf-8"></script>
   <script src="fitter-job-queue.js" charset="utf-8"></script>
   
 

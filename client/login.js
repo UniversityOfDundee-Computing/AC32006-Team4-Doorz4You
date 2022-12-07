@@ -38,11 +38,23 @@ new Vue({
           localStorage.token = response.data.token;
           localStorage.position = response.data.position;
           localStorage.firstname = response.data.firstname;
+
+          vm.redirect(response.data.position);
         })
         .catch(function (error) {
           console.log(error);
           vm.loginFail = true;
         });
+      },
+
+      redirect: function(position) {
+        if (position == "Manager")
+          window.location.href = (`${clientPage}/manager-jobs.html`);
+        else if (position == "Fitter")
+          window.location.href = (`${clientPage}/fitter-job-queue.html`);
+        else if (position == "StockKeeper")
+          window.location.href = (`${clientPage}/stock-keeper.html`);
+        // todo: position: customer
       }
     }
   });
