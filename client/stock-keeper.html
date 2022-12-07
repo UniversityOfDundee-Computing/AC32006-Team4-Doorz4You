@@ -28,38 +28,35 @@
 </head>
 
 <body class="mainBackground bg-light bg-gradient">
-<div id="app">
-    <!-- Navigation Bar -->
-    <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img alt="Doorz4U" class="img-fluid" src="./Logo.PNG" width="50%">
-            </a>
-            <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                    data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="#">STOCK</a>
-                    <a class="nav-link" href="#">LOG OUT</a>
-                </div>
-                <span class="navbar-text">Logged in as {{loggedInUsername}} (stock-keeper)</span>
-            </div>
+  <div id="app">
+  <!-- Navigation Bar -->
+  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="#">STOCK</a>
+          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
         </div>
-    </nav>
+        <span class="navbar-text">Logged in as {{loggedInUsername}} (stock-keeper)</span>
+      </div>
+    </div>
+  </nav>
 
     <!-- Main Section -->
     <main>
         <h2>Stock List</h2>
 
         <div class="search-box">
-            <input class="search-txt" name="" placeholder="Type to search" type="text">
-            <a class="search-btn" href="#">
-
-                <i class="fa fa-magnifying-glass"></i>
-            </a>
-
+            <input class="search-txt" name="" v-model="searchQuery" v-on:input="filterStockList()"placeholder="Type to search" type="text">
+            <!--        <a class="search-btn" href="#">-->
+                <!--            <i class="fa fa-magnifying-glass"></i>-->
+            <!--        </a>-->
 
         </div>
 
@@ -77,21 +74,21 @@
                     <th scope="col">Stock Reserved</th>
                     <th scope="col">Actions</th>
 
-                </tr>
-                </thead>
-                <!-- Table Content -->
-                <tbody>
-                <tr v-for="stock in stockList">
-                    <th scope="row">{{ stock.part }}</th>
-                    <th scope="row">{{ stock.PartIdNumber }}</th>
-                    <th scope="row">{{ stock.amount }}</th>
-                    <th scope="row">{{ stock.location }}</th>
-                    <th scope="row">{{ stock.reserved }}</th>
-                    <th scope="row">{{ stock.actions }}</th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+          </tr>
+        </thead>
+        <!-- Table Content -->
+        <tbody>
+          <tr v-for="stock in filteredStockList">
+            <th scope="row">{{ stock.PartType }}</th>
+            <th scope="row">{{ stock.PartNo }}</th>
+            <th scope="row">{{ stock.NoInStock }}</th>
+            <th scope="row">{{ stock.WarehouseLocation }}</th>
+            <th scope="row">{{ stock.StockReserved ? stock.StockReserved : 0 }}</th>
+            <th scope="row"></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
         <h2>Stock Preparation</h2>
         <!-- Stock Preparation Table -->

@@ -1,29 +1,33 @@
-new Vue({
+let vue = new Vue({
     el: '#app',
     data: {
-         stockList: [{
-            part: 'Door Handle',
-            PartIdNumber: '12345',
-            amount: '25',
-            location: 'A7',
-            reserved: '0',
-            actions: ''
-        },
-        ],
+        stockList: [],
+        filteredStockList: [],
         stockPreparationList: [],
         active: {
-             team: "",
-             jobs:[]
+            team: "",
+            jobs: []
         },
-        confirmModal:{}
+        searchQuery: "",
+        confirmModal: {}
     },
   
     created: function() {
         this.loggedInUsername = localStorage.getItem('firstname');
-
         let localToken = localStorage.getItem('token');
         var vm = this;
 
+        axios({
+            method: "get",
+            url: `${apiUrl}?getBranchStock`,
+            headers: {
+                token: localToken,
+            },
+        }).then((response) => {
+            console.log(response.data);
+            vm.stockList = response.data;
+            vm.filterStockList();
+        });
         axios({
             method: "get",
             url: `${apiUrl}?getTeamStockItems`,
@@ -43,10 +47,19 @@ new Vue({
       changeTeamAllocation: function(stock) {
         console.log(stock);
       },
+        filterStockList: function() {
+            var vm = this;
+            var q = this.searchQuery.toLowerCase();
+            this.filteredStockList = this.stockList.filter(s => s.PartType.toLowerCase().includes(q) || s.PartNo.toLowerCase().includes(q) || s.WarehouseLocation.toLowerCase().includes(q));
+            console.log(this.filteredStockList);
+        },
 
+      changeJobStatus: function(stock) {
+        console.log(stock);
+      },
         markCollected: function(team, jobs) {
-          this.active.team = team;
-          this.active.jobs = jobs;
+            this.active.team = team;
+            this.active.jobs = jobs;
             this.confirmModal = new bootstrap.Modal('#confirmModal', {});
             this.confirmModal.show();
         },
