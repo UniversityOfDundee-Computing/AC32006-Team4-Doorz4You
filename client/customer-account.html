@@ -52,29 +52,37 @@
           <div class="card-body">
             <h5 class="card-title">Contact Details</h5>
             <p></p>
-            <form class="row row-cols-2 gy-3">
+            <form class="row row-cols-2">
               <div class="col-7">
+                <p class="card-text">First Name</p>
                 <input type="text" class="form-control" id="inputFirstName" placeholder="Dave" v-model="form.firstname">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputSurname" placeholder="Davison" v-model="form.surname">
+                <p class="card-text">Surname</p>
+                <input type="text" class="form-control" id="inputSurname" placeholder="Davidson" v-model="form.surname">
               </div>
               <div class="col-7">
+                <p class="card-text">Address</p>
                 <input type="text" class="form-control" id="inputAddress" placeholder="64 Zoo Lane" v-model="form.address">
               </div>
               <div class="col-5">
+                <p class="card-text">City</p>
                 <input type="text" class="form-control" id="inputCity" placeholder="Friockheim" v-model="form.city">
               </div>
               <div class="col-7">
+                <p class="card-text">Post Code</p>
                 <input type="text" class="form-control" id="inputPostCode" placeholder="DD69 4JF" v-model="form.postcode">
               </div>
               <div class="col-5">
+                <p class="card-text">Country</p>
                 <input type="text" class="form-control" id="inputCountry" placeholder="SCOTLAND" v-model="form.country">
               </div>
               <div class="col-7">
+                <p class="card-text">E-mail Address</p>
                 <input type="text" class="form-control" id="inputE-mail" placeholder="ddavidson420@askjeeves.com" v-model="form.email">
               </div>
               <div class="col-5">
+                <p class="card-text">Telephone Number</p>
                 <input type="text" class="form-control" id="inputTelNo" placeholder="Forfar 761" v-model="form.telephone">
               </div>
             </form>
@@ -89,24 +97,29 @@
           <div class="card-body">
             <h5 class="card-title">Payment Details</h5>
             <p></p>
-            <form class="row row-cols-2 gy-3">
+            <form class="row row-cols-2">
               <div class="col-7">
-                <input type="text" class="form-control" id="inputCardName" placeholder="Name on Card" v-model="form.nameOnCard">
+                <p class="card-text">Name on Card</p>
+                <input type="text" class="form-control" id="inputCardName" placeholder="MR D DAVIDSON" v-model="form.nameOnCard">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
+                <p class="card-text">Card Number</p>
+                <input type="text" class="form-control" id="inputCardNo" placeholder="4100 1253 0014 3002" v-model="form.cardNumber">
               </div>
               <div class="col-4">
-                <input type="password" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
+                <p class="card-text">Security Code</p>
+                <input type="password" class="form-control" id="inputCardCVV" placeholder="•••" v-model="form.cardCvv">
               </div>
               <div class="col-8">
                 <!--Empty column for formatting-->
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardMonth" placeholder="Expiry Month" v-model="form.expiryMonth">
+                <p class="card-text">Expiry Month</p>
+                <input type="text" class="form-control" id="inputCardMonth" placeholder="06" v-model="form.expiryMonth">
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year" v-model="form.expiryYear">
+                <p class="card-text">Expiry Year</p>
+                <input type="text" class="form-control" id="inputCardYear" placeholder="99" v-model="form.expiryYear">
               </div>
               <div class="col-5">
                 <!--Empty column for formatting-->
@@ -120,30 +133,52 @@
 
     <h4>Your Orders</h4>
     <div class="row row-cols-1 g-5">
-      <!-- Service Select Box -->
+      <!-- List of Orders Box -->
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Select Service</h5>
+            <!-- <h5 class="card-title">Select Service</h5> -->
             <p></p>
-            <form class="row row-cols-2 gy-3">
-              <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Varnishing</button>
-                <p class="card-text">£59</p>
-              </div>
-              <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 1 }" v-on:click="changeOrderedService(1)">Handle Replacement</button>
-                <p class="card-text">£29</p>
-              </div>
-              <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 2 }" v-on:click="changeOrderedService(2)">Hinge Replacement</button>
-                <p class="card-text">£99</p>
-              </div>
-              <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 3 }" v-on:click="changeOrderedService(3)">Edge Resealing</button>
-                <p class="card-text">£79</p>
-              </div>
-            </form>
+            <div class="table-responsive-md">
+              <table class="table table-md table-hover table-bordered">
+                <!-- Table Header Row -->
+                <thead class="table-danger">
+                  <tr>
+                    <th scope="col">Order No.</th>
+                    <th scope="col">Job</th>
+                    <th scope="col">Job Date</th>
+                    <th scope="col">Job Status</th>
+                  </tr>
+                </thead>
+                <!-- Table Content -->
+                <tbody>
+                  <tr>
+                    <th scope="row">675</th>
+                    <th scope="row">Handle Replacement</th>
+                    <th scope="row">N.A.</th>
+                    <th scope="row">Pending Allocation</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">646</th>
+                    <th scope="row">Hinge Replacement</th>
+                    <th scope="row">10.12.2022</th>
+                    <th scope="row">Allocated</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">612</th>
+                    <th scope="row">Varnishing</th>
+                    <th scope="row">02.11.2022</th>
+                    <th scope="row">Completed</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">486</th>
+                    <th scope="row">Varnishing</th>
+                    <th scope="row">22.04.2021</th>
+                    <th scope="row">Completed</th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
