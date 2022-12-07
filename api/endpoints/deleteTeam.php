@@ -7,7 +7,8 @@ function deleteTeamHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT TeamID from team where Location = ? and TeamID = ? LIMIT 1; START TRANSACTION;");
+    $pdo->beginTransaction();
+    $stmnt = $pdo->prepare("SELECT TeamID from team where Location = ? and TeamID = ? LIMIT 1;");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
         $stmnt = $pdo->prepare("Update job set AllocatedTeam = '' where AllocatedTeam = ?;");
@@ -16,8 +17,7 @@ function deleteTeamHandler(PDO $pdo) {
         $stmnt->execute([$_POST['team']]);
         $stmnt = $pdo->prepare("DELETE FROM team where TeamID = ?;");
         $stmnt->execute([$_POST['team']]);
-        $stmnt = $pdo->prepare("COMMIT;");
-        $stmnt->execute([]);
+        $pdo->commit();
     } else {
         http_response_code(502);
         return json_encode([

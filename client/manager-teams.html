@@ -87,7 +87,7 @@
             </th>
             <th scope="row">
               <div class="d-grid">
-                <button class="btn btn-danger mx-auto"><i class="bi bi-trash-fill"></i></button>
+                <button class="btn btn-danger mx-auto" @click="deleteRecord('team', team.id)"><i class="bi bi-trash-fill"></i></button>
               </div>
             </th>
           </tr>
@@ -134,7 +134,7 @@
             </th>
             <th scope="row">
               <div class="d-grid">
-                <button class="btn btn-danger mx-auto"><i class="bi bi-person-fill-x"></i></button>
+                <button class="btn btn-danger mx-auto" @click="deleteRecord('staff', staff.staffNo)"><i class="bi bi-person-fill-x"></i></button>
               </div>
             </th>
           </tr>
@@ -194,8 +194,8 @@
               <input v-model="activeStaff.Salary" type="number" class="form-control" id="salary">
             </div>
             <div class="mb-3">
-              <label for="salary" class="form-label">Role</label>
-              <select v-model="activeStaff.Position" class="form-control">
+              <label for="role" class="form-label">Role</label>
+              <select id="role" v-model="activeStaff.Position" class="form-control">
                 <option>Fitter</option>
                 <option>Stock Keeper</option>
                 <option>Manager</option>

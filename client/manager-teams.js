@@ -8,6 +8,10 @@ let vue = new Vue({
             Position:"",
             PW:"",
             ConPW:""
+        },
+        deleteRecordDta: {
+            type:"",
+            active:""
         }
     },
 
@@ -45,11 +49,11 @@ let vue = new Vue({
 
                 teamsList.forEach(x => {
                     console.log(x.staff);
-                    if (x.staff.length == 1) {
+                    if (x.staff.length === 1) {
                         x.staff.push({
                             "StaffNo": null
                         });
-                    } else if (x.staff.length == 0) {
+                    } else if (x.staff.length === 0) {
                         x.staff.push({
                             "StaffNo": null
                         });
@@ -107,6 +111,7 @@ let vue = new Vue({
 
             let bodyFormData = new FormData();
             bodyFormData.set("displayName", newName);
+            let vm = this;
 
             axios.post(`${apiUrl}?createTeam`, bodyFormData, {
                 headers: {
@@ -115,6 +120,7 @@ let vue = new Vue({
             })
                 .then(function (response) {
                     console.log(response);
+                    vm.initMethod();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -171,6 +177,48 @@ let vue = new Vue({
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        ackDelete: function () {
+            let localToken = localStorage.getItem('token');
+            let vm = this;
+            let bodyFormData = new FormData();
+            if (this.deleteRecordDta.type === "STAFF") {
+                bodyFormData.set("staffID", this.deleteRecordDta.active);
+                axios.post(`${apiUrl}?deleteBranchStaff`, bodyFormData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data", "token": localToken
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.initMethod();
+                        vm.confirmModal.hide();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                bodyFormData.set("team", this.deleteRecordDta.active);
+                axios.post(`${apiUrl}?deleteTeam`, bodyFormData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data", "token": localToken
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.initMethod();
+                        vm.confirmModal.hide();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
+        deleteRecord: function (type, record) {
+            this.deleteRecordDta.type = type;
+            this.deleteRecordDta.active = record;
+            this.confirmModal = new bootstrap.Modal('#confirmModal', {});
+            this.confirmModal.show();
         }
     }
 });
