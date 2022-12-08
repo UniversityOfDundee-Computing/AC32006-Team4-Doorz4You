@@ -6,10 +6,6 @@ main{
 
 }
 
-/* div.table-responsive-md{
-    padding-bottom:45px;
-} */
-
 .search-btn{
 
     color: #df4759;
@@ -34,7 +30,6 @@ h2{
 }
 .block-button:active, .block-button.active{
     background:#dc3545;
-    /* border-color:#dc3545; */
 }
 /*Section End*/
 
