@@ -48,11 +48,11 @@ new Vue({
       },
 
       redirect: function(position) {
-        if (position == "Manager")
+        if (position.toUpperCase() == "MANAGER" || position.toUpperCase() == "CEO")
           window.location.href = (`${clientPage}/manager-jobs.html`);
-        else if (position == "Fitter")
+        else if (position.toUpperCase() == "FITTER")
           window.location.href = (`${clientPage}/fitter-job-queue.html`);
-        else if (position == "StockKeeper")
+        else if (position.toUpperCase() == "STOCK KEEPER")
           window.location.href = (`${clientPage}/stock-keeper.html`);
         // todo: position: customer
       }
