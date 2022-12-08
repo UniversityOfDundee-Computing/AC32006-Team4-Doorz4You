@@ -10,6 +10,65 @@ main{
     padding-bottom:45px;
 } */
 
+.landing_Header{
+
+    color:white;  
+    text-align:center;  
+    font-family: 'Brush Script MT', cursive; 
+    padding-bottom:20px; font-size: 60px;
+    -webkit-text-stroke: 0.75px black;
+
+}
+
+.login_button{
+
+    
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 40px;
+
+
+}
+
+.intro_container{
+    border: 5px solid;
+    margin: auto;
+    font-family: Tahoma, sans-serif;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    color:  white;
+    border-color: #df4759;
+    text-align:center;
+    border-radius: 25px;
+
+
+}
+
+.center_down_button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+    height : 0px;
+    bottom :0;
+    
+  }
+
+  .card_container{
+
+    display: flex;
+  justify-content: center;
+  text-align:center;
+  margin-top: 20px;
+  font-size: 15px;
+
+  }
+
 .search-btn{
 
     color: #df4759;
@@ -51,4 +110,5 @@ h2{
         width:100%;
     }
 }
+
 
