@@ -177,3 +177,17 @@ if (isset($_GET['getCustomerDetails'])) {
     header("content-type: application/json");
     echo getCustomerDetailsHandler($pdo);
 }
+if (isset($_GET['addDayOff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/addDayOff.php";
+    header("content-type: application/json");
+    echo addDayOffHandler($pdo);
+}
+if (isset($_GET['removeDayOff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/removeDayOff.php";
+    header("content-type: application/json");
+    echo removeDayOffHandler($pdo);
+}
