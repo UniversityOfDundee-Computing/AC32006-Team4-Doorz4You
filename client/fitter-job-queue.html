@@ -34,25 +34,26 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" href="#">JOB QUEUE</a>
-          <a class="nav-link" href="#">LOG OUT</a>
+          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
             <span class="navbar-text">Logged in as {{loggedInUsername}} (fitter)</span>
         </div>
       </div>
     </div>
   </nav>
 
-  </main>
-  <h6>Current Team: {{teamName}}</h6>
-  <h6>Team members: {{teamMembers}}</h6>
-  <h6>Current assigned vehicle: {{teamVehicle}}</h6>
-  <h2>Your Teams Job Queue</h2>
+  <main>
+  <h6 >Current Team: {{teamName}}</h6>
+  <h6 >Team members: {{teamMembers}}</h6>
+  <h6 >Current assigned vehicle: {{teamVehicle}}</h6>
+  <h2 >Your Teams Job Queue</h2>
  <!-- Job Allocation Table -->
-   <div class="table-responsive-md">
+   <div class="table-responsive-md" >
     <table class="table table-hover table-bordered">
       <!-- Table Header Row -->
       <thead class="table-danger">
         <tr>
-          <th scope="col">Job</th>
+            <th scope="col">Job ID</th>
+            <th scope="col">Job</th>
           <th scope="col">Customer comment</th>
           <th scope="col">Address</th>
           <th scope="col">Job Status</th>
@@ -62,14 +63,16 @@
       <!-- Table Content -->
       <tbody>
       <tr v-for="job in jobsList">
+        <th scope="row">{{ job.JobNo }}</th>
         <th scope="row">{{ job.JobName }}</th>
         <th scope="row">{{ job.Description }}</th>
         <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
         
         <th scope="row" class="table-success">
           <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
-            <option value="OPEN">Pending Allocation</option>
             <option value="ALLOCATED">Allocated</option>
+            <option value="IN PROGRESS">In progress</option>
+            <option value="COMPLETED">Completed</option>
             <option value="INVALID">Invalid</option>
           </select>
         </th>
@@ -78,6 +81,7 @@
       </tbody>
     </table>
   </div>   
+  </main>
 
 
       <!-- footer -->

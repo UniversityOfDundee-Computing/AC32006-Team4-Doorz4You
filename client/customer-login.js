@@ -24,7 +24,7 @@ new Vue({
         bodyFormData.set("password", this.form.password);
 
 
-        axios.post(`${apiUrl}?userConnect`, bodyFormData,{
+        axios.post(`${apiUrl}?customerConnect`, bodyFormData,{
           headers: {
             "Content-Type": "multipart/form-data"
           }
@@ -36,8 +36,8 @@ new Vue({
           console.log(response.data.token);
 
           localStorage.token = response.data.token;
-          localStorage.position = response.data.position;
           localStorage.firstname = response.data.firstname;
+          localStorage.username = response.data.username;
 
           vm.redirect(response.data.position);
         })
@@ -47,14 +47,8 @@ new Vue({
         });
       },
 
-      redirect: function(position) {
-        if (position == "Manager")
-          window.location.href = (`${clientPage}/manager-jobs.html`);
-        else if (position == "Fitter")
-          window.location.href = (`${clientPage}/fitter-job-queue.html`);
-        else if (position == "StockKeeper")
-          window.location.href = (`${clientPage}/stock-keeper.html`);
-        // todo: position: customer
+      redirect: function() {
+          window.location.href = (`${clientPage}/index.html`);
       }
     }
   });

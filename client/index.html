@@ -22,7 +22,7 @@
 <body class="mainBackground bg-light bg-gradient">
 <div id="app">
   <!-- Navigation Bar -->
-  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
@@ -33,12 +33,15 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
           <a class="nav-link active" href="./index.html">NEW ORDER</a>
+          <a class="nav-link" href="">CUSTOMER LOG IN/REGISTER</a>
           <a class="nav-link" href="./login.html">STAFF LOG IN</a>
         </div>
       </div>
     </div>
   </nav>
 
+
+  <h2 class="text-center">Door-to-Door Door Repairs at your Door from Doorz4U</h2>
   <!-- Main Section -->
   <main>
     <div class="row row-cols-1 row-cols-lg-2 g-5">
@@ -66,10 +69,13 @@
                 <input type="text" class="form-control" id="inputPostCode" placeholder="Post Code" v-model="form.postcode">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number" v-model="form.telephone">
+                <input type="text" class="form-control" id="inputCountry" placeholder="Country" v-model="form.country">
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" id="inputE-mail" placeholder="E-mail Address" v-model="form.email">
+              </div>
+              <div class="col-5">
+                <input type="text" class="form-control" id="inputTelNo" placeholder="Telephone Number" v-model="form.telephone">
               </div>
             </form>
           </div>
@@ -84,7 +90,7 @@
             <p></p>
             <form class="row row-cols-2 gy-3">
               <div class="d-grid col-6">
-                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Painting/Varnishing</button>
+                <button class="btn btn-outline-dark" type="button" v-bind:class="{ active: form.selectedService == 0 }" v-on:click="changeOrderedService(0)">Varnishing</button>
                 <p class="card-text">£59</p>
               </div>
               <div class="d-grid col-6">
@@ -118,7 +124,7 @@
                 <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
               </div>
               <div class="col-4">
-                <input type="text" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
+                <input type="password" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
               </div>
               <div class="col-8">
                 <!--Empty column for formatting-->
@@ -149,12 +155,14 @@
                 <input type="text" class="form-control" id="inputComment" placeholder="Any other comments?" v-model="form.comments">
               </div>
             </form>
-            <div class="row row-cols-2 gy-5">
-              <div class="col-6">
-                <p class="card-text">Total: £</p>
-              </div>
-              <div class="d-grid col-6">
-                <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>
+            <div class="summary-last-line">
+              <div class="row row-cols-2 gy-5">
+                <div class="col-6">
+                  <p class="card-text">Total: <span class="fw-bold">{{ selectedServicePrice }}</span> </p>
+                </div>
+                <div class="d-grid col-6">
+                  <button class="btn btn-danger" v-on:click="submitOrder">Place Order</button>
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +172,7 @@
   </main>
 
   <!-- footer -->
-  <nav class="navbar sticky-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
+  <nav class="navbar fixed-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">+44 7700 105 253 / Door2Door@askjeeves.com</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavPopup" aria-controls="navbarNavPopup" aria-expanded="false" aria-label="Toggle navigation">

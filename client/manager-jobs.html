@@ -22,7 +22,7 @@
 <body class="mainBackground bg-light bg-gradient">
   <div id="app">
   <!-- Navigation Bar -->
-  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
@@ -34,7 +34,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="./manager-jobs.html">JOB ALLOCATION</a>
           <a class="nav-link" href="./manager-teams.html">TEAM MANAGEMENT</a>
-          <a class="nav-link" href="#">LOG OUT</a>
+          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
         </div>
         <span class="navbar-text">Logged in as {{loggedInUsername}} (manager)</span>
       </div>
@@ -46,8 +46,8 @@
     <h2>Job Allocation:</h2>
 
     <!-- Job Allocation Table -->
-    <div class="table-responsive-md">
-      <table class="table table-hover table-bordered">
+    <div class="table-responsive-lg">
+      <table class="table table-lg table-hover table-bordered">
         <!-- Table Header Row -->
         <thead class="table-danger">
           <tr>
@@ -72,8 +72,10 @@
             </th>
             <th scope="row" class="table-success">
               <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
-                <option value='OPEN'>Pending Allocation</option>
-                <option value='ALLOCATED'>Allocated</option>
+                <option value='OPEN' disabled>Pending Allocation</option>
+                <option value='ALLOCATED' disabled>Allocated</option>
+                <option value='IN PROGRESS'>In progress</option>
+                <option value='COMPLETED'>Completed</option>
                 <option value='INVALID'>Invalid</option>
               </select>
             </th>
@@ -106,7 +108,6 @@
   <nav class="navbar fixed-bottom navbar-dark navbar-expand-md" style="background-color:firebrick">
     <div class="container-fluid justify-content-center">
       <a class="navbar-brand" href="#">©2022, Doorz4U</a>
-      <!-- <a class="nav-link" href="#">©2022, Doorz4U</p> -->
     </div>
   </nav>
 

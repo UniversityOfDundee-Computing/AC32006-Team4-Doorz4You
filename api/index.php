@@ -1,6 +1,7 @@
 <?php
 include_once "inc.php";
 http_response_code(404);
+header("Access-Control-Allow-Origin: *"); // CORS access - probs not needed in prod, but useful to have
 if (isset($_GET['getProductList'])) {
     http_response_code(418);
     $pdo = PDO_config("22ac3u04", "abc322");
@@ -28,6 +29,13 @@ if (isset($_GET['userConnect'])) {
     include_once "endpoints/userConnect.php";
     header("content-type: application/json");
     echo userConnectHandler($pdo);
+}
+if (isset($_GET['customerConnect'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/customerConnect.php";
+    header("content-type: application/json");
+    echo customerConnectHandler($pdo);
 }
 if (isset($_GET['getBranchStaff'])) {
     http_response_code(200);
@@ -119,4 +127,46 @@ if (isset($_GET['getBranchStock'])) {
     include_once "endpoints/getBranchStock.php";
     header("content-type: application/json");
     echo getBranchStockHandler($pdo);
+}
+if (isset($_GET['getTeamStockItems'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getTeamStockItems.php";
+    header("content-type: application/json");
+    echo getTeamStockItemsHandler($pdo);
+}
+if (isset($_GET['markCollected'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/markCollected.php";
+    header("content-type: application/json");
+    echo markCollectedHandler($pdo);
+}
+if (isset($_GET['updateFitterViewStatus'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/updateFitterViewStatus.php";
+    header("content-type: application/json");
+    echo updateFitterViewStatusHandler($pdo);
+}
+if (isset($_GET['setStockState'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/setStockState.php";
+    header("content-type: application/json");
+    echo setStockStateHandler($pdo);
+}
+if (isset($_GET['registerCustomer'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/registerCustomer.php";
+    header("content-type: application/json");
+    echo registerCustomerHandler($pdo);
+}
+if (isset($_GET['getPastJobs'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getPastJobs.php";
+    header("content-type: application/json");
+    echo getPastJobsHandler($pdo);
 }

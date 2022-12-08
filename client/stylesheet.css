@@ -1,14 +1,14 @@
 main{
     margin-top:45px;
-    margin-bottom:45px;
+    margin-bottom:95px;
     margin-left:35px;
     margin-right:35px;
 
 }
 
-div.table-responsive-md{
+/* div.table-responsive-md{
     padding-bottom:45px;
-}
+} */
 
 .landing_Header{
 
@@ -74,5 +74,41 @@ div.table-responsive-md{
     color: #df4759;
 }
 
+div.summary-last-line{
+    padding-top:22px;
+}
+
+h2{
+    padding-top:45px;
+}
+
+
+/*Following lines from: https://stackoverflow.com/a/52667883*/
+.table-md{
+    width:768px;
+}
+.table-lg{
+    width:992px;
+}
+
+@media (min-width:768px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+}
+@media (min-width:992px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+    .table-lg{
+        width:100%;
+    }
+}
 
 
