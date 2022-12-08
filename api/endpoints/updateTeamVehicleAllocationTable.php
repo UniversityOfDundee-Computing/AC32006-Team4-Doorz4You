@@ -7,7 +7,8 @@ function updateTeamVehicleAllocationTableHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT TeamID, Vehicle from team where Location = ? and TeamID = ? LIMIT 1; START TRANSACTION;");
+    $pdo->beginTransaction();
+    $stmnt = $pdo->prepare("SELECT TeamID, Vehicle from team where Location = ? and TeamID = ? LIMIT 1;");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
         if ($stmnt->fetch()['Vehicle'] !== $_POST['vehicle']) {
@@ -17,10 +18,10 @@ function updateTeamVehicleAllocationTableHandler(PDO $pdo) {
         $stmnt = $pdo->prepare("SELECT StaffID from teamemployee where TeamID = ?");
         $stmnt->execute([$_POST['team']]);
         $teamMembers = $stmnt->fetchAll();
-        $good = (sizeof($teamMembers) === sizeof($_POST['teamMembers']));
+        $good = (sizeof($teamMembers) === sizeof(json_decode($_POST['teamMembers'])));
 
         foreach ($teamMembers as $teamMember) {
-            if (!in_array($teamMember['StaffID'], $_POST['teamMembers'])) {
+            if (!in_array($teamMember['StaffID'], json_decode($_POST['teamMembers']))) {
                 $good = false;
             }
         }
@@ -28,14 +29,13 @@ function updateTeamVehicleAllocationTableHandler(PDO $pdo) {
             $stmnt = $pdo->prepare("DELETE FROM teamemployee where TeamID = ?;");
             $stmnt->execute([$_POST['team']]);
 
-            $stmnt = $pdo->prepare("INSERT into teamemployee values (TeamID = ?, StaffID = ?);");
-            foreach ($_POST['teamMembers'] as $teamMember) {
+            $stmnt = $pdo->prepare("INSERT into teamemployee (TeamID, StaffID) values (?, ?);");
+            foreach (json_decode($_POST['teamMembers']) as $teamMember) {
                 $stmnt->execute([$_POST['team'], $teamMember]);
             }
         }
 
-        $stmnt = $pdo->prepare("COMMIT;");
-        $stmnt->execute([]);
+        $pdo->commit();
     } else {
         http_response_code(502);
         return json_encode([

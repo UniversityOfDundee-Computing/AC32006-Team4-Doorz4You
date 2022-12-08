@@ -57,11 +57,11 @@
             <form class="row row-cols-2">
               <div class="col-12 col-md-4">
                 <p class="card-text">First Name</p>
-                <input disabled type="text" class="form-control" id="FirstName" placeholder="Placeholder" v-model="form.FirstName">
+                <input disabled type="text" class="form-control" id="inputFirstName" placeholder="Placeholder" v-model="form.FirstName">
               </div>
               <div class="col-12 col-md-8">
                 <p class="card-text">Surname</p>
-                <input disabled type="text" class="form-control" id="Surname" placeholder="Placeholder" v-model="form.Surname">
+                <input disabled type="text" class="form-control" id="inputSurname" placeholder="Placeholder" v-model="form.Surname">
               </div>
               <p></p>
               <div class="col-12">
@@ -75,28 +75,31 @@
               <div class="col-12">
                 <p class="card-text">Address Line 3</p>
                 <input disabled type="text" class="form-control" id="Address3" placeholder="Placeholder" v-model="form.Address3">
+              <div class="col-7">
+                <p class="card-text">Address</p>
+                <input disabled type="text" class="form-control" id="inputAddress" placeholder="Placeholder" v-model="form.Street">
               </div>
               <div class="col-6 col-md-4">
                 <p class="card-text">City</p>
-                <input disabled type="text" class="form-control" id="City" placeholder="Placeholder" v-model="form.City">
+                <input disabled type="text" class="form-control" id="inputCity" placeholder="Placeholder" v-model="form.City">
               </div>
               <div class="col-6 col-md-4">
                 <p class="card-text">Post Code</p>
-                <input disabled type="text" class="form-control" id="PostCode" placeholder="Placeholder" v-model="form.PostCode">
+                <input disabled type="text" class="form-control" id="inputPostCode" placeholder="DD69 4JF" v-model="form.PostCode">
               </div>
               <div class="col-6 col-md-4">
                 <p class="card-text">Country</p>
-                <input disabled type="text" class="form-control" id="Country" placeholder="Placeholder" v-model="form.Country">
+                <input disabled type="text" class="form-control" id="inputCountry" placeholder="SCOTLAND" v-model="form.Country">
               </div>
               <div class="col-6 col-md-8"></div>
               <p></p>
               <div class="col-12 col-md-7">
                 <p class="card-text">E-mail Address</p>
-                <input disabled type="text" class="form-control" id="E-mail" placeholder="ddavidson420@askjeeves.com" v-model="form.Email">
+                <input disabled type="text" class="form-control" id="inputE-mail" placeholder="ddavidson420@askjeeves.com" v-model="form.Email">
               </div>
               <div class="col-12 col-md-5">
                 <p class="card-text">Telephone Number</p>
-                <input disabled type="text" class="form-control" id="TelNo" placeholder="Forfar 761" v-model="form.TelNo">
+                <input disabled type="text" class="form-control" id="inputTelNo" placeholder="Forfar 761" v-model="form.ContactNo">
               </div>
             </form>
           </div>
@@ -181,11 +184,11 @@
       </div>
     </div>
   </nav>
-  
+
 
 </div>
   <script src="common.js" charset="utf-8"></script>
-  <script src="customer-account.js" charset="utf-8"></script>
+  <script src="index.js" charset="utf-8"></script>
 </body>
 
 </html>

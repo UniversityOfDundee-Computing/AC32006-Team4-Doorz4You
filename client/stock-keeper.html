@@ -84,7 +84,9 @@
             <th scope="row">{{ stock.NoInStock }}</th>
             <th scope="row">{{ stock.WarehouseLocation }}</th>
             <th scope="row">{{ stock.StockReserved ? stock.StockReserved : 0 }}</th>
-            <th scope="row"></th>
+            <th scope="row" class="d-flex justify-content-center">
+                <button class="btn btn-primary" @click="updateStock(stock.PartNo, stock.NoInStock)">Update Stock</button>
+            </th>
           </tr>
         </tbody>
       </table>
@@ -107,8 +109,8 @@
                 <template v-for="team in stockPreparationList">
                     <tr class="table-warning" :data-team-id="team.teamID" :data-team-jobs="team.jobs">
                         <th scope="col">{{team.teamName}}</th>
-                        <th scope="col">
-                            <button @click="markCollected(team.teamID, team.jobs)" class="btn btn-primary">Mark Complete</button>
+                        <th scope="col" class="d-flex justify-content-center">
+                            <button @click="markCollected(team.teamID, team.jobs)" class="btn btn-primary">Mark Stock Collected</button>
                         </th>
                     </tr>
                     <tr v-for="part in team.parts">
@@ -141,6 +143,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <button type="button" class="btn btn-primary" @click="ackCollected()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="setStockModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="setStockModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="setStockModalLabel">Update Stock</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="currentStock" class="form-label">Current Count in Stock</label>
+                        <input v-model="currentStock" type="number" class="form-control" id="currentStock">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" @click="ackStock()">Update Stock</button>
                 </div>
             </div>
         </div>

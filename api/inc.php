@@ -36,7 +36,7 @@ function getRequestHeaders() {
 /**
  * @throws Exception
  */
-function getStaffDetail(PDO $PDO) {
+function getStaffDetail(PDO &$PDO) {
     $headers = getRequestHeaders();
     if (!isset($headers['Token'])) {
         http_response_code(403);
@@ -48,5 +48,40 @@ function getStaffDetail(PDO $PDO) {
         http_response_code(403);
         throw new Exception("Invalid auth token");
     }
-    return $stmnt->fetchAll();
+    $staffDta = $stmnt->fetchAll();
+    switch (strtoupper($staffDta[0]['position'])) {
+        case "MANAGER":
+        case "CEO":
+            $PDO = PDO_config("22ac3u04", "abc322");
+            break;
+        case "FITTER":
+            $PDO = PDO_config("22ac3user04", "abc322");
+            break;
+        case "STOCK KEEPER":
+            $PDO = PDO_config("22ac3extra04", "abc322");
+            break;
+        default: // Default to customer perms
+            $PDO = PDO_config("22ac3other04", "abc322");
+    }
+    return $staffDta;
+}
+
+/**
+ * @throws Exception
+ */
+function getCustomerDetail(PDO &$PDO) {
+    $headers = getRequestHeaders();
+    if (!isset($headers['Token'])) {
+        http_response_code(403);
+        throw new Exception("Missing Auth Token");
+    }
+    $stmnt = $PDO->prepare("SELECT CustomerNo, FirstName, ContactNo, Email, Street, City, PostCode, Country, Surname FROM customerdetails where sessionToken = ?");
+    $stmnt->execute([$headers['Token']]);
+    if ($stmnt->rowCount() === 0 || $headers['Token'] === '') {
+        http_response_code(403);
+        throw new Exception("Invalid auth token");
+    }
+    $custData = $stmnt->fetchAll();
+    $PDO = PDO_config("22ac3other04", "abc322");
+    return $custData;
 }

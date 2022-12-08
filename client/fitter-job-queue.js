@@ -80,11 +80,10 @@ var vue = new Vue({
           let bodyFormData = new FormData();
           bodyFormData.set("JobNo", job.JobNo);
           bodyFormData.set("status", job.Status);
-          bodyFormData.set("team", job.AllocatedTeam);
 
           console.log(bodyFormData);
 
-          axios.post(`${apiUrl}?updateJobAllocationTable`, bodyFormData,{
+          axios.post(`${apiUrl}?updateFitterViewStatus`, bodyFormData,{
               headers: {
                   "Content-Type": "multipart/form-data",
                   "token": localToken

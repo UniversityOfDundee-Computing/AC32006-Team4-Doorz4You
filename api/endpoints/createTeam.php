@@ -14,8 +14,9 @@ function createTeamHandler(PDO $pdo) {
         $displayName = "#" . $stmnt->fetchAll()[0]['count'];
     if (isset($_POST['displayName']))
         $displayName = $_POST['displayName'];
-    $stmnt = $pdo->prepare("INSERT INTO team values (TeamID = ?, Vehicle = '', Location = ?, DisplayName = ?)");
-    $stmnt->execute([uniqid("team_", true), $staffDetails[0]['location'], $displayName]);
+    $team = uniqid("team_", true);
+    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.team (TeamID, DisplayName, Vehicle, Location) VALUES (?, ?, null, ?);");
+    $stmnt->execute([$team, $displayName, $staffDetails[0]['location']]);
 
     return json_encode([
         "status"=>"ok"
