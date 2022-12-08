@@ -33,6 +33,14 @@ h2{
     padding-bottom:25px;
 }
 
+.team-header{
+    margin-bottom:45px;
+}
+
+.team-today{
+    padding-bottom:10px;
+}
+
 /*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
 .block-button:hover, .block-button:focus{
     background:#6c757d
