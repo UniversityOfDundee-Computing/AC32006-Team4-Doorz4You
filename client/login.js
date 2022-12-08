@@ -24,7 +24,7 @@ new Vue({
         bodyFormData.set("password", this.form.password);
 
 
-        axios.post(`${apiUrl}?userConnect`, bodyFormData,{
+        axios.post(`${apiUrl}/?userConnect`, bodyFormData,{
           headers: {
             "Content-Type": "multipart/form-data"
           }
