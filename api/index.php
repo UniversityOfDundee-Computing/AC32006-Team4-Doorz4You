@@ -1,6 +1,7 @@
 <?php
 include_once "inc.php";
 http_response_code(404);
+header("Access-Control-Allow-Origin: *"); // CORS access - probs not needed in prod, but useful to have
 if (isset($_GET['getProductList'])) {
     http_response_code(418);
     $pdo = PDO_config("22ac3u04", "abc322");
