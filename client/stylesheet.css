@@ -71,6 +71,15 @@ main{
     color: #df4759;
 }
 
+.search-txt-2 {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.filteroption {
+    margin-left: 10px;
+}
+
 div.summary-last-line{
     padding-top:22px;
 }
