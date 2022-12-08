@@ -14,7 +14,6 @@
 
 function createOrderHandler(PDO $pdo) {
     $custNo = "";
-    $custData = [];
     if (isset($_POST['customerNo'])) {
         $stmnt = $pdo->prepare("SELECT CustomerNo,`PostCode`, `Country` FROM customer where CustomerNo = ? limit 1");
         $stmnt->execute([$_POST['customerNo']]);
