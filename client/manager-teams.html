@@ -62,25 +62,25 @@
         <!-- Table Content -->
         <tbody>
           <!-- Row 1 -->
-          <tr v-for="team in teamsList">
+          <tr v-for="(team, index) in teamsList">
             <th scope="row">{{ team.name }}</th>
             <!-- Staff Member 1 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="team.staff[0].StaffNo">
+              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].staff[0].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Staff Member 2 Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="team.staff[1].StaffNo">
+              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].staff[1].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Vehicle Select -->
             <th scope="row" class="table-secondary">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="team.vehicle.id">
+              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].vehicle.id">
                 <option v-for="vehicle in vehiclesList" v-if="vehicle.VehicleNo === team.vehicle.id" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
                 <option v-for="vehicle in availableVehicles" v-if="vehicle !== undefined" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
                 <option value="null">No vehicle allocated</option>

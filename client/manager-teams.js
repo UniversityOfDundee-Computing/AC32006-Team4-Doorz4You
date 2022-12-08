@@ -25,8 +25,6 @@ let vue = new Vue({
 
             let localToken = localStorage.getItem('token');
             var vm = this;
-            vm.staffList = [];
-            vm.teamsList = [];
             vm.availableVehicles = [];
 
             axios({
@@ -187,7 +185,7 @@ let vue = new Vue({
             let localToken = localStorage.getItem('token');
             let vm = this;
             let bodyFormData = new FormData();
-            if (this.deleteRecordDta.type === "STAFF") {
+            if (this.deleteRecordDta.type === "staff") {
                 bodyFormData.set("staffID", this.deleteRecordDta.active);
                 axios.post(`${apiUrl}?deleteBranchStaff`, bodyFormData, {
                     headers: {

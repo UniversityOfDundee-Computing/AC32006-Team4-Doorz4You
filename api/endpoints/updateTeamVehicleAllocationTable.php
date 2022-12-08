@@ -15,24 +15,12 @@ function updateTeamVehicleAllocationTableHandler(PDO $pdo) {
             $stmnt = $pdo->prepare("UPDATE team set Vehicle = ? where TeamID = ? and Location = ?");
             $stmnt->execute([$_POST['vehicle'], $_POST['team'], $staffDetails[0]['location']]);
         }
-        $stmnt = $pdo->prepare("SELECT StaffID from teamemployee where TeamID = ?");
+        $stmnt = $pdo->prepare("DELETE FROM teamemployee where TeamID = ?;");
         $stmnt->execute([$_POST['team']]);
-        $teamMembers = $stmnt->fetchAll();
-        $good = (sizeof($teamMembers) === sizeof(json_decode($_POST['teamMembers'])));
 
-        foreach ($teamMembers as $teamMember) {
-            if (!in_array($teamMember['StaffID'], json_decode($_POST['teamMembers']))) {
-                $good = false;
-            }
-        }
-        if (!$good) {
-            $stmnt = $pdo->prepare("DELETE FROM teamemployee where TeamID = ?;");
-            $stmnt->execute([$_POST['team']]);
-
-            $stmnt = $pdo->prepare("INSERT into teamemployee (TeamID, StaffID) values (?, ?);");
-            foreach (json_decode($_POST['teamMembers']) as $teamMember) {
-                $stmnt->execute([$_POST['team'], $teamMember]);
-            }
+        $stmnt = $pdo->prepare("INSERT into teamemployee (TeamID, StaffID) values (?, ?);");
+        foreach (json_decode($_POST['teamMembers']) as $teamMember) {
+            $stmnt->execute([$_POST['team'], $teamMember]);
         }
 
         $pdo->commit();
