@@ -163,3 +163,10 @@ if (isset($_GET['registerCustomer'])) {
     header("content-type: application/json");
     echo registerCustomerHandler($pdo);
 }
+if (isset($_GET['getPastJobs'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getPastJobs.php";
+    header("content-type: application/json");
+    echo getPastJobsHandler($pdo);
+}

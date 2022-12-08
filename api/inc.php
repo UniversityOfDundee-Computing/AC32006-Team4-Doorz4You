@@ -50,3 +50,21 @@ function getStaffDetail(PDO $PDO) {
     }
     return $stmnt->fetchAll();
 }
+
+/**
+ * @throws Exception
+ */
+function getCustomerDetail(PDO $PDO) {
+    $headers = getRequestHeaders();
+    if (!isset($headers['Token'])) {
+        http_response_code(403);
+        throw new Exception("Missing Auth Token");
+    }
+    $stmnt = $PDO->prepare("SELECT CustomerNo, FirstName, ContactNo, Email, Street, City, PostCode, Country, Surname FROM customerdetails where sessionToken = ?");
+    $stmnt->execute([$headers['Token']]);
+    if ($stmnt->rowCount() === 0 || $headers['Token'] === '') {
+        http_response_code(403);
+        throw new Exception("Invalid auth token");
+    }
+    return $stmnt->fetchAll();
+}
