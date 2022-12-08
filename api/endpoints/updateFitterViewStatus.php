@@ -7,8 +7,8 @@ function updateFitterViewStatusHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("UPDATE fitterview SET Status = ? WHERE JobNo = ?");
-    $stmnt->execute([$_POST['status'], $_POST['JobNo']]);
+    $stmnt = $pdo->prepare("UPDATE fitterview SET Status = ? WHERE JobNo = ? and EmployeeLocation = ?");
+    $stmnt->execute([$_POST['status'], $_POST['JobNo'], $staffDetails[0]['location']]);
 
     return json_encode([
         "status"=>"ok"

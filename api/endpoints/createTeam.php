@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection SpellCheckingInspection */
+/** @noinspection SpellCheckingInspection */
 function createTeamHandler(PDO $pdo) {
     try {
         $staffDetails = getStaffDetail($pdo);
