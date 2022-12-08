@@ -19,8 +19,7 @@
     <title>fitterJobQueue.html</title>
   </head>
 
-</body class="mainBackground bg-light bg-gradient">
-  
+<body class="mainBackground bg-light bg-gradient">
  <div id="app">
   <!-- Navigation Bar -->
   <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
@@ -42,45 +41,52 @@
   </nav>
 
   <main>
-  <h6 >Current Team: {{teamName}}</h6>
-  <h6 >Team members: {{teamMembers}}</h6>
-  <h6 >Current assigned vehicle: {{teamVehicle}}</h6>
-  <h2 >Your Teams Job Queue</h2>
- <!-- Job Allocation Table -->
-   <div class="table-responsive-md" >
-    <table class="table table-hover table-bordered">
-      <!-- Table Header Row -->
-      <thead class="table-danger">
-        <tr>
+    <div class="card team-header">
+      <div class="card-body">
+        <h3 class="team-today">Your Team Today:</h3>
+        <h6 >Current Team: {{teamName}}</h6>
+        <h6 >Team members: {{teamMembers}}</h6>
+        <h6 >Current assigned vehicle: {{teamVehicle}}</h6>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+    <h3 >Your Job Queue:</h3>
+    <!-- Job Allocation Table -->
+    <div class="table-responsive-md" >
+      <table class="table table-hover table-bordered">
+        <!-- Table Header Row -->
+        <thead class="table-danger">
+          <tr>
             <th scope="col">Job ID</th>
             <th scope="col">Job</th>
-          <th scope="col">Customer comment</th>
-          <th scope="col">Address</th>
-          <th scope="col">Job Status</th>
-        </tr>
-      </thead>
+            <th scope="col">Customer comment</th>
+            <th scope="col">Address</th>
+            <th scope="col">Job Status</th>
+          </tr>
+        </thead>
 
-      <!-- Table Content -->
-      <tbody>
-      <tr v-for="job in jobsList">
-        <th scope="row">{{ job.JobNo }}</th>
-        <th scope="row">{{ job.JobName }}</th>
-        <th scope="row">{{ job.Description }}</th>
-        <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
+        <!-- Table Content -->
+        <tbody>
+          <tr v-for="job in jobsList">
+            <th scope="row">{{ job.JobNo }}</th>
+            <th scope="row">{{ job.JobName }}</th>
+            <th scope="row">{{ job.Description }}</th>
+            <th scope="row">{{ job.Street }}, {{ job.PostCode }}</th>
         
-        <th scope="row" class="table-success">
-          <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
-            <option value="ALLOCATED">Allocated</option>
-            <option value="IN PROGRESS">In progress</option>
-            <option value="COMPLETED">Completed</option>
-            <option value="INVALID">Invalid</option>
-          </select>
-        </th>
-      </tr>
-     
-      </tbody>
-    </table>
-  </div>   
+            <th scope="row">
+              <select class="form-select" v-on:change="changeJobStatus(job)" v-model="job.Status">
+                <option value="ALLOCATED">Allocated</option>
+                <option value="IN PROGRESS">In progress</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="INVALID">Invalid</option>
+              </select>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 
 
@@ -93,9 +99,6 @@
   </nav>
 
  </div>
-<script src="common.js" charset="utf-8"></script>
+  <script src="common.js" charset="utf-8"></script>
   <script src="fitter-job-queue.js" charset="utf-8"></script>
-  
-
-
 </body>

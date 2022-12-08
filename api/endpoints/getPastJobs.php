@@ -7,8 +7,8 @@ function getPastJobsHandler(PDO $pdo){
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }    $query = "SELECT * FROM customerorder where CustomerNo = ?";
-    $stmt = $pdo->prepare($custDetails['CustomerNo']);
-    $stmt->execute([]);
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$custDetails[0]['CustomerNo']]);
     $result = $stmt->fetchAll();
     return json_encode($result, JSON_PRETTY_PRINT);
 } 

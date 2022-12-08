@@ -1,26 +1,35 @@
 let vue = new Vue({
     el: '#app',
     data: {
-        form: {
-            firstname: 'Loa',
-            surname: 'Sawson',
-            address: 'Sawson 32',
-            city: 'Dundee',
-            postcode: 'DD1 5DL',
-            country: 'GB',
-            telephone: '07443964444',
-            email: 'andy@sawson.me',
-        },
-        jobsList: [{
-            JobNo: -1,
-            JobName: 'placeholder',
-            Date: 'place',
-            Status: 'placehodler'
-        }
-        ]
+        form: {},
+        jobsList: []
     },
 
     created: function() {
+        var vm = this;
+        let localToken = localStorage.getItem('token');
+
+        axios({
+            method: "get",
+            url: `${apiUrl}?getPastJobs`,
+            headers: {
+                token: localToken,
+            },
+        }).then((response) => {
+            console.log(response.data);
+            vm.jobsList = response.data;
+        });
+
+        axios({
+            method: "get",
+            url: `${apiUrl}?getCustomerDetails`,
+            headers: {
+                token: localToken,
+            },
+        }).then((response) => {
+            console.log(response.data[0]);
+            vm.form = response.data[0];
+        });
     },
 
     methods: {

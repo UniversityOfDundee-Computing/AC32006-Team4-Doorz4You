@@ -20,7 +20,7 @@ new Vue({
       },
       selectedServiceDisplay: '',
       services: {
-        0: 'Painting/Varnishing',
+        0: 'Varnishing',
         1: 'Handle Replacement',
         2: 'Hinge Replacement',
         3: 'Edge Resealing',
