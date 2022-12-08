@@ -6,15 +6,12 @@ main{
 
 }
 
-/* div.table-responsive-md{
-    padding-bottom:45px;
-} */
 
 .landing_Header{
 
-    color:white;  
-    text-align:center;  
-    font-family: 'Brush Script MT', cursive; 
+    color:white;
+    text-align:center;
+    font-family: 'Brush Script MT', cursive;
     padding-bottom:20px; font-size: 60px;
     -webkit-text-stroke: 0.75px black;
 
@@ -22,7 +19,7 @@ main{
 
 .login_button{
 
-    
+
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -53,10 +50,10 @@ main{
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    
+
     height : 0px;
     bottom :0;
-    
+
   }
 
   .card_container{
@@ -82,8 +79,39 @@ h2{
     padding-top:45px;
 }
 
+.block-button{
+    padding-top:19px;
+    padding-bottom:19px;
+}
 
-/*Following lines from: https://stackoverflow.com/a/52667883*/
+.form-section{
+    padding-bottom:50px;
+}
+
+.register-form{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
+.team-header{
+    margin-bottom:45px;
+}
+
+.team-today{
+    padding-bottom:10px;
+}
+
+/*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
+.block-button:hover, .block-button:focus{
+    background:#6c757d
+}
+.block-button:active, .block-button.active{
+    background:#dc3545;
+}
+/*Section End*/
+
+
+/*Following lines from: https://stackoverflow.com/a/52667883 */
 .table-md{
     width:768px;
 }
@@ -110,5 +138,4 @@ h2{
         width:100%;
     }
 }
-
 

@@ -25,7 +25,7 @@
 <body class="mainBackground bg-light bg-gradient">
 <div id="app">
   <!-- Navigation Bar -->
-  <nav class="navbar sticky-top navbar-dark navbar-expand-md" style="background-color:firebrick">
+  <nav class="navbar sticky-top navbar-dark navbar-expand-sm" style="background-color:firebrick">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="./Logo.PNG" alt="Doorz4U" class="img-fluid" width="50%">
@@ -35,109 +35,99 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
-          <a class="nav-link" href="./index.html">NEW ORDER</a>
-          <a class="nav-link active" href="./customer-account.html">ACCOUNT DETAILS</a>
-          <a class="nav-link" href="./customer-login.html">LOG OUT</a>
+          <a class="nav-link" href="./index.html">HOME</a>
+          <a class="nav-link active" href="./customer-register.html">REGISTER</a>
         </div>
       </div>
     </div>
   </nav>
 
 
-  <h2 class="text-center">Account details and order list</h2>
+  <h2 class="text-center">Door-to-Door Door Repairs at your Door from Doorz4U</h2>
   <!-- Main Section -->
   <main>
-    <div class="row row-cols-1 g-5">
-      <!-- Customer Details Box -->
+    <div class="d-grid col-sm-10 col-md-9 col-lg-8 col-11 mx-auto">
       <div class="col">
         <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Your Details</h4>
-            <p></p>
-            <form class="row row-cols-2">
-              <div class="col-12 col-md-4">
-                <p class="card-text">First Name</p>
-                <input disabled type="text" class="form-control" id="inputFirstName" placeholder="Placeholder" v-model="form.FirstName">
+          <div class="card-header text-center text-muted">Register for an account</div>
+          <div class="card-body register-form">
+            <form>
+              <div class="row g-4 form-section">
+                <h5 class="card-text">Your Name</h5>
+                <div class="col-4">
+                  <input type="text" class="form-control" id="title" placeholder="Title" v-model="form.title">
+                </div>
+                <div class="col-8">
+                  <input type="text" class="form-control" id="first-name" placeholder="First Name" v-model="form.firstname">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="surname" placeholder="Surname" v-model="form.surname">
+                </div>
               </div>
-              <div class="col-12 col-md-8">
-                <p class="card-text">Surname</p>
-                <input disabled type="text" class="form-control" id="inputSurname" placeholder="Placeholder" v-model="form.Surname">
+
+              <div class="row g-4 form-section">
+                <h5 class="card-text">Your Address</h5>
+                <div>
+                  <input type="text" class="form-control" id="address1" placeholder="Address Line 1" v-model="form.address1">
+                </div>
+                <div>
+                  <input type="text" class="form-control" id="address2" placeholder="Address Line 2" v-model="form.address2">
+                </div>
+                <div>
+                  <input type="text" class="form-control" id="address3" placeholder="Address Line 3" v-model="form.address3">
+                </div>
+                <div class="col-8">
+                  <input type="text" class="form-control" id="city" placeholder="City" v-model="form.city">
+                </div>
+                <div class="col-4">
+                  <input type="text" class="form-control" id="post-code" placeholder="Post Code" v-model="form.postcode">
+                </div>
+                <div class="col-4">
+                  <!-- <input type="text" class="form-control" id="country" placeholder="Country" v-model="form.country"> -->
+                  <select class="form-select" aria-label="None Selected">
+                    <option selected disabled class="text-muted">Country</option>
+                    <option>CH</option>
+                    <option>GB</option>
+                    <option>HR</option>
+                    <option>SE</option>
+                  </select>
+                </div>
+                <div class="col-8"></div>
               </div>
-              <p></p>
-              <div class="col-12">
-                <p class="card-text">Address Line 1</p>
-                <input disabled type="text" class="form-control" id="Address1" placeholder="Placeholder" v-model="form.Address1">
+
+              <div class="row g-4 form-section">
+                <h5 class="card-text">Your Contact Details</h5>
+                <div>
+                  <input type="text" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
+                </div>
+                <div>
+                  <input type="text" class="form-control" id="telephone-number" placeholder="Telephone Number" v-model="form.telephonenumber">
+                </div>
               </div>
-              <div class="col-12">
-                <p class="card-text">Address Line 2</p>
-                <input disabled type="text" class="form-control" id="Address2" placeholder="Placeholder" v-model="form.Address2">
+
+              <div class="row g-4 form-section">
+                <h5 class="card-text">Create a Password</h5>
+                <div>
+                  <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
+                </div>
+                <div>
+                  <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" v-model="form.confirmpassword">
+                </div>
               </div>
-              <div class="col-12">
-                <p class="card-text">Address Line 3</p>
-                <input disabled type="text" class="form-control" id="Address3" placeholder="Placeholder" v-model="form.Address3">
-              <div class="col-7">
-                <p class="card-text">Address</p>
-                <input disabled type="text" class="form-control" id="inputAddress" placeholder="Placeholder" v-model="form.Street">
+
+              <div class="d-grid col-4 mx-auto">
+                <button class="btn btn-danger" v-on:click="login">Register</button>
               </div>
-              <div class="col-6 col-md-4">
-                <p class="card-text">City</p>
-                <input disabled type="text" class="form-control" id="inputCity" placeholder="Placeholder" v-model="form.City">
-              </div>
-              <div class="col-6 col-md-4">
-                <p class="card-text">Post Code</p>
-                <input disabled type="text" class="form-control" id="inputPostCode" placeholder="DD69 4JF" v-model="form.PostCode">
-              </div>
-              <div class="col-6 col-md-4">
-                <p class="card-text">Country</p>
-                <input disabled type="text" class="form-control" id="inputCountry" placeholder="SCOTLAND" v-model="form.Country">
-              </div>
-              <div class="col-6 col-md-8"></div>
-              <p></p>
-              <div class="col-12 col-md-7">
-                <p class="card-text">E-mail Address</p>
-                <input disabled type="text" class="form-control" id="inputE-mail" placeholder="ddavidson420@askjeeves.com" v-model="form.Email">
-              </div>
-              <div class="col-12 col-md-5">
-                <p class="card-text">Telephone Number</p>
-                <input disabled type="text" class="form-control" id="inputTelNo" placeholder="Forfar 761" v-model="form.ContactNo">
-              </div>
+               <div v-if="loginFail">Incorrect username or password. Please try again.</div>
+               <div v-if="loginSuccess">Success! Redirecting you...</div>
             </form>
           </div>
-        </div>
-      </div>
-
-      <!-- List of Orders Box -->
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Your Orders</h4>
-            <p></p>
-            <div class="table-responsive-md">
-              <table class="table table-md table-hover table-bordered">
-                <!-- Table Header Row -->
-                <thead class="table-danger">
-                  <tr>
-                    <th scope="col">Order No.</th>
-                    <th scope="col">Job</th>
-                    <th scope="col">Date/time order placed</th>
-                    <th scope="col">Job Status</th>
-                  </tr>
-                </thead>
-                <!-- Table Content -->
-                <tbody>
-                <tr v-for="job in jobsList">
-                  <th scope="row">{{ job.JobNo }}</th>
-                  <th scope="row">{{ job.JobName }}</th>
-                  <th scope="row">{{ job.DateTimeCreated }}</th>
-                  <th scope="row">{{ job.Status }}</th>
-                </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="card-footer text-center">
+            <a class="card-text" href="./index.html">Changed your mind? Cancel registration.</a>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   </main>
 
   <!-- footer -->
