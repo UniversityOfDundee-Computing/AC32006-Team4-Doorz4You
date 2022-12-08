@@ -12,11 +12,22 @@ div.table-responsive-md{
 
 .landing_Header{
 
-    color:#df4759;  
+    color:white;  
     text-align:center;  
     font-family: 'Brush Script MT', cursive; 
     padding-bottom:20px; font-size: 60px;
     -webkit-text-stroke: 0.75px black;
+
+}
+
+.login_button{
+
+    
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 40px;
+
 
 }
 
@@ -53,6 +64,8 @@ div.table-responsive-md{
     display: flex;
   justify-content: center;
   text-align:center;
+  margin-top: 20px;
+  font-size: 15px;
 
   }
 
