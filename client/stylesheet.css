@@ -24,6 +24,15 @@ h2{
     padding-bottom:19px;
 }
 
+.form-section{
+    padding-bottom:50px;
+}
+
+.register-form{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
 /*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
 .block-button:hover, .block-button:focus{
     background:#6c757d
