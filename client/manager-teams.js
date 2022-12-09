@@ -106,14 +106,14 @@ let vue = new Vue({
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
-        // createDayOff: function () {
-        //     this.activeStaff = {
-        //         DayOff:"",
-        //         DayOffReason:"",
-        //     };
-        //     this.editDaysOff = new bootstrap.Modal('#editDaysOffModal', {});
-        //     this.editDaysOffModal.show();
-        // },
+        createDayOff: function () {
+            this.activeStaff = {
+                DayOff:"",
+                DayOffReason:"",
+            };
+            this.editDaysOff = new bootstrap.Modal('#editDaysOffModal', {});
+            this.editDaysOffModal.show();
+        },
         createNewTeam: function () {
             let localToken = localStorage.getItem('token');
 
@@ -231,6 +231,26 @@ let vue = new Vue({
                         console.log(error);
                     });
             }
+        },
+        ackDaysOff: function () {
+            let localToken = localStorage.getItem('token');
+            let vm = this;
+            let bodyFormData = new FormData();
+            bodyFormData.set("dayOff", this.activeStaff.DayOff);
+            bodyFormData.set("dayOffReason", this.activeStaff.DayOffReason);
+            axios.post(`${apiUrl}?updateBranchStaff`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+            .then(function (response) {
+                console.log(response);
+                vm.initMethod();
+                vm.editStaffModal.hide();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         },
         deleteRecord: function (type, record) {
             this.deleteRecordDta.type = type;
