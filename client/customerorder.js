@@ -30,12 +30,15 @@ new Vue({
         1: '£29',
         2: '£99',
         3: '£79',
-      }
+      },
+      loggedInUsername: ''
     },
   
     created: function() {
       this.selectedServiceDisplay = this.services[0];
       this.selectedServicePrice = this.prices[0];
+
+      this.loggedInUsername = localStorage.getItem('firstname');
     },
   
     methods: {

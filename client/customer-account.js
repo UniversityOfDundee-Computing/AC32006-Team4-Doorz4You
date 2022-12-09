@@ -2,12 +2,15 @@ let vue = new Vue({
     el: '#app',
     data: {
         form: {},
-        jobsList: []
+        jobsList: [],
+        loggedInUsername: ''
     },
 
     created: function() {
         var vm = this;
         let localToken = localStorage.getItem('token');
+
+        this.loggedInUsername = localStorage.getItem('firstname');
 
         axios({
             method: "get",

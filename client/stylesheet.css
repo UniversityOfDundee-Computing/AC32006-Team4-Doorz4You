@@ -13,7 +13,7 @@ main{
     text-align:center;
     font-family: 'Brush Script MT', cursive;
     padding-bottom:20px; font-size: 60px;
-    -webkit-text-stroke: 0.75px black;
+    -webkit-text-stroke: 0.9px black;
 
 }
 
@@ -69,6 +69,19 @@ main{
 .search-btn{
 
     color: #df4759;
+}
+
+.cardaccount {
+    width: 500px;
+}
+
+.search-txt-2 {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.filteroption {
+    margin-left: 10px;
 }
 
 div.summary-last-line{
