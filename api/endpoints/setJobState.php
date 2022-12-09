@@ -7,8 +7,9 @@ function setJobStateHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECt JobNo from jobs where JobNo = ? and Location = ? and AllocatedTeam IN (SELECT TeamID from teamemployeelist where StaffNo = ?) LIMIT 1");
+    $stmnt = $pdo->prepare("SELECt JobNo, JobType from jobs where JobNo = ? and Location = ? and AllocatedTeam IN (SELECT TeamID from teamemployeelist where StaffNo = ?) LIMIT 1");
     $stmnt->execute([$_POST['jobID'], $staffDetails[0]['location'], $_POST['staffID']]);
+    $jobtype = $stmnt->fetch()['JobType'];
     if ($stmnt->rowCount() === 1) {
         $stmnt = $pdo->prepare("UPDATE jobs set Status = ? where JobNo = ?");
         $stmnt->execute([strtoupper($_POST['status']), $_POST['jobID']]);
@@ -19,19 +20,16 @@ function setJobStateHandler(PDO $pdo) {
         ], JSON_PRETTY_PRINT);
     }
 
-    /*
-    if jobState set to allocated 
-        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
-        $stmnt->execute(jobtype, location);
-
-    if jobState set to Invalid 
-        $stmnt = $pdo->prepare("CALL InvalidReservedStock(?,?)");
-        $stmnt->execute(jobtype, location);
     
-    if jobState set to Collected(In progress) 
-        $stmnt = $pdo->prepare("CALL CollectReservedStock(?,?)");
-        $stmnt->execute(jobtype, location);
-    */
+    if (['status'] === "ALLOCATED"){ 
+        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
+        $stmnt->execute([$jobtype, $staffDetails[0]['location']]);
+    }
+
+    if (['status'] === "INVALID"){ 
+        $stmnt = $pdo->prepare("CALL InvalidateReservedStock(?,?)");
+        $stmnt->execute([$jobtype, $staffDetails[0]['location']]);
+    }
     
 
     return json_encode([
