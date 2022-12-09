@@ -71,10 +71,6 @@ main{
     color: #df4759;
 }
 
-.cardaccount {
-    width: 500px;
-}
-
 .search-txt-2 {
     width: 300px;
     margin-bottom: 20px;
@@ -114,6 +110,10 @@ h2{
     padding-bottom:10px;
 }
 
+.section{
+    padding-top:45px;
+}
+
 /*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
 .block-button:hover, .block-button:focus{
     background:#6c757d
@@ -151,4 +151,3 @@ h2{
         width:100%;
     }
 }
-
