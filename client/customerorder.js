@@ -43,6 +43,8 @@ var vue = new Vue({
 
       this.loggedInUsername = localStorage.getItem('firstname');
 
+      redirectCustomerIfNotLoggedIn();
+
       var vm = this;
 
       axios({

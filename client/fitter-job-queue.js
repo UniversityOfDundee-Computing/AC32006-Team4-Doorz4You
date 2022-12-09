@@ -13,6 +13,8 @@ var vue = new Vue({
         let localToken = localStorage.getItem('token');
         var vm = this;
 
+        redirectStaffIfNotLoggedIn('Fitter');
+
         axios({
             method: "get",
             url: `${apiUrl}?getTeamJobs`,

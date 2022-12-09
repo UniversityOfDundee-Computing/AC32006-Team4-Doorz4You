@@ -12,6 +12,8 @@ let vue = new Vue({
 
         this.loggedInUsername = localStorage.getItem('firstname');
 
+        redirectCustomerIfNotLoggedIn();
+
         axios({
             method: "get",
             url: `${apiUrl}?getPastJobs`,

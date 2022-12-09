@@ -17,6 +17,8 @@ let vue = new Vue({
 
     created: function () {
         this.initMethod();
+
+        redirectStaffIfNotLoggedIn('Manager');
     },
 
     methods: {
