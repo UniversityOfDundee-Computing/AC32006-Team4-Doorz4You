@@ -8,11 +8,11 @@ function updateTeamVehicleAllocationTableHandler(PDO $pdo) {
         ], JSON_PRETTY_PRINT);
     }
     $pdo->beginTransaction();
-    $stmnt = $pdo->prepare("SELECT TeamID, Vehicle from team where Location = ? and TeamID = ? LIMIT 1;");
+    $stmnt = $pdo->prepare("SELECT TeamID, Vehicle from teams where Location = ? and TeamID = ? LIMIT 1;");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
         if ($stmnt->fetch()['Vehicle'] !== $_POST['vehicle']) {
-            $stmnt = $pdo->prepare("UPDATE team set Vehicle = ? where TeamID = ? and Location = ?");
+            $stmnt = $pdo->prepare("UPDATE teams set Vehicle = ? where TeamID = ? and Location = ?");
             $stmnt->execute([$_POST['vehicle'], $_POST['team'], $staffDetails[0]['location']]);
         }
         $stmnt = $pdo->prepare("DELETE FROM teamemployee where TeamID = ?;");

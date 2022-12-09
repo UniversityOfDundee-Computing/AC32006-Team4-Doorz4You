@@ -10,7 +10,7 @@ function markCollectedHandler(PDO $pdo) {
     $stmnt = $pdo->prepare("SELECT TeamID from teamslist where Location = ? and TeamID = ? LIMIT 1");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
-        $stmnt = $pdo->prepare("UPDATE job set Status = 'COLLECTED' where JobNo = ? and AllocatedTeam = ? and Location = ?");
+        $stmnt = $pdo->prepare("UPDATE jobs set Status = 'COLLECTED' where JobNo = ? and AllocatedTeam = ? and Location = ?");
         foreach (json_decode($_POST['jobs']) as $job) {
             $stmnt->execute([$job, $_POST['team'], $staffDetails[0]['location']]);
         }

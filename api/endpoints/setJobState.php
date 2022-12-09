@@ -7,10 +7,10 @@ function setJobStateHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECt JobNo from job where JobNo = ? and Location = ? and AllocatedTeam IN (SELECT TeamID from teamemployeelist where StaffNo = ?) LIMIT 1");
+    $stmnt = $pdo->prepare("SELECt JobNo from jobs where JobNo = ? and Location = ? and AllocatedTeam IN (SELECT TeamID from teamemployeelist where StaffNo = ?) LIMIT 1");
     $stmnt->execute([$_POST['jobID'], $staffDetails[0]['location'], $_POST['staffID']]);
     if ($stmnt->rowCount() === 1) {
-        $stmnt = $pdo->prepare("UPDATE job set Status = ? where JobNo = ?");
+        $stmnt = $pdo->prepare("UPDATE jobs set Status = ? where JobNo = ?");
         $stmnt->execute([strtoupper($_POST['status']), $_POST['jobID']]);
     } else {
         http_response_code(502);
