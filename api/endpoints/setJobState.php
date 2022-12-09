@@ -18,6 +18,17 @@ function setJobStateHandler(PDO $pdo) {
             "error"=>"Unknown Job"
         ], JSON_PRETTY_PRINT);
     }
+
+    /*
+    if jobState set to allocated 
+        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
+        $stmnt->execute(jobtype, location);
+
+    if jobState set to Invalid or Collected(Stock is collected by team)
+        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
+        $stmnt->execute(jobtype, location);
+    */
+
     return json_encode([
         "status"=>"ok"
     ], JSON_PRETTY_PRINT);
