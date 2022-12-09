@@ -6,7 +6,7 @@ function customerConnectHandler(PDO $pdo) {
     $pass = $_POST['password'];
     $salt = "DOORZ_";
     $hash = hash("sha256", $salt . $pass);
-    $stmnt = $pdo->prepare("SELECT Email, FirstName, Surname from customerdetails where Email = ? and Password = ?");
+    $stmnt = $pdo->prepare("SELECT Email, FirstName, Surname, sessionToken from customerdetails where Email = ? and Password = ?");
     $stmnt->execute([$_POST['username'],$hash]);
 
     if ($stmnt->rowCount() > 0) {
@@ -17,6 +17,8 @@ function customerConnectHandler(PDO $pdo) {
         $firstname = $row['FirstName'];
 
         $tok = uniqid("TOK_", true);
+        if ($row['sessionToken'] != null)
+            $tok = $row['sessionToken'];
         $stmnt = $pdo->prepare("UPDATE customerdetails t SET t.sessionToken = ? WHERE t.Email = ? and t.Password = ?;");
         $stmnt->execute([$tok, $_POST['username'],$hash]);
         return json_encode([
