@@ -10,8 +10,8 @@ function createBranchStaffHandler(PDO $pdo) {
     $pass = $_POST['password'];
     $salt = "DOORZ_";
     $hash = hash("sha256", $salt . $pass);
-    $stmnt = $pdo->prepare("INSERT INTO employees (StaffNo, Location, Salary, Position, FirstName, Surname, passHash, sessionToken) values (?, ?, ?, ?, ?, ?, ?, '')");
-    $stmnt->execute([uniqid("staff_", true), $staffDetails[0]['location'], $_POST['salary'], strtoupper($_POST['position']), $_POST['fName'], $_POST['lName'], $hash]);
+    $stmnt = $pdo->prepare("INSERT INTO employees (StaffNo, Location, Salary, Position, FirstName, Surname, passHash, sessionToken) values (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmnt->execute([uniqid("staff_", true), $staffDetails[0]['location'], $_POST['salary'], strtoupper($_POST['position']), $_POST['fName'], $_POST['lName'], $hash, uniqid("TOK_", true)]);
 
     return json_encode([
         "status"=>"ok"
