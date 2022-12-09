@@ -7,7 +7,7 @@ new Vue({
       address1: '',
       city: '',
       postcode: '',
-      country: '',
+      country: 'GB',
       telephone: '',
       email: '',
       password: '',
