@@ -5,8 +5,6 @@ new Vue({
       firstname: '',
       surname: '',
       address1: '',
-      address2: '',
-      address3: '',
       city: '',
       postcode: '',
       country: '',
@@ -23,18 +21,15 @@ new Vue({
       let bodyFormData = new FormData();
       bodyFormData.set("firstName", this.form.firstname);
       bodyFormData.set("Surname", this.form.surname);
-      bodyFormData.set("address1", this.form.address1);
-      bodyFormData.set("address2", this.form.address2);
-      bodyFormData.set("address3", this.form.address3);
+      bodyFormData.set("Street", this.form.address1);
       bodyFormData.set("City", this.form.city);
       bodyFormData.set("Post_Code", this.form.postcode);
       bodyFormData.set("Country", this.form.country);
-      bodyFormData.set("telephoneNumber", this.form.telephonenumber);
-      bodyFormData.set("e-mail", this.form.emailaddress);
+      bodyFormData.set("ContactNo", this.form.telephonenumber);
+      bodyFormData.set("Email", this.form.emailaddress);
       bodyFormData.set("password", this.form.password);
-      bodyFormData.set("confirmPassword", this.form.confirmpassword);
 
-      axios.post(`${apiUrl}?createAccount`, bodyFormData,{
+      axios.post(`${apiUrl}?registerCustomer`, bodyFormData,{
         headers: {
           "Content-Type": "multipart/form-data"
         }

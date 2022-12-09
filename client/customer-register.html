@@ -54,9 +54,6 @@
             <form>
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Name</h5>
-                <div class="col-4">
-                  <input type="text" class="form-control" id="title" placeholder="Title" v-model="form.title">
-                </div>
                 <div class="col-8">
                   <input type="text" class="form-control" id="firstName" placeholder="First Name" v-model="form.firstname">
                 </div>
@@ -68,13 +65,7 @@
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Address</h5>
                 <div>
-                  <input type="text" class="form-control" id="address1" placeholder="Address Line 1" v-model="form.address1">
-                </div>
-                <div>
-                  <input type="text" class="form-control" id="address2" placeholder="Address Line 2" v-model="form.address2">
-                </div>
-                <div>
-                  <input type="text" class="form-control" id="address3" placeholder="Address Line 3" v-model="form.address3">
+                  <input type="text" class="form-control" id="address1" placeholder="Street" v-model="form.address1">
                 </div>
                 <div class="col-8">
                   <input type="text" class="form-control" id="city" placeholder="City" v-model="form.city">
@@ -98,10 +89,10 @@
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Contact Details</h5>
                 <div>
-                  <input type="text" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
+                  <input type="email" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
                 </div>
                 <div>
-                  <input type="text" class="form-control" id="telephoneNumber" placeholder="Telephone Number" v-model="form.telephonenumber">
+                  <input type="tel" class="form-control" id="telephoneNumber" placeholder="Telephone Number" v-model="form.telephonenumber">
                 </div>
               </div>
 
@@ -113,14 +104,15 @@
                 <div>
                   <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" v-model="form.confirmpassword">
                 </div>
+                <div class="alert alert-danger" v-if="form.password !== form.confirmpassword" role="alert">
+                  Your passwords do not match!
+                </div>
               </div>
 
-              <div class="d-grid col-4 mx-auto">
-                <button class="btn btn-danger" v-on:click="submitDetails">Register</button>
-              </div>
-               <div v-if="loginFail">Incorrect username or password. Please try again.</div>
-               <div v-if="loginSuccess">Success! Redirecting you...</div>
             </form>
+            <div class="d-grid col-4 mx-auto">
+              <button class="btn btn-danger" :disabled="form.password !== form.confirmpassword" v-on:click="submitDetails">Register</button>
+            </div>
           </div>
           <div class="card-footer text-center">
             <a class="card-text" href="./index.html">Changed your mind? Cancel registration.</a>
@@ -178,7 +170,7 @@
 
 </div>
   <script src="common.js" charset="utf-8"></script>
-  <script src="index.js" charset="utf-8"></script>
+  <script src="customer-register.js" charset="utf-8"></script>
 </body>
 
 </html>
