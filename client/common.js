@@ -1,10 +1,10 @@
-let localApi = 'http://localhost:81/api';
-let clientPage = 'http://localhost:81/client'
-let rootPage = 'http://localhost:81'
-let productionApi = 'https://zeno.computing.dundee.ac.uk/2022-ac32006/team4/api';
+let localApi = 'http://localhost:81/api/index.php';
+let clientPage = 'https://zeno.computing.dundee.ac.uk/2022-ac32006/team4/client'
+let rootPage = 'https://zeno.computing.dundee.ac.uk/2022-ac32006/team4/'
+let productionApi = 'https://zeno.computing.dundee.ac.uk/2022-ac32006/team4/api/index.php';
 
 // Change this line when deploying
-let apiUrl = localApi;
+let apiUrl = productionApi;
 
 function logOut() {
     localStorage.token = "";
