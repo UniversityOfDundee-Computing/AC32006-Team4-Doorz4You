@@ -152,7 +152,7 @@
             <th scope="row">19.08.1969</th>
             <th scope="row">
               <div class="d-grid">
-                <button class="btn btn-warning mx-auto" data-bs-toggle="modal" data-bs-target="#editDaysOff" @click="editDaysOff(id)"><i class="bi bi-calendar-week"></i></button>
+                <button class="btn btn-warning mx-auto" data-bs-toggle="modal" data-bs-target="#editDaysOffModal" @click="editDaysOff(id)"><i class="bi bi-calendar-week"></i></button>
               </div>
             </th>
             <th scope="row">
@@ -269,7 +269,7 @@
     
 
     <!-- Edit Days Off Modal -->
-    <div class="modal fade" id="editDaysOff" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editDaysOffLabel" aria-hidden="true">
+    <div class="modal fade" id="editDaysOffModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editDaysOffLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -287,7 +287,7 @@
               <input v-model="activeStaff.DayOffReason" type="text" class="form-control" id="dayOffReason">
             </div>
             <div class="mb-3">
-              <button type="button" class="btn btn-warning" @click="ackChanges()">Add</button>
+              <button type="button" class="btn btn-warning" @click="createDayOff">Add</button>
             </div>
 
             <div class="mb-3">

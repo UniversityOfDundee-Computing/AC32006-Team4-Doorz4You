@@ -1,13 +1,15 @@
 let vue = new Vue({
     el: '#app', data: {
         teamsList: [], fittersList: [], vehiclesList: [], availableVehicles:[], staffList: [], editStaffModal: {},
-        editPasswordModal: {}, activeStaff: {
+        editPasswordModal: {}, activeStaff: {}, editDaysOffModal: {
             FirstName:"",
             surname:"",
             Salary:0,
             Position:"",
             PW:"",
-            ConPW:""
+            ConPW:"",
+            DayOff:"",
+            DayOffReason:""
         },
         deleteRecordDta: {
             type:"",
@@ -86,6 +88,11 @@ let vue = new Vue({
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
+        // editDaysOff: function (staffNo) {
+        //     this.activeStaff = structuredClone(this.staffList[staffNo]);
+        //     this.editDaysOffModal = new bootstrap.Modal('#editDaysOffModal', {});
+        //     this.editDaysOffModal.show();
+        // },
         createStaff: function () {
             this.activeStaff = {
                 FirstName:"",
@@ -99,6 +106,14 @@ let vue = new Vue({
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
+        // createDayOff: function () {
+        //     this.activeStaff = {
+        //         DayOff:"",
+        //         DayOffReason:"",
+        //     };
+        //     this.editDaysOff = new bootstrap.Modal('#editDaysOffModal', {});
+        //     this.editDaysOffModal.show();
+        // },
         createNewTeam: function () {
             let localToken = localStorage.getItem('token');
 
