@@ -38,6 +38,7 @@ new Vue({
           localStorage.token = response.data.token;
           localStorage.firstname = response.data.firstname;
           localStorage.username = response.data.username;
+          localStorage.position = "Customer";
 
           vm.redirect(response.data.position);
         })
@@ -48,7 +49,7 @@ new Vue({
       },
 
       redirect: function() {
-          window.location.href = (`${clientPage}/index.html`);
+          window.location.href = (`${clientPage}/customerorder.html`);
       }
     }
   });
