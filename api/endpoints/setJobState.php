@@ -24,10 +24,15 @@ function setJobStateHandler(PDO $pdo) {
         $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
         $stmnt->execute(jobtype, location);
 
-    if jobState set to Invalid or Collected(Stock is collected by team)
-        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
+    if jobState set to Invalid 
+        $stmnt = $pdo->prepare("CALL InvalidReservedStock(?,?)");
+        $stmnt->execute(jobtype, location);
+    
+    if jobState set to Collected(In progress) 
+        $stmnt = $pdo->prepare("CALL CollectReservedStock(?,?)");
         $stmnt->execute(jobtype, location);
     */
+    
 
     return json_encode([
         "status"=>"ok"
