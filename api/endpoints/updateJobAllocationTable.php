@@ -22,6 +22,21 @@ function updateJobAllocationTableHandler(PDO $pdo) {
             "error"=>"Unknown Team"
         ], JSON_PRETTY_PRINT);
     }
+
+    $stmnt2 = $pdo->prepare("SELECT JobType from jobs where JobNo = ? and Location = ?");
+    $stmnt2->execute([$_POST['JobNo'], $staffDetails[0]['location']]);
+    $jobtype = $stmnt2->fetch()['JobType'];
+
+    if ($_POST['status'] === "ALLOCATED"){ 
+        $stmnt = $pdo->prepare("CALL UpdateReservedStock(?,?)");
+        $stmnt->execute([$jobtype, $staffDetails[0]['location']]);
+    }
+
+    if ($_POST['status'] === "INVALID"){ 
+        $stmnt = $pdo->prepare("CALL InvalidateReservedStock(?,?)");
+        $stmnt->execute([$jobtype, $staffDetails[0]['location']]);
+    }
+
     return json_encode([
         "status"=>"ok"
     ], JSON_PRETTY_PRINT);
