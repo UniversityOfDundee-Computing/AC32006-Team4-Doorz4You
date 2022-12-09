@@ -16,7 +16,7 @@ function logOut() {
 function redirectStaffIfNotLoggedIn(neededPosition) {
     console.log(`Redirecting staff if position doesn't match ${neededPosition}`);
 
-    if(localStorage.token == "" || localStorage.position.toUpperCase() != neededPosition.toUpperCase()) {
+    if(localStorage.token == "" || localStorage.position == undefined || localStorage.position.toUpperCase() != neededPosition.toUpperCase()) {
         window.location.href = (`${clientPage}/login.html`);
     }
 }
@@ -24,7 +24,7 @@ function redirectStaffIfNotLoggedIn(neededPosition) {
 function redirectCustomerIfNotLoggedIn() {
     console.log(`Redirecting customer if position doesn't match Customer`);
 
-    if(localStorage.token == "" || localStorage.position.toUpperCase() != "CUSTOMER") {
+    if(localStorage.token == "" || localStorage.position == undefined || localStorage.position.toUpperCase() != "CUSTOMER") {
         window.location.href = (`${clientPage}/customer-login.html`);
     }
 }

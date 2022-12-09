@@ -1,3 +1,8 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectCustomerIfNotLoggedIn();
+}, false);
+
 let vue = new Vue({
     el: '#app',
     data: {
