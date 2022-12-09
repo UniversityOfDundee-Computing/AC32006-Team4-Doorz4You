@@ -35,7 +35,7 @@ function createOrderHandler(PDO $pdo) {
     $stmnt->execute([$_POST['Country']]);
     $branches = $stmnt->fetchAll();
 
-    $branch = $branches[0];
+    $branch = $branches[0]['LocationID'];
 
 
     $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`jobs` (`Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, null, ?);");
