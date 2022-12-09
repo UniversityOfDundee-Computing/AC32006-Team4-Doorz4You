@@ -58,7 +58,7 @@
                   <input type="text" class="form-control" id="title" placeholder="Title" v-model="form.title">
                 </div>
                 <div class="col-8">
-                  <input type="text" class="form-control" id="first-name" placeholder="First Name" v-model="form.firstname">
+                  <input type="text" class="form-control" id="firstName" placeholder="First Name" v-model="form.firstname">
                 </div>
                 <div class="col">
                   <input type="text" class="form-control" id="surname" placeholder="Surname" v-model="form.surname">
@@ -80,7 +80,7 @@
                   <input type="text" class="form-control" id="city" placeholder="City" v-model="form.city">
                 </div>
                 <div class="col-4">
-                  <input type="text" class="form-control" id="post-code" placeholder="Post Code" v-model="form.postcode">
+                  <input type="text" class="form-control" id="postCode" placeholder="Post Code" v-model="form.postcode">
                 </div>
                 <div class="col-4">
                   <!-- <input type="text" class="form-control" id="country" placeholder="Country" v-model="form.country"> -->
@@ -101,7 +101,7 @@
                   <input type="text" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
                 </div>
                 <div>
-                  <input type="text" class="form-control" id="telephone-number" placeholder="Telephone Number" v-model="form.telephonenumber">
+                  <input type="text" class="form-control" id="telephoneNumber" placeholder="Telephone Number" v-model="form.telephonenumber">
                 </div>
               </div>
 
@@ -111,12 +111,12 @@
                   <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
                 </div>
                 <div>
-                  <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" v-model="form.confirmpassword">
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" v-model="form.confirmpassword">
                 </div>
               </div>
 
               <div class="d-grid col-4 mx-auto">
-                <button class="btn btn-danger" v-on:click="login">Register</button>
+                <button class="btn btn-danger" v-on:click="submitDetails">Register</button>
               </div>
                <div v-if="loginFail">Incorrect username or password. Please try again.</div>
                <div v-if="loginSuccess">Success! Redirecting you...</div>
