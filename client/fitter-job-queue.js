@@ -1,3 +1,8 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectStaffIfNotLoggedIn('Fitter');
+}, false);
+
 var vue = new Vue({
     el: '#app',
     data: {

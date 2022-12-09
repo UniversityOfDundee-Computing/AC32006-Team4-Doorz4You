@@ -1,3 +1,8 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectStaffIfNotLoggedIn('Manager');
+}, false);
+
 let vue = new Vue({
     el: '#app', data: {
         teamsList: [], fittersList: [], vehiclesList: [], availableVehicles:[], staffList: [], editStaffModal: {},
