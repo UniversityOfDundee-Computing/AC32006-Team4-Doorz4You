@@ -10,7 +10,7 @@ function setStockStateHandler(PDO $pdo) {
     $stmnt = $pdo->prepare("SELECt PartNo from stocklist where PartNo = ? and Location = ? LIMIT 1");
     $stmnt->execute([$_POST['part'], $staffDetails[0]['location']]);
     if ($stmnt->rowCount() === 1) {
-        $stmnt = $pdo->prepare("UPDATE stockinlocation set StockAvailable = ? where PartNo = ?");
+        $stmnt = $pdo->prepare("UPDATE stocks set StockAvailable = ? where PartNo = ?");
         $stmnt->execute([intval($_POST['quantity']), $_POST['part']]);
     } else {
         http_response_code(502);
