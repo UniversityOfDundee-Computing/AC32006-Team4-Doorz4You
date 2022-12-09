@@ -35,7 +35,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <div class="navbar-nav">
-          <a class="nav-link" href="./index.html">HOME</a>
+          <a class="nav-link" href="../index.html">HOME</a>
           <a class="nav-link active" href="./customer-register.html">REGISTER</a>
         </div>
       </div>
@@ -55,27 +55,27 @@
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Name</h5>
                 <div class="col-8">
-                  <input type="text" class="form-control" id="firstName" placeholder="First Name" v-model="form.firstname">
+                  <input required type="text" class="form-control" id="firstName" placeholder="First Name" v-model="form.firstname">
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" id="surname" placeholder="Surname" v-model="form.surname">
+                  <input required type="text" class="form-control" id="surname" placeholder="Surname" v-model="form.surname">
                 </div>
               </div>
 
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Address</h5>
                 <div>
-                  <input type="text" class="form-control" id="address1" placeholder="Street" v-model="form.address1">
+                  <input required type="text" class="form-control" id="address1" placeholder="Street" v-model="form.address1">
                 </div>
                 <div class="col-8">
-                  <input type="text" class="form-control" id="city" placeholder="City" v-model="form.city">
+                  <input required type="text" class="form-control" id="city" placeholder="City" v-model="form.city">
                 </div>
                 <div class="col-4">
-                  <input type="text" class="form-control" id="postCode" placeholder="Post Code" v-model="form.postcode">
+                  <input required type="text" class="form-control" id="postCode" placeholder="Post Code" v-model="form.postcode">
                 </div>
                 <div class="col-4">
                   <!-- <input type="text" class="form-control" id="country" placeholder="Country" v-model="form.country"> -->
-                  <select class="form-select" aria-label="None Selected">
+                  <select required class="form-select" v-model="form.country" aria-label="None Selected">
                     <option selected disabled class="text-muted">Country</option>
                     <option>CH</option>
                     <option>GB</option>
@@ -89,20 +89,20 @@
               <div class="row g-4 form-section">
                 <h5 class="card-text">Your Contact Details</h5>
                 <div>
-                  <input type="email" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
+                  <input required type="email" class="form-control" id="e-mail" placeholder="E-mail Address" v-model="form.emailaddress">
                 </div>
                 <div>
-                  <input type="tel" class="form-control" id="telephoneNumber" placeholder="Telephone Number" v-model="form.telephonenumber">
+                  <input required type="tel" class="form-control" id="telephoneNumber" placeholder="Telephone Number" v-model="form.telephonenumber">
                 </div>
               </div>
 
               <div class="row g-4 form-section">
                 <h5 class="card-text">Create a Password</h5>
                 <div>
-                  <input type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
+                  <input required type="password" class="form-control" id="password" placeholder="Password" v-model="form.password">
                 </div>
                 <div>
-                  <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" v-model="form.confirmpassword">
+                  <input required type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" v-model="form.confirmpassword">
                 </div>
                 <div class="alert alert-danger" v-if="form.password !== form.confirmpassword" role="alert">
                   Your passwords do not match!
@@ -115,7 +115,7 @@
             </div>
           </div>
           <div class="card-footer text-center">
-            <a class="card-text" href="./index.html">Changed your mind? Cancel registration.</a>
+            <a class="card-text" href="../index.html">Changed your mind? Cancel registration.</a>
           </div>
         </div>
       </div>
