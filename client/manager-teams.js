@@ -19,7 +19,11 @@ let vue = new Vue({
         deleteRecordDta: {
             type:"",
             active:""
-        }
+        },
+        date:"",
+        reason:"",
+        daysOff: [],
+        activeID: ""
     },
 
     created: function () {
@@ -95,11 +99,27 @@ let vue = new Vue({
             this.editStaffModal = new bootstrap.Modal('#editStaffModal', {});
             this.editStaffModal.show();
         },
-        // editDaysOff: function (staffNo) {
-        //     this.activeStaff = structuredClone(this.staffList[staffNo]);
-        //     this.editDaysOffModal = new bootstrap.Modal('#editDaysOffModal', {});
-        //     this.editDaysOffModal.show();
-        // },
+        editDaysOff: function (staffNo) {
+            let localToken = localStorage.getItem('token');
+
+            let vm = this;
+            let bodyFormData = new FormData();
+            bodyFormData.set("staffNo", staffNo);
+            axios.post(`${apiUrl}?getDaysOff`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+                .then(function (response) {
+                    vm.daysOff = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            this.activeID = staffNo;
+            this.editDaysOffModal = new bootstrap.Modal('#editDaysOffModal', {});
+            this.editDaysOffModal.show();
+        },
         createStaff: function () {
             this.activeStaff = {
                 FirstName:"",
@@ -114,12 +134,67 @@ let vue = new Vue({
             this.editStaffModal.show();
         },
         createDayOff: function () {
-            this.activeStaff = {
-                DayOff:"",
-                DayOffReason:"",
-            };
-            this.editDaysOff = new bootstrap.Modal('#editDaysOffModal', {});
-            this.editDaysOffModal.show();
+            let localToken = localStorage.getItem('token');
+
+            let vm = this;
+            let bodyFormData = new FormData();
+            bodyFormData.set("staffNo", this.activeID);
+            bodyFormData.set("date", this.date);
+            bodyFormData.set("reason", this.reason);
+            axios.post(`${apiUrl}?addDayOff`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+                .then(function (response) {
+                    let bodyFormData = new FormData();
+                    bodyFormData.set("staffNo", vm.activeID);
+                    axios.post(`${apiUrl}?getDaysOff`, bodyFormData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data", "token": localToken
+                        }
+                    })
+                        .then(function (response) {
+                            vm.daysOff = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        deleteDayOff: function (date) {
+            let localToken = localStorage.getItem('token');
+
+            let vm = this;
+            let bodyFormData = new FormData();
+            bodyFormData.set("staffNo", this.activeID);
+            bodyFormData.set("date", date);
+            axios.post(`${apiUrl}?removeDayOff`, bodyFormData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", "token": localToken
+                }
+            })
+                .then(function (response) {
+                    let bodyFormData = new FormData();
+                    bodyFormData.set("staffNo", vm.activeID);
+                    axios.post(`${apiUrl}?getDaysOff`, bodyFormData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data", "token": localToken
+                        }
+                    })
+                        .then(function (response) {
+                            vm.daysOff = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         createNewTeam: function () {
             let localToken = localStorage.getItem('token');
@@ -202,6 +277,9 @@ let vue = new Vue({
                 .catch(function (error) {
                     console.log(error);
                 });
+        },
+        deleteDayOff: function () {
+
         },
         ackDelete: function () {
             let localToken = localStorage.getItem('token');

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
   <meta charset="utf-8">
@@ -65,21 +65,21 @@
           <tr v-for="(team, index) in teamsList">
             <th scope="row">{{ team.name }}</th>
             <!-- Staff Member 1 Select -->
-            <th scope="row" class="table">
+            <th scope="row">
               <select class="form-select" aria-label="None Selected" v-model="teamsList[index].staff[0].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Staff Member 2 Select -->
-            <th scope="row" class="table">
+            <th scope="row">
               <select class="form-select" aria-label="None Selected" v-model="teamsList[index].staff[1].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Vehicle Select -->
-            <th scope="row" class="table">
+            <th scope="row">
               <select class="form-select" aria-label="None Selected" v-model="teamsList[index].vehicle.id">
                 <option v-for="vehicle in vehiclesList" v-if="vehicle.VehicleNo === team.vehicle.id" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
                 <option v-for="vehicle in availableVehicles" v-if="vehicle !== undefined" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
@@ -124,25 +124,25 @@
 
           <!-- Row 1 -->
           <tr v-for="(staff, id) in staffList">
-            <th scope="row">{{ staff.StaffNo }}</th>
-            <th scope="row">{{ staff.FirstName }} {{ staff.Surname }}</th>
-            <th scope="row">{{ staff.Salary }}</th>
-            <th scope="row">{{ staff.DateOff ? staff.DateOff : "No days off"}}</th>
-            <th scope="row">
+            <td>{{ staff.StaffNo }}</td>
+            <td>{{ staff.FirstName }} {{ staff.Surname }}</td>
+            <td>{{ staff.Salary }}</td>
+            <td>{{ staff.DateOff ? staff.DateOff : "No days off"}}</td>
+            <td>
               <div class="d-grid">
-                <button class="btn btn-warning mx-auto" data-bs-toggle="modal" data-bs-target="#editDaysOff" @click="editDaysOff(id)"><i class="bi bi-calendar-week"></i></button>
+                <button class="btn btn-warning mx-auto" data-bs-toggle="modal" data-bs-target="#editDaysOff" @click="editDaysOff(staff.StaffNo)"><i class="bi bi-calendar-week"></i></button>
               </div>
-            </th>
-            <th scope="row">
+            </td>
+            <td>
               <div class="d-grid">
                 <button class="btn btn-warning mx-auto" @click="editStaff(id)"><i class="bi bi-pencil"></i></button>
               </div>
-            </th>
-            <th scope="row">
+            </td>
+            <td>
               <div class="d-grid">
                 <button class="btn btn-danger mx-auto" @click="deleteRecord('staff', staff.StaffNo)"><i class="bi bi-person-fill-x"></i></button>
               </div>
-            </th>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -196,7 +196,7 @@
               <input v-model="activeStaff.Surname" type="text" class="form-control" id="lastName">
             </div>
             <div class="mb-3">
-              <label for="salary" class="form-label">Celery</label>
+              <label for="salary" class="form-label">Salary</label>
               <input v-model="activeStaff.Salary" type="number" class="form-control" id="salary">
             </div>
             <div class="mb-3">
@@ -247,7 +247,7 @@
 
 
     <!-- Edit Days Off Modal -->
-    <div class="modal fade" id="editDaysOffModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editDaysOffLabel" aria-hidden="true">
+    <div class="modal fade" id="editDaysOffModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editDaysOffLabel" aria-hidden="true" >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -258,18 +258,19 @@
             <h5 class="modal-title fs-5">Add a Day Off:</h5>
             <div class="mb-3">
               <label for="dayOff" class="form-label">Date</label>
-              <input v-model="activeStaff.DayOff" type="text" class="form-control" id="dayOff">
+              <input v-model="date" type="date" class="form-control" id="dayOff">
             </div>
             <div class="mb-3">
-              <label for="dayOffReason" class="form-label">Raisin</label>
-              <input v-model="activeStaff.DayOffReason" type="text" class="form-control" id="dayOffReason">
+              <label for="dayOffReason" class="form-label">Reason</label>
+              <textarea v-model="reason" class="form-control" id="dayOffReason">
+              </textarea>
             </div>
             <div class="mb-3">
               <button type="button" class="btn btn-warning" @click="createDayOff">Add</button>
             </div>
 
             <div class="mb-3">
-              <h5 class="modal-title fs-5">Next Days Off:</h5>
+              <h5 class="modal-title fs-5">Scheduled Days Off:</h5>
               <div class="table-responsive-md">
                 <table class="table table-hover table-bordered">
 
@@ -284,36 +285,20 @@
 
                   <!-- Table Content -->
                   <tbody>
-
                     <!-- Row 1 -->
-                    <tr v-for="(staff, id) in staffList">
-                      <th scope="row">{{ staff.DateOff }}</th>
-                      <th scope="row">{{ staff.DateOffReason }}</th>
-                      <th scope="row">
+                    <tr v-for="(dayOff, id) in daysOff">
+                      <td>{{ dayOff.Date }}</td>
+                      <td>{{ dayOff.Reason }}</td>
+                      <td>
                         <div class="d-grid">
-                          <button class="btn btn-danger mx-auto" @click="deleteDayOff"><i class="bi bi-calendar-x"></i></button>
+                          <button class="btn btn-danger mx-auto" @click="deleteDayOff(dayOff.Date)"><i class="bi bi-calendar-x"></i></button>
                         </div>
-                      </th>
-                    </tr>
-
-                    <!-- Test Row -->
-                    <tr>
-                      <th scope="row">19.08.1969</th>
-                      <th scope="row">I say, feeling a tad wabbit, old fruit. I shall have to go for a gentle perambulation to cure myself.</th>
-                      <th scope="row">
-                        <div class="d-grid">
-                          <button class="btn btn-danger mx-auto" @click="deleteDayOff"><i class="bi bi-calendar-x"></i></button>
-                        </div>
-                      </th>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" @click="ackDaysOff()">Save</button>
           </div>
         </div>
       </div>
