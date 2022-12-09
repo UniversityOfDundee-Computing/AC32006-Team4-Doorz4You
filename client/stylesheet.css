@@ -114,6 +114,11 @@ h2{
     padding-top:45px;
 }
 
+
+label{
+    padding-top:15px;
+}
+
 /*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
 .block-button:hover, .block-button:focus{
     background:#6c757d
