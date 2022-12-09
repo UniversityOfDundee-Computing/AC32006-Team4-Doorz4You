@@ -8,7 +8,7 @@ function createTeamHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT count(TeamID) as count FROM team where Location = ? group by Location");
+    $stmnt = $pdo->prepare("SELECT count(TeamID) as count FROM teams where Location = ? group by Location");
     $stmnt->execute([$staffDetails[0]['location']]);
     $displayName = "#0";
     if ($stmnt->rowCount() > 0)
@@ -16,7 +16,7 @@ function createTeamHandler(PDO $pdo) {
     if (isset($_POST['displayName']))
         $displayName = $_POST['displayName'];
     $team = uniqid("team_", true);
-    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.team (TeamID, DisplayName, Vehicle, Location) VALUES (?, ?, null, ?);");
+    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.teams (TeamID, DisplayName, Vehicle, Location) VALUES (?, ?, null, ?);");
     $stmnt->execute([$team, $displayName, $staffDetails[0]['location']]);
 
     return json_encode([

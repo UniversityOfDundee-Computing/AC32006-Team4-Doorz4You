@@ -165,7 +165,7 @@ let vue = new Vue({
             bodyFormData.set("lName", this.activeStaff.Surname);
             bodyFormData.set("position", this.activeStaff.Position);
             bodyFormData.set("salary", this.activeStaff.Salary);
-            bodyFormData.set("password", this.activeStaff.Password);
+            bodyFormData.set("password", this.activeStaff.PW);
             axios.post(`${apiUrl}?createBranchStaff`, bodyFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data", "token": localToken

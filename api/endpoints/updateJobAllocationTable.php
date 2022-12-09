@@ -7,13 +7,13 @@ function updateJobAllocationTableHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT TeamID from team where Location = ? and TeamID = ? LIMIT 1");
+    $stmnt = $pdo->prepare("SELECT TeamID from teams where Location = ? and TeamID = ? LIMIT 1");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['team']]);
     if ($stmnt->rowCount() === 1) {
-        $stmnt = $pdo->prepare("UPDATE job set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
+        $stmnt = $pdo->prepare("UPDATE jobs set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
         $stmnt->execute([$_POST['team'], strtoupper($_POST['status']), $_POST['JobNo'], $staffDetails[0]['location']]);
     } else if ($_POST['team'] == "null") {
-        $stmnt = $pdo->prepare("UPDATE job set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
+        $stmnt = $pdo->prepare("UPDATE jobs set AllocatedTeam = ?, Status = ? where JobNo = ? and Location = ?");
         $stmnt->execute([null, strtoupper($_POST['status']), $_POST['JobNo'], $staffDetails[0]['location']]);
     }
     else {

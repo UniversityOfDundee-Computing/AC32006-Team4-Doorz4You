@@ -8,12 +8,12 @@ function deleteBranchStaffHandler(PDO $pdo) {
         ], JSON_PRETTY_PRINT);
     }
     $pdo->beginTransaction();
-    $stmnt = $pdo->prepare("SELECT StaffNo from employee where Location = ? and StaffNo = ? LIMIT 1;");
+    $stmnt = $pdo->prepare("SELECT StaffNo from employees where Location = ? and StaffNo = ? LIMIT 1;");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['staffID']]);
     if ($stmnt->rowCount() === 1) {
         $stmnt = $pdo->prepare("DELETE FROM teamemployee where StaffID = ?;");
         $stmnt->execute([$_POST['staffID']]);
-        $stmnt = $pdo->prepare("DELETE FROM employee where StaffNo = ?;");
+        $stmnt = $pdo->prepare("DELETE FROM employees where StaffNo = ?;");
         $stmnt->execute([$_POST['staffID']]);
         $pdo->commit();
     } else {
