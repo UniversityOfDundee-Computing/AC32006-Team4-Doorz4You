@@ -71,6 +71,10 @@ main{
     color: #df4759;
 }
 
+.cardaccount {
+    width: 500px;
+}
+
 .search-txt-2 {
     width: 300px;
     margin-bottom: 20px;

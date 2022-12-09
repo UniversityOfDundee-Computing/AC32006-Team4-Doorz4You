@@ -12,11 +12,17 @@ new Vue({
       email: '',
       password: '',
       confirmpassword: '',
-    }
+    },
+    loginFail: false,
+    loginSuccess: false
   },
 
   methods: {
     submitDetails: function() {
+
+      var vm = this;
+      vm.loginFail = false;
+
       let validate = (this.form.firstname === '')
       validate |= (this.form.surname === '')
       validate |= (this.form.address1 === '')
@@ -48,9 +54,13 @@ new Vue({
         })
             .then(function (response) {
               console.log(response);
+              vm.loginSuccess = true;
+
+              window.location.href = (`${clientPage}/customer-login.html`);
             })
             .catch(function (error) {
               console.log(error);
+              vm.loginFail = true;
             });
       }
     },
