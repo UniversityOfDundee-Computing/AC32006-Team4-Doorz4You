@@ -20,6 +20,8 @@ function markCollectedHandler(PDO $pdo) {
             "error"=>"Unknown Staff Member"
         ], JSON_PRETTY_PRINT);
     }
+    $stmnt = $pdo->prepare("CALL CollectedStock(?,?)");
+    $stmnt->execute([$_POST['team'], $staffDetails[0]['location']]);
     return json_encode([
         "status"=>"ok"
     ], JSON_PRETTY_PRINT);
