@@ -55,7 +55,7 @@
             <th scope="col">Fitter 1</th>
             <th scope="col">Fitter 2</th>
             <th scope="col">Allocated Vehicle</th>
-            <th scope="col">Delete Team</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
 
@@ -66,28 +66,29 @@
             <th scope="row">{{ team.name }}</th>
             <!-- Staff Member 1 Select -->
             <th scope="row" class="table">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].staff[0].StaffNo">
+              <select class="form-select" aria-label="None Selected" v-model="teamsList[index].staff[0].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Staff Member 2 Select -->
             <th scope="row" class="table">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].staff[1].StaffNo">
+              <select class="form-select" aria-label="None Selected" v-model="teamsList[index].staff[1].StaffNo">
                 <option v-for="fitter in staffList" v-if="fitter.Position.toUpperCase() === 'FITTER'" v-bind:value="fitter.StaffNo">{{ fitter.FirstName }} {{ fitter.Surname }}</option>
                 <option value="null">No fitter allocated</option>
               </select>
             </th>
             <!-- Vehicle Select -->
             <th scope="row" class="table">
-              <select class="form-select" aria-label="None Selected" @change="updateTeam(team.id)" v-model="teamsList[index].vehicle.id">
+              <select class="form-select" aria-label="None Selected" v-model="teamsList[index].vehicle.id">
                 <option v-for="vehicle in vehiclesList" v-if="vehicle.VehicleNo === team.vehicle.id" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
                 <option v-for="vehicle in availableVehicles" v-if="vehicle !== undefined" v-bind:value="vehicle.VehicleNo">{{ vehicle.VehicleNo }}</option>
                 <option value="null">No vehicle allocated</option>
               </select>
             </th>
             <th scope="row">
-              <div class="d-grid">
+              <div class="d-flex">
+                <button class="btn btn-primary mx-auto" @click="updateTeam(team.id)"><i class="bi bi-arrow-bar-up"></i></button>
                 <button class="btn btn-danger mx-auto" @click="deleteRecord('team', team.id)"><i class="bi bi-trash-fill"></i></button>
               </div>
             </th>
@@ -139,30 +140,7 @@
             </th>
             <th scope="row">
               <div class="d-grid">
-                <button class="btn btn-danger mx-auto" @click="deleteRecord('staff', staff.staffNo)"><i class="bi bi-person-fill-x"></i></button>
-              </div>
-            </th>
-          </tr>
-
-          <!-- Test Row -->
-          <tr>
-            <th scope="row">118118</th>
-            <th scope="row">Henry Boffington-Orr</th>
-            <th scope="row">29999</th>
-            <th scope="row">19.08.1969</th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-warning mx-auto" data-bs-toggle="modal" data-bs-target="#editDaysOffModal" @click="editDaysOff(id)"><i class="bi bi-calendar-week"></i></button>
-              </div>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-warning mx-auto" @click="editStaff(id)"><i class="bi bi-pencil"></i></button>
-              </div>
-            </th>
-            <th scope="row">
-              <div class="d-grid">
-                <button class="btn btn-danger mx-auto" @click="deleteRecord('staff', staff.staffNo)"><i class="bi bi-person-fill-x"></i></button>
+                <button class="btn btn-danger mx-auto" @click="deleteRecord('staff', staff.StaffNo)"><i class="bi bi-person-fill-x"></i></button>
               </div>
             </th>
           </tr>
@@ -266,7 +244,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <!-- Edit Days Off Modal -->
     <div class="modal fade" id="editDaysOffModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="editDaysOffLabel" aria-hidden="true">
@@ -294,7 +272,7 @@
               <h5 class="modal-title fs-5">Next Days Off:</h5>
               <div class="table-responsive-md">
                 <table class="table table-hover table-bordered">
-          
+
                   <!-- Table Header Row -->
                   <thead class="table-danger">
                     <tr>
@@ -303,10 +281,10 @@
                       <th scope="col">Remove</th>
                     </tr>
                   </thead>
-          
+
                   <!-- Table Content -->
                   <tbody>
-          
+
                     <!-- Row 1 -->
                     <tr v-for="(staff, id) in staffList">
                       <th scope="row">{{ staff.DateOff }}</th>
@@ -317,7 +295,7 @@
                         </div>
                       </th>
                     </tr>
-          
+
                     <!-- Test Row -->
                     <tr>
                       <th scope="row">19.08.1969</th>

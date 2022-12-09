@@ -1,3 +1,8 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectStaffIfNotLoggedIn('Stock keeper');
+}, false);
+
 let vue = new Vue({
     el: '#app',
     data: {
@@ -17,6 +22,8 @@ let vue = new Vue({
   
     created: function() {
         this.initMethod();
+
+        redirectStaffIfNotLoggedIn('Stock keeper');
     },
   
     methods: {

@@ -1,7 +1,12 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectStaffIfNotLoggedIn('Manager');
+}, false);
+
 let vue = new Vue({
     el: '#app', data: {
         teamsList: [], fittersList: [], vehiclesList: [], availableVehicles:[], staffList: [], editStaffModal: {},
-        editPasswordModal: {}, activeStaff: {}, editDaysOffModal: {
+        editPasswordModal: {},editDaysOffModal:{}, activeStaff: {
             FirstName:"",
             surname:"",
             Salary:0,
@@ -19,6 +24,8 @@ let vue = new Vue({
 
     created: function () {
         this.initMethod();
+
+        redirectStaffIfNotLoggedIn('Manager');
     },
 
     methods: {
@@ -180,7 +187,7 @@ let vue = new Vue({
             bodyFormData.set("lName", this.activeStaff.Surname);
             bodyFormData.set("position", this.activeStaff.Position);
             bodyFormData.set("salary", this.activeStaff.Salary);
-            bodyFormData.set("password", this.activeStaff.Password);
+            bodyFormData.set("password", this.activeStaff.PW);
             axios.post(`${apiUrl}?createBranchStaff`, bodyFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data", "token": localToken

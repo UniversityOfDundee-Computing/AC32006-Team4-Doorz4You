@@ -7,10 +7,10 @@ function updateBranchStaffHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT StaffNo from employee where Location = ? and StaffNo = ? LIMIT 1");
+    $stmnt = $pdo->prepare("SELECT StaffNo from employees where Location = ? and StaffNo = ? LIMIT 1");
     $stmnt->execute([$staffDetails[0]['location'], $_POST['staffID']]);
     if ($stmnt->rowCount() === 1) {
-        $stmnt = $pdo->prepare("UPDATE employee set FirstName = ?, Surname = ?, Position = ?, Salary = ? where
+        $stmnt = $pdo->prepare("UPDATE employees set FirstName = ?, Surname = ?, Position = ?, Salary = ? where
                                                                              StaffNo = ? and Location = ?");
         $stmnt->execute([$_POST['fName'],$_POST['lName'],$_POST['position'],$_POST['salary'], $_POST['staffID'],
             $staffDetails[0]['location']]);

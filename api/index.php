@@ -177,6 +177,13 @@ if (isset($_GET['getCustomerDetails'])) {
     header("content-type: application/json");
     echo getCustomerDetailsHandler($pdo);
 }
+if (isset($_GET['getDaysOff'])) {
+    http_response_code(200);
+    $pdo = PDO_config("22ac3u04", "abc322");
+    include_once "endpoints/getDaysOff.php";
+    header("content-type: application/json");
+    echo getDaysOffHandler($pdo);
+}
 if (isset($_GET['addDayOff'])) {
     http_response_code(200);
     $pdo = PDO_config("22ac3u04", "abc322");

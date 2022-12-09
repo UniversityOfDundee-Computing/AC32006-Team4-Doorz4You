@@ -15,7 +15,7 @@
 function createOrderHandler(PDO $pdo) {
     $custNo = "";
     if (isset($_POST['customerNo'])) {
-        $stmnt = $pdo->prepare("SELECT CustomerNo,`PostCode`, `Country` FROM customer where CustomerNo = ? limit 1");
+        $stmnt = $pdo->prepare("SELECT CustomerNo,`PostCode`, `Country` FROM customers where CustomerNo = ? limit 1");
         $stmnt->execute([$_POST['customerNo']]);
         $custData = $stmnt->fetchAll();
         if (sizeof($custData) === 1) {
@@ -27,11 +27,11 @@ function createOrderHandler(PDO $pdo) {
 
     if ($custNo === "") {
         $custNo = uniqid("CUST_", true);
-        $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`customer` (`CustomerNo`, `FirstName`, `ContactNo`, `Email`, `Street`, `City`, `PostCode`, `Country`, `Surname`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`customers` (`CustomerNo`, `FirstName`, `ContactNo`, `Email`, `Street`, `City`, `PostCode`, `Country`, `Surname`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
         $stmnt->execute([$custNo, $_POST['firstName'], $_POST['ContactNo'], $_POST['Email'], $_POST['Street'], $_POST['City'], $_POST['Post_Code'], $_POST['Country'], $_POST['Surname']]);
     }
 
-    $stmnt = $pdo->prepare("SELECT `LocationID`, `PostCode` FROM branch where Country = ?");
+    $stmnt = $pdo->prepare("SELECT `LocationID`, `PostCode` FROM branches where Country = ?");
     $stmnt->execute([$_POST['Country']]);
     $branches = $stmnt->fetchAll();
     $branchesCSV = "";
@@ -70,7 +70,7 @@ function createOrderHandler(PDO $pdo) {
         }
     }
 
-    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`job` (`Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, null, ?);");
+    $stmnt = $pdo->prepare("INSERT INTO `22ac3d04`.`jobs` (`Customer`, `Description`, `DateFinished`, `DateTimeCreated`, `Status`, `JobType`, `AllocatedTeam`, `Location`) VALUES (?, ?, ?, ?, ?, ?, null, ?);");
     $stmnt->execute([$custNo, $_POST['customerNotes'], null, date("Y-m-d H:i:s", time()), "OPEN", $_POST['jobType'], $branch]);
     return "OK";
 }

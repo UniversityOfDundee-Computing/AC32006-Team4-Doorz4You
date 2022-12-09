@@ -34,7 +34,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="./customerorder.html">NEW ORDER</a>
           <a class="nav-link" href="./customer-account.html">ACCOUNT DETAILS</a>
-          <a class="nav-link" href="#" onclick="logOut()">LOG OUT</a>
+          <a class="nav-link" href="../index.html" onclick="logOut()">LOG OUT</a>
           <span class="navbar-text">Logged in as {{loggedInUsername}} (customer)</span>
         </div>
       </div>
@@ -52,8 +52,9 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">Your Details</h5>
+            <span>Your details are autofilled with your own account details.</span>
             <p></p>
-            <form class="row row-cols-2 gy-3">
+            <form class="row row-cols-2 gy-3" id="detailsform">
               <div class="col-7">
                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" v-model="form.firstname">
               </div>
@@ -128,19 +129,19 @@
                 <input type="text" class="form-control" id="inputCardName" placeholder="Name on Card" v-model="form.nameOnCard">
               </div>
               <div class="col-5">
-                <input type="text" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
+                <input type="number" class="form-control" id="inputCardNo" placeholder="Card Number" v-model="form.cardNumber">
               </div>
               <div class="col-4">
-                <input type="password" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
+                <input type="number" class="form-control" id="inputCardCVV" placeholder="Security Code/CVV" v-model="form.cardCvv">
               </div>
               <div class="col-8">
                 <!--Empty column for formatting-->
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardMonth" placeholder="Expiry Month" v-model="form.expiryMonth">
+                <input type="number" min="1" max="12" class="form-control" id="inputCardMonth" placeholder="Expiry Month" v-model="form.expiryMonth">
               </div>
               <div class="col-3">
-                <input type="text" class="form-control" id="inputCardYear" placeholder="Expiry Year" v-model="form.expiryYear">
+                <input type="number" min="2022" max="2027" class="form-control" id="inputCardYear" placeholder="Expiry Year" v-model="form.expiryYear">
               </div>
               <div class="col-5">
                 <!--Empty column for formatting-->

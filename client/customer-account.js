@@ -1,3 +1,8 @@
+window.addEventListener("pageshow", function() {
+    console.log('page shown');
+    redirectCustomerIfNotLoggedIn();
+}, false);
+
 let vue = new Vue({
     el: '#app',
     data: {
@@ -11,6 +16,8 @@ let vue = new Vue({
         let localToken = localStorage.getItem('token');
 
         this.loggedInUsername = localStorage.getItem('firstname');
+
+        redirectCustomerIfNotLoggedIn();
 
         axios({
             method: "get",
