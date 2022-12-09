@@ -1,0 +1,153 @@
+main{
+    margin-top:45px;
+    margin-bottom:95px;
+    margin-left:35px;
+    margin-right:35px;
+
+}
+
+
+.landing_Header{
+
+    color:white;
+    text-align:center;
+    font-family: 'Brush Script MT', cursive;
+    padding-bottom:20px; font-size: 60px;
+    -webkit-text-stroke: 0.9px black;
+
+}
+
+.login_button{
+
+
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 40px;
+
+
+}
+
+.intro_container{
+    border: 5px solid;
+    margin: auto;
+    font-family: Tahoma, sans-serif;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+    color:  white;
+    border-color: #df4759;
+    text-align:center;
+    border-radius: 25px;
+
+
+}
+
+.center_down_button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    height : 0;
+    bottom :0;
+
+  }
+
+  .card_container{
+
+    display: flex;
+  justify-content: center;
+  text-align:center;
+  margin-top: 20px;
+  font-size: 15px;
+
+  }
+
+.search-btn{
+
+    color: #df4759;
+}
+
+.search-txt-2 {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.filteroption {
+    margin-left: 10px;
+}
+
+div.summary-last-line{
+    padding-top:22px;
+}
+
+h2{
+    padding-top:45px;
+}
+
+.block-button{
+    padding-top:19px;
+    padding-bottom:19px;
+}
+
+.form-section{
+    padding-bottom:50px;
+}
+
+.register-form{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
+.team-header{
+    margin-bottom:45px;
+}
+
+.team-today{
+    padding-bottom:10px;
+}
+
+.section{
+    padding-top:45px;
+}
+
+/*Following section from: https://bootstrapbay.com/blog/bootstrap-button-styles/ */
+.block-button:hover, .block-button:focus{
+    background:#6c757d
+}
+.block-button:active, .block-button.active{
+    background:#dc3545;
+}
+/*Section End*/
+
+
+/*Following lines from: https://stackoverflow.com/a/52667883 */
+.table-md{
+    width:768px;
+}
+.table-lg{
+    width:992px;
+}
+
+@media (min-width:768px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+}
+@media (min-width:992px){
+    .table-sm{
+        width:100%;
+    }
+    .table-md{
+        width:100%;
+    }
+    .table-lg{
+        width:100%;
+    }
+}
