@@ -50,6 +50,8 @@ let vue = new Vue({
       let localToken = localStorage.getItem('token');
       var vm = this;
 
+        redirectStaffIfNotLoggedIn('Manager');
+
         axios({
             method: "get",
             url: `${apiUrl}?getBranchTeams`,
