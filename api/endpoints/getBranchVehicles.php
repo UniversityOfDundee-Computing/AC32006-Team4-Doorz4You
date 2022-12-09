@@ -7,7 +7,7 @@ function getBranchVehiclesHandler(PDO $pdo) {
             "error"=>$exception->getMessage()
         ], JSON_PRETTY_PRINT);
     }
-    $stmnt = $pdo->prepare("SELECT * FROM vehicle where HomeLocation = ?");
+    $stmnt = $pdo->prepare("SELECT * FROM vehiclelist where HomeLocation = ?");
     $stmnt->execute([$staffDetails[0]['location']]);
     return json_encode($stmnt->fetchAll(), JSON_PRETTY_PRINT);
 }
