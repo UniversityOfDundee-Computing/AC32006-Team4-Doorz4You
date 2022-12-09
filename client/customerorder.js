@@ -116,6 +116,7 @@ var vue = new Vue({
         })
         .then(function (response) {
           console.log(response);
+          location.href = `${clientPage}/customer-account.html`
         })
         .catch(function (error) {
           console.log(error);
