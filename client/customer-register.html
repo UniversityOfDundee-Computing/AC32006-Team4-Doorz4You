@@ -37,6 +37,7 @@
         <div class="navbar-nav">
           <a class="nav-link" href="../index.html">HOME</a>
           <a class="nav-link active" href="./customer-register.html">REGISTER</a>
+          <a class="nav-link active" href="./login.html">STAFF LOG IN</a>
         </div>
       </div>
     </div>
@@ -113,6 +114,8 @@
             <div class="d-grid col-4 mx-auto">
               <button class="btn btn-danger" :disabled="form.password !== form.confirmpassword" v-on:click="submitDetails">Register</button>
             </div>
+            <div v-if="loginFail">Incorrect details. Please try again.</div>
+            <div v-if="loginSuccess">Success! Redirecting you...</div>
           </div>
         </div>
       </div>
